@@ -10,6 +10,7 @@
 - [confirmed] `main.js` stores the token in browser `localStorage`, copies it to `$.su.url.session`, and `url.js` appends it as `_t=<URL-encoded token>` to subsequent API URLs.
 - [confirmed] `main.js` also stores the MD5 digest in browser local storage under `lgkey`; this is browser-local behavior, not evidence of device-side credential storage.
 - [confirmed] `.185` authenticated browser session completed `COMMAND=logout` with HTTP 200 and `ERROR=000`, then cleared browser local/session storage.
+- [confirmed] The `.184` browser session was closed through the UI logout dialog and returned to the root page before its tab closed; subsequent CLI verification sessions also received `ERROR=000` from `COMMAND=logout`.
 
 ## Response handling
 

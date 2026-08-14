@@ -29,6 +29,7 @@ Authenticated browser trace provenance
 OMP browser artifact://155 SHA-256 6756fb6cbd84101ef0303c0120fb173e37f4c6b62385259629ce10f6b5897efd.
 The artifact contains the successful .184 browser MD5 login and authenticated read-only trace.
 The .185 browser login and read-only snapshot were run in the isolated tab; no token value is retained here.
+The `.184` browser session was later closed through its UI logout flow; the parent also confirmed `ERROR=000` from later CLI `COMMAND=logout` verification.
 
 Failures
 The first direct .184 form POST received HTTP 401.
