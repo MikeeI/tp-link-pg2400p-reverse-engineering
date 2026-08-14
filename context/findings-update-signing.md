@@ -1,8 +1,12 @@
 # Update and Signature Flow
 
-Sources: `data/extracted-1.1.0-build-20250710-v1/extracted-knowledge/update-integrity-evidence.txt` and its 1.0.3 counterpart. All offsets below are raw artifact bytes and all code is unexecuted.
+Sources: version-scoped `update-integrity-evidence.txt`, `raw-image-map-evidence.txt`, and immutable raw payloads.
 
-Action status: `BLOCKED` for a verified signature/call graph; `RUNTIME-NEEDED` only in a disposable, non-live target.
+All offsets below are raw artifact bytes and all code is unexecuted.
+
+Action status: `BLOCKED` for a verified signature or updater call graph.
+
+`RUNTIME-NEEDED` applies only after a disposable non-live target has a validated loader handoff.
 
 ## Evidence
 
@@ -12,13 +16,15 @@ Action status: `BLOCKED` for a verified signature/call graph; `RUNTIME-NEEDED` o
 - [confirmed] Lifecycle strings `Upgrade thread started`, `Upgrade thread finished`, `upgrade success`, `upgrade failed`, and `httpupg` occur in the raw payload (1.1.0: 2838300, 2838324, 2840840, 2840860, 2840976). These are static update-code anchors, not an observed update.
 - [confirmed] The decoded UI restricts the local file to `.ftp` then uploads using `COMMAND=firmware upgrade`: `data/extracted-1.1.0-build-20250710-v1/raw/ffs-dec/web/modules/advanced/system/firmware/models.js` byte 279; upload callsite `controllers.js` byte 1325. The UI begins a reboot timer after reported upload success. This endpoint is mutation-risking and was not called.
 - [confirmed] The bundled 1.0.3 web update instructions require matching hardware and say the process is followed by reboot: `data/extracted-1.0.3-build-20221213-v1/raw/web-update-guide.txt` lines 20 and 35–43.
+- [confirmed] A constant Ghidra Raw Binary map at `0x63000000` validates little-endian Xtensa code elsewhere in both payloads. In 1.1.0, bounded candidate xrefs to SECURE, httpupg, FLASHCRC, and FileCRC are offcuts, target unrelated literals, or are unreachable from the preceding validated entry; the exact records are in `raw-image-map-evidence.txt`.
+- [confirmed] The 1.0.3 and 1.1.0 SECURE, httpupg, and FileCRC anchor contexts are byte-identical in fixed 256-byte windows under the same map. Their moved addresses and the four-byte FLASHCRC-context difference are structural evidence only; see `findings-version-comparisons.md`.
 
 ## Interpretation
 
 - [confirmed] CRC validation and an encryption-state path are present in the boot/update material.
-- [likely] `FLUPGRADE.GENERAL.SECURE` participates in a secure-upgrade policy. A static string does not prove branch semantics, defaults, or whether it enforces encryption, a signature, both, or neither.
-- [unresolved] No parsed RSA/ECDSA/public-key/signature-verification callsite or signed-container metadata was recovered. This is not proof that signature verification is absent: the raw Xtensa image does not yet have a valid load map or xrefs.
+- [likely] `FLUPGRADE.GENERAL.SECURE` participates in a secure-upgrade policy. Its string and data-pointer presence do not prove branch semantics, defaults, or whether it enforces encryption, a signature, both, or neither.
+- [unresolved] No parsed RSA/ECDSA/public-key/signature-verification callsite or signed-container metadata was recovered. This does not prove that signature verification is absent: the static image map is usable, but the loader handoff and validated updater xrefs remain absent.
 
 ## Next Proof
 
-Recover the raw Xtensa entry/base and only then trace `httpupg` through `FlUpgradeFileCRCValidation`/`FlUpgradeFLASHCRCValidation`, capturing success/failure branches and the consumer of `FLUPGRADE.GENERAL.SECURE`. Never test this against a live adapter.
+Decode `descriptor.upg` fields after `firmware B:/fw` at raw `.ftp` offset `0x178`, validate the loader-to-firmware handoff, and seed only that transfer into the existing map. Then trace `httpupg` through `FlUpgradeFileCRCValidation` and `FlUpgradeFLASHCRCValidation`, capturing success/failure control flow and the SECURE consumer without testing a live adapter.

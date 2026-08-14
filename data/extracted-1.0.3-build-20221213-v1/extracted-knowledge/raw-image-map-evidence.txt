@@ -1,0 +1,61 @@
+# Raw Xtensa image-map evidence
+
+Source payload: `data/extracted-1.0.3-build-20221213-v1/raw/firmware-payload`.
+Payload SHA-256: `00213d7d32a1d29c654b38570c798ae176ae24f6223e4e0794aa231d59df545d`.
+Payload size: 3,828,620 bytes (`0x3a6b8c`).
+Container source: `.ftp` SHA-256 `ac22c971a0d5bcc0f88adec20a9010db8e5e5f1beb13f8c291e8e8f0c5155819`.
+The confirmed firmware XZ stream begins at `.ftp` offset `0xa3a3`, has 2,023,776 compressed bytes, and expands to this payload.
+The independently confirmed FFS XZ stream begins at `.ftp` offset `0x1ff3f8`.
+
+## Constant static loader configuration
+
+Ghidra: 12.1.2.
+Java: OpenJDK 21.0.11+10-1-24.04.4-Ubuntu.
+Loader: `BinaryLoader` / Raw Binary.
+Language ID: `Xtensa:LE:32:default`.
+Compiler spec: `default`.
+Static image base: `0x63000000`.
+Memory block: `firmware`, `0x63000000`–`0x633a6b8b`, exactly 3,828,620 file-backed bytes.
+Headless mode: `-noanalysis -readOnly -deleteProject -analysisTimeoutPerFile 120 -max-cpu 1`.
+Ghidra exposes only `Xtensa:LE:32:default` and `Xtensa:BE:32:default`, not an `xtensa8` core variant.
+No run timed out or saved an analysis project.
+
+## Usable static map
+
+A full aligned little-endian u32 scan finds 39,186 words in `0x63000000`–`0x633a6b8b`.
+The working mapping is `static address = 0x63000000 + raw payload offset`.
+The count is supporting evidence only because a flat raw image can contain accidental integer matches.
+The map is independently corroborated by the raw pointer table at offset `0xd4`.
+Its exact bytes are `782c00632c2b0063882f0063f85a0063c05a0063845a0063485a0063`.
+Those little-endian pointers resolve to `0x63002c78`, `0x63002b2c`, `0x63002f88`, `0x63005af8`, `0x63005ac0`, `0x63005a84`, and `0x63005a48`.
+Each resolved target begins a valid Ghidra LE Xtensa function prologue.
+The first target bytes are `3661008c2288e2ac78929306` at raw offset `0x2c78`.
+Ghidra decodes them as `entry a1,0x30; beqz.n; l32i.n; beqz.n; l16si`.
+At raw offset `0x2c8f`, bytes `810ef5` decode as `l32r a8,0x630000c8`.
+That resolved in-image literal reference independently agrees with the proposed base.
+
+## Architecture and entry boundary
+
+[confirmed] The raw payload is structurally compatible with 32-bit little-endian Xtensa under the installed default language.
+[likely] The CPU is the `xtensa8` family named by independent official container and raw strings, with a 32-bit little-endian ISA state.
+[unresolved] The exact Xtensa core option, ABI, physical flash address, and runtime load address are not encoded in the raw payload.
+[unresolved] No reset entry or exception-vector owner is proven.
+The pointer table at raw offset `0xd4` is a candidate dispatch table, not a promoted reset-vector claim.
+[unresolved] The raw Binary importer creates one executable block and exposes no section table, so global code/data boundaries remain unproven.
+Valid code begins at least at raw offsets `0x2c78`, `0x2b2c`, `0x2f88`, and `0x5af8`.
+String and pointer regions are data candidates, not a complete component or segment map.
+
+## Updater anchors and boundary
+
+`FLUPGRADE.GENERAL.SECURE` is present at raw offset `0x2b3930` / static address `0x632b3930`.
+Its exact bytes are `464c555047524144452e47454e4552414c2e53454355524500`.
+`httpupg` is present at raw offset `0x2b394c` / static address `0x632b394c`.
+`FlUpgradeFLASHCRCValidation` is present at raw offset `0x2945c0` / static address `0x632945c0`.
+`FlUpgradeFileCRCValidation:` is present at raw offset `0x2cbadc` / static address `0x632cbadc`.
+These strings and their data-pointer candidates do not establish a validated updater call graph or a success/failure branch.
+
+## Next proof
+
+Decode the `descriptor.upg` record fields after `firmware B:/fw` at `.ftp` offset `0x178`.
+Validate its component offsets and lengths against the confirmed XZ boundary at `0xa3a3`.
+Use a recovered loader-to-firmware handoff address to identify a real reset transfer before promoting an entry vector or updater branch.
