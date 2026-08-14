@@ -133,3 +133,21 @@ logs/
 *.sqlite-journal
 *.orig
 *.prof
+
+# Reverse-engineering artifacts
+!data/
+data/*
+!data/assets/
+data/assets/*
+!data/assets/.gitkeep
+!data/captures/
+data/captures/*
+!data/captures/.gitkeep
+!data/subagents/
+!data/subagents/**
+!data/extracted-*/
+data/extracted-*/raw/
+data/extracted-*/decompiled/
+data/extracted-*/dynamic/
+!data/extracted-*/extracted-knowledge/
+!data/extracted-*/extracted-knowledge/**
