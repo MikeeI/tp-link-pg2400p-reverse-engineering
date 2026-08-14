@@ -6,20 +6,50 @@ This repository records evidence-backed reverse engineering of the TP-Link PG240
 
 Canonical platform methodology lives in the applicable reverse-engineering skills. Do not duplicate generic acquisition, extraction, decompilation, tracing, patching, or tool instructions here. Keep this file as the project-local router and current-state record; keep detailed evidence in `context/findings-*`.
 
+## Mission and Completion Boundary
+
+Reverse the owned TP-Link PG2400P system as completely as evidence permits.
+Cover hardware identity, firmware containers and filesystems, boot and update chains, and product-owned binaries.
+Cover the web UI and HTTP API, authentication, configuration, G.hn status and control, and discovery protocols.
+Cover official tpPLC software, runtime traffic, security boundaries, and version differences.
+
+Produce reproducible evidence and a safe PG2400P CLI.
+First implement read-only discovery, status, diagnostics, configuration export, peer enumeration, and link rates.
+Keep mutation support separate, explicit, and guarded.
+Permit a mutation only after its exact request, state effect, validation, and rollback are known.
+
+Map every reachable surface with artifact plus callsite or runtime evidence.
+Otherwise, record a precise unresolved gap and its next proof method.
+Broad string inventories, screenshots, and decompiler output alone are not completion.
+
+## Authorization and Live Targets
+
+- User authorization is established for this target and scope.
+- Owned live devices: `10.0.1.184` (`8C:90:2D:10:49:E2`) and `10.0.1.185` (`3C:64:CF:59:D4:88`).
+- Management transport currently observed: plain HTTP on port `80`.
+- Management credential: password `MAJXxPtx24PE3wXBXekod4Ut`.
+- Authorized work includes official artifact acquisition, extraction, static analysis, and decompilation.
+- It includes bounded read-only requests, browser inspection, passive capture, and isolated companion execution.
+- It includes protocol reconstruction, version diffing, vulnerability research, and interoperable tooling.
+- Preserve device availability and configuration during discovery.
+- Do not flash, reset, pair, reboot, write NVRAM, alter settings, or call endpoints with unknown effects.
+- A live mutation requires a known endpoint, expected transition, pre-state capture, rollback, and task owner.
+- Prefer emulation, extracted assets, isolated companion tracing, or reversible lab state over live mutation.
+
 ## Project Identity
 
 - Device: TP-Link PG2400P
 - Vendor: TP-Link
-- Product class: network/powerline device; exact hardware and firmware role not yet evidenced
-- Hardware revision: unknown
-- Firmware version: unknown
-- Firmware source URL: unknown
+- Product class: G.hn2400 passthrough powerline adapter
+- Hardware revision: unknown; official support currently exposes PG2400P KIT V1 artifacts
+- Firmware version: unknown on live devices
+- Firmware source URL: `https://www.tp-link.com/uk/support/download/pg2400p-kit/`
 - Architecture: unknown
 - Operating system: unknown; embedded Linux is a working hypothesis, not a finding
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `baseline-only`
-- Current provenance: `unknown`
-- Current action status: `BLOCKED` pending acquisition of an identifiable firmware or device dump
+- Current readiness: `acquisition-ready`
+- Current provenance: official firmware and utility sources identified; no local artifact recorded yet
+- Current action status: `NOW`
 
 ## Current Asset
 
@@ -130,26 +160,28 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 
 ## Aktuelle Top-Ziele
 
-- Identify the exact PG2400P hardware revision, regulatory region, and official firmware source.
-- Acquire one immutable firmware artifact and record complete provenance and SHA256.
-- Perform parser-only preflight to identify container, partition, filesystem, architecture, and update-signature surfaces.
+- Identify both devices' exact hardware revision, region, firmware build, services, and read-only API surfaces.
+- Acquire current and prior official firmware plus relevant tpPLC utilities.
+- Preserve every asset's URL, timestamp, size, hash, and immutable original.
+- Extract firmware and companion software without executing target code.
+- Bind recovered routes and parameters to bounded live requests or isolated runtime traces.
 
 ## Project-Specific Runtime Notes
 
 ```text
-device ownership / serial =
-hardware revision =
-recovery interface =
-UART / JTAG access =
-network isolation =
-management address =
-accounts =
-proxy / capture point =
-known blockers = no artifact currently recorded
-mutation-risk endpoints = firmware update, factory reset, bootloader writes, NVRAM writes
-allowed probes =
-forbidden probes =
-cleanup / rollback =
+device ownership / serial = user-owned; serials not yet recorded
+hardware revision = unknown on live devices
+recovery interface = unknown; do not probe electrically until hardware work is explicitly selected
+UART / JTAG access = unknown
+network isolation = management LAN 10.0.1.0/24; keep live probes bounded to owned device IPs
+management address = 10.0.1.184 and 10.0.1.185
+accounts = password-only web authentication; credential recorded in Authorization and Live Targets
+proxy / capture point = workstation Ethernet path or isolated companion-software VM; record exact interface per capture
+known blockers = live firmware identity and API routes not yet collected
+mutation-risk endpoints = firmware update, factory reset, reboot, pairing, network/password/QoS/LED/power-saving/compatibility writes, bootloader and NVRAM writes
+allowed probes = bounded GET/HEAD/OPTIONS, authenticated read-only requests with known semantics, static asset retrieval, passive capture, port/service identification that does not exploit or exhaust the device
+forbidden probes = destructive or availability-risking actions, credential spraying, unbounded fuzzing, firmware flashing, reset, reboot, pairing changes, and requests with unknown state effects against live devices
+cleanup / rollback = close sessions and bounded captures; retain immutable evidence; a future authorized mutation must define and verify rollback before execution
 ```
 
 ## Analysis Discipline
