@@ -1,0 +1,12 @@
+TP-Link tpPLC Windows extraction inventory
+
+[confirmed] archive chain: PowerLineUtility.zip -> PowerLineUtility.exe (PE32 InstallShield Setup.exe) -> ISSetupStream -> TP-Link PLC Utility.msi -> Data1.cab (MSZip) -> 75 application files.
+[confirmed] outer ZIP extraction: 7-Zip 23.01; PowerLineUtility.exe extracted to raw/.
+[confirmed] InstallShield stream: 7-Zip exposed the opaque [0] overlay with magic ISSetupStream; unshield 1.5.1 correctly rejected it as not an InstallShield Cabinet File.
+[confirmed] alternate parser: binary-refinery 0.11.2 xtiss extracted 25 stream members without execution: ISSetup.dll, 11 locale INIs, 10 MST transforms, TP-Link PLC Utility.msi, and Setup.ini.
+[confirmed] MSI: 97431040 bytes; sha256 aa3376b68591f4dcb41d1430a81871bed53f88a9307218952ec0fb95b94cdf30.
+[confirmed] MSI Data1.cab: 94722218 bytes; sha256 25167e5eed70f5e6398f5fe0b4e584b77d41e5f6cb5b072efabdba9b7add6618; 75 files, MSZip, one volume, cabinet ID 1111.
+[confirmed] Data1.cab payload suffixes: 2 .exe, 8 .dll, 1 .asar, 56 .pak, 2 .bin, 1 .dat, 1 .ini, 1 .json, 1 .html, and 2 extensionless files.
+[confirmed] Data1.cab contains no .sys, .inf, or .cat member; its packet-capture dependency is external rather than a bundled Npcap/WinPcap driver package.
+[confirmed] the one app.asar was parsed and extracted to raw/asar/ with @electron/asar 3.2.16; no app.asar.unpacked directory exists in the cabinet payload.
+[confirmed] no target executable, installer, MSI custom action, Electron application, or driver was run.

@@ -1,0 +1,17 @@
+TP-Link tpPLC Windows binary and stack inventory
+
+[confirmed] architecture: all product-owned Windows native binaries are PE32/I386.
+[confirmed] Electron GUI owner: tpplc.exe, 136326856 bytes, sha256 d0bfb9d3defa37c615f8a3da0ed1f8f2af6f251c0f25bbb35a9a9c75b21aa2c2; its app.asar is 1726147 bytes, sha256 79392498547b8a65bf069328a1bef84b3e3db73037f6a14d7c15c9491c006301.
+[confirmed] app.asar package.json: name tpPLC; version 2.3.5793.19; buildDate 20251010; main electron.js; Electron packager targets win32/ia32 with Electron 22.3.27.
+[confirmed] native command/server owner: plcu.exe, 2616520 bytes, sha256 a9f38d0c1617ec9b3f4f58f3d0767e2f2b1cb80e5404c95ebcc0d7b37ffc00e3.
+[confirmed] low-level PLC owner: plcoperation.dll, 574664 bytes, sha256 525b9accf0d4a9220c36b9e9c12eef0d8c86b19a50332ce41aa1575ed50f99a9.
+[confirmed] HyFi HTTP-management owner: hyfiinfotran.dll, 3663048 bytes, sha256 d5637602fce471e8f3b3ad7aae03ceb488c099c5c0b9748a1de44d66117557ac.
+[confirmed] renderer-to-backend mapping: raw/asar/_build/js/plcmw.js sets Windows UAPI_PATH=plcu.exe, spawns it as a persistent server, and invokes plcu.exe <command> for individual JSON-on-stdout requests.
+[confirmed] plcu.exe imports PLCOperation.dll operations including findAllAdapterNetwork, initAdapter, getNmk, setNmkPlc, loginHyfi, scanHyfi, getWifiPara, setWifiPara, qcaUpgrade, bcmUpgrade, mseUpgrade, hyfiUpgrade, resetDev, and resetHyfi.
+[confirmed] plcoperation.dll imports hyfiinfotran.dll operations ScanDevice, BroadcastIP, ScanSingleDevice, LoginDevServer, GetDevWifiParam, SetDevWifiParam, SetDevPlcParam, and UpgradeHyfi.
+[confirmed] plcoperation.dll imports WPCAP.DLL and PACKET.DLL; its Ghidra PE-loader report identifies both direct dependencies, and the binary contains pcap_open_live, pcap_compile, pcap_setfilter, pcap_next_ex, pcap_sendpacket, pcap_geterr, and the wpcap.dll literal at file offset 0x6a860.
+[confirmed] plcu.exe contains the diagnostic "Couldn't load Npcap" at file offset 0x257c74; the package has no capture driver.  This establishes an external Npcap requirement/handling path, not its exact installation or selection behavior.
+[confirmed] no current payload file names or imports contain an Npcap driver binary; WinPcap-compatible WPCAP.DLL/PACKET.DLL is the direct low-level API boundary.
+[confirmed] current G.hn anchors are plcu.exe strings G.hn1200 at 0x25810c and G.hn2400 at 0x25811c, plus plcoperation.dll GHN_DEVICE at 0x7bc84 and G.hn_%02x%02x at 0x7bcd4.
+[confirmed] plcoperation.dll also contains the packet-filter diagnostic format "ether dst %02X:%02X:%02X:%02X:%02X:%02X and ether proto 0x%04X" at 0x849e8.
+[likely] plcoperation.dll is the current Windows G.hn discovery/control implementation: it combines direct capture imports, G.hn-specific data strings, and the functions invoked by plcu.exe; the exact internal function-to-model dispatch needs a successful Windows-PDB or bounded native callsite trace.

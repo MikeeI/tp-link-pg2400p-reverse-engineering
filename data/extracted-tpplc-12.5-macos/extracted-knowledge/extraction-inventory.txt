@@ -1,0 +1,8 @@
+TP-Link tpPLC macOS extraction inventory
+
+[confirmed] archive chain: PowerlineUtility(MAC).zip -> TP-LINK PLC Utility.dmg -> HFS+ volume -> TP-LINK PLC Utility/tpPLC.app.
+[confirmed] 7-Zip 23.01 identified a ZLIB-compressed DMG with 21 blocks and an HFS+ volume of 24997888 bytes; extraction produced 23 folders and 258 files without execution.
+[confirmed] bundle files relevant to transport: Contents/MacOS/tpPLC, Contents/Resources/plcu, Contents/Resources/ChmodBPF, Contents/Resources/_build/ui.build.js, and Info.plist.
+[confirmed] ChmodBPF is a bundled zsh script that pre-creates up to 256 /dev/bpf* devices, then runs chgrp staff and chmod g+rw; its presence is static evidence of a BPF access helper, not proof it ran or was installed.
+[confirmed] no kernel extension, .kext, .dext, or driver payload was found in the 258 extracted DMG files.
+[confirmed] no target executable, bundle script, DMG, or helper was run.

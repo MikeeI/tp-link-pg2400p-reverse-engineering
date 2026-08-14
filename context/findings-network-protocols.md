@@ -54,3 +54,38 @@
 ## Provenance
 
 `data/captures/live-tcp-1-1024-8080-8443.nmap` is ignored raw evidence; its SHA-256 and browser-read provenance are in `data/extracted-live/extracted-knowledge/live-web-evidence.txt`.
+
+## Official companion transport evidence
+
+- [confirmed] The current official Windows archive is `tpPLC-2.3.5940.20-windows-PowerLineUtility.zip`.
+  Its SHA-256 is `c3375a2842ca6981eb1fddae2257b06680cb914372df679ccd1517f956de69ef`.
+  The official PG2400P KIT V1 page owns its provenance.
+- [confirmed] The Windows Electron UI routes commands through `plcu.exe` to `plcoperation.dll`.
+  `plcoperation.dll` directly imports `WPCAP.DLL` and `PACKET.DLL`.
+- [confirmed] `plcoperation.dll` contains `GHN_DEVICE`, `G.hn_%02x%02x`, and a capture-filter format.
+- [confirmed] `plcu.exe` contains `G.hn1200`, `G.hn2400`, and `Couldn't load Npcap`.
+  The utility bundles no `.sys`, `.inf`, or `.cat` capture-driver file.
+- [likely] Windows uses Npcap through the WinPcap-compatible DLL APIs.
+  An isolated Windows trace must establish driver selection and current dispatch.
+
+### G.hn L2 discovery framing
+
+- [confirmed] The official macOS backend imports libpcap and contains G.hn constructor and scanner paths.
+  A separate function owns raw-Ethernet transmission through `pcap_sendpacket`.
+- [confirmed] `make_GHN_DISCOVERY_Packet` writes EtherType `0x2e00`.
+  Original `plcu` bytes are `66 c7 45 a6 2e 00` at file offset `0x62da8`.
+- [confirmed] `initDiscoveryDestAv` writes broadcast and `00:b0:52:00:00:01` discovery destinations.
+  The generic pcap sender can insert an `0x8100` VLAN tag.
+- [confirmed] `ghnScanMXLLocalDev` obtains an interface and invokes `_MACDiscoverGet`.
+  `_MACDiscoverGet` enumerates interfaces and waits for worker results.
+- [confirmed] `ghnMXLGetIP` queries `TCPIP.IPV4.IP_ADDRESS`, then `TCPIP.IPV4.ADDITIONAL_IP_ADDRESS`.
+- [likely] The recovered pcap sender carries the constructed G.hn discovery frame; a direct constructor-to-send callsite was not recovered.
+- `RUNTIME-NEEDED`: capture payloads, opcodes, parsing, filters, retries, and current Windows equivalence.
+
+### Management boundary
+
+- [confirmed] The current UI recognizes `PG2400P 1.0` and can open its support page or discovered IP.
+- [confirmed] HyFi libraries contain three HTTP management routes.
+  No recovered model branch connects those routes to PG2400P.
+- [likely] PG2400P G.hn control is the raw/config-layer path rather than the recovered HyFi HTTP path.
+- `BLOCKED`: do not infer or probe a PG2400P HTTP control route from the companion utility.

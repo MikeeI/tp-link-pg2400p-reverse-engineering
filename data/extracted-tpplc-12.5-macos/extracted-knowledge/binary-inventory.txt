@@ -1,0 +1,11 @@
+TP-Link tpPLC macOS binary and interface inventory
+
+[confirmed] tpPLC GUI binary: Mach-O 64-bit x86_64 executable; 72592 bytes; sha256 022e477b4372002aa6d4446721a232ae04a37eae181ea12cba0826e7b8c9c66a.
+[confirmed] tpPLC imports WebKit, JavaScriptCore, AppKit, Foundation, CoreFoundation, libobjc, and libSystem.
+[confirmed] tpPLC has Objective-C `JsExternal` selectors exported to JavaScript including rescan, getnmk, setnpws, setled, getwifi, setwifi, upgrade, login, reset, getqos, setqos, power-saving/mode calls, and OS helpers; `JsExternal _exportToWebView` and `initWithJSContext:` establish it as the GUI/bridge owner.
+[confirmed] plcu backend: Mach-O 64-bit x86_64 executable; 3015104 bytes; sha256 a3dd21ab03210a94589b9254c05f9e7930eae4d94b6031daff6106f458127a81.
+[confirmed] plcu imports /usr/lib/libpcap.A.dylib and these pcap APIs: pcap_findalldevs, pcap_open_live, pcap_compile, pcap_setfilter, pcap_next_ex, pcap_dispatch, pcap_sendpacket, pcap_geterr, pcap_freealldevs, pcap_close.
+[confirmed] plcu imports /usr/lib/libcurl.4.dylib with curl_easy_init, curl_easy_setopt, curl_easy_perform, multipart, and slist APIs; it also imports socket, bind, connect, send/sendto, recv/recvfrom, select, and getifaddrs.
+[confirmed] plcu has unstripped G.hn/MXL symbols: ghnScanMXLLocalDev, ghnMXLGetIP, ghnMXLGetHFID, ghnMXLGetEthSts, ghnMXLGetLed, ghnMXLGetDeviceName, ghnGetMXLPassword, ghnSetMXLPassword, ghnResetMXLFacDef, ghnRebootMXLDev, ghnGetNwInfoFromMXL, and make_GHN_DISCOVERY_Packet.
+[confirmed] plcu has generic upgrade symbols for QCA, BCM, HyFi, APFW, and L2 firmware flows, but the complete exported/global symbol surface has no name matching a G.hn upgrade function.  This is bounded only to named symbols, not evidence that G.hn firmware upgrade is absent.
+[confirmed] current Windows and this macOS G.hn backend are distinct artifacts; shared names/strings support a common-code inference only where separately labelled likely.

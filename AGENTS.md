@@ -57,8 +57,8 @@ Live-device tests require an explicit test name and invocation naming the bounde
 - Architecture: Xtensa8 indicated by official firmware strings; exact CPU/ABI unresolved
 - Operating system: no Linux filesystem or ELF evidenced; firmware/RTOS-like stack is a working inference
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `live-readonly-and-static-firmware-evidenced`
-- Current provenance: bounded live capture plus two immutable official EU V1 firmware ZIPs with parser-only extraction
+- Current readiness: `live-readonly-static-firmware-and-companion-evidenced`
+- Current provenance: bounded live capture plus immutable official firmware and tpPLC assets with parser-only extraction
 - Current action status: `NOW`
 
 ## Current Asset
@@ -105,6 +105,7 @@ Never derive versions or hardware revisions from filenames when artifact metadat
 - Dynamic traces: `data/extracted-{version}-{hardware}/dynamic/`
 - Captures: `data/captures/`
 - Live extracted knowledge: `data/extracted-live/extracted-knowledge/`
+- Companion utility knowledge: `data/extracted-tpplc-*/extracted-knowledge/`
 - Findings: `context/`
 - Curated synthesis: `docs/`
 - Subagent notes: `data/subagents/`
@@ -142,6 +143,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
 | Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
 | Safe read-only CLI | `src/pg2400p_cli/` and `context/findings-cli.md` | live-verified on both devices | extend only from proven semantics |
+| Official tpPLC utilities | `data/extracted-tpplc-*/extracted-knowledge/` | Windows and macOS stacks mapped; raw G.hn discovery evidenced | recover payload grammar in an isolated VM |
 | Raw subagent notes | `data/subagents/` | empty | use only for separable analysis lanes |
 
 ## Findings Router
@@ -152,6 +154,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
 | Architecture and processes | `context/findings-architecture-processes.md` | raw non-ELF payload; Xtensa8 indicated; static service names | confirmed/likely | `RUNTIME-NEEDED` | raw-image map and xrefs |
 | Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
+| Official tpPLC companion | `context/findings-companion-utility.md` | PG2400P UI branch and raw-Ethernet G.hn discovery owners mapped | confirmed/likely | `RUNTIME-NEEDED` | isolated `rescan` capture |
 | Web interface and API | `context/findings-web-api.md` | live root/form contract plus version-scoped static evidence | confirmed/likely | `NOW` | versioned handler implementation |
 | Auth and cryptography | `context/findings-auth-crypto.md` | MD5 login and `_t` token flow captured on both devices | confirmed | `NOW` | token lifecycle and server validation |
 | Storage and configuration | `context/findings-storage-config.md` | authenticated configuration snapshots captured | confirmed | `RUNTIME-NEEDED` | persistent storage ownership |
@@ -166,6 +169,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 - [x] Baseline folders and artifact ignore boundaries established
 - [x] Exact product identity and hardware revision evidenced on both live devices.
 - [x] Official firmware acquired with URL, time, size, SHA256, provenance, and immutable originals
+- [x] Official Windows and macOS tpPLC utilities acquired, hashed, extracted, and statically mapped
 - [x] Container, compression, FFS TAR, and web filesystem formats inventoried
 - [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries fully inventoried
 - [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped
@@ -179,6 +183,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 - Extend the CLI only for read semantics proven by artifact callsites and bounded runtime evidence.
 - Compare installed 1.0.3 behavior with the security changes in official version 1.1.0.
 - Establish the raw Xtensa load base, entry, CPU variant, boot component boundaries, and updater xrefs without executing firmware on a live adapter.
+- Recover the tpPLC G.hn discovery payload, reply validation, filters, and retry schedule in an isolated VM.
 - Resolve whether `FLUPGRADE.GENERAL.SECURE` enforces encryption, signature verification, or another policy in an isolated target.
 - Bind unrecovered write behavior to static callsites and controlled runtime evidence.
 

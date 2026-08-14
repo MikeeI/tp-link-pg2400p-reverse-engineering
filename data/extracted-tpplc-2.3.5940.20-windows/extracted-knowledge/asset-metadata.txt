@@ -1,0 +1,19 @@
+TP-Link tpPLC Windows utility asset metadata
+
+[confirmed] source trust: official.
+[confirmed] support page: https://www.tp-link.com/us/support/download/pg2400p-kit/
+[confirmed] page product/hardware: PG2400P KIT V1.
+[confirmed] page utility label: TP PLC Utility_2.3.5940.20_Windows 7/8/8.1/10/11.
+[confirmed] page published date: 2026-06-16.
+[confirmed] page declared size: 98.75 MB.
+[confirmed] direct URL: https://static.tp-link.com/upload/software/2026/202606/20260616/PowerLineUtility.zip
+[confirmed] acquisition time: 2026-08-14T01:46:46.399768386Z, derived from the immutable asset ctime/mtime recorded on a Europe/Berlin CEST host.
+[confirmed] asset path: data/assets/tpPLC-2.3.5940.20-windows-PowerLineUtility.zip
+[confirmed] size: 101117554 bytes.
+[confirmed] sha256: c3375a2842ca6981eb1fddae2257b06680cb914372df679ccd1517f956de69ef.
+[confirmed] response: HTTP/2 200; content-length 101117554; Last-Modified 2026-06-16T06:29:48Z; S3 version ID IrG_CXkN9nkjVG_LiTei3yK5dCZI1Dqc; ETag d10e63fb69ed2e0fa9b43383a3015e36; saved headers: http-headers.txt.
+[confirmed] outer ZIP has one member, PowerLineUtility.exe, 101797152 bytes, CRC32 DC5C8F24.
+[confirmed] PowerLineUtility.exe is a signed PE32 InstallShield Setup.exe launcher; resource FileVersion/ProductVersion is 2.3.5793.19; InstallShield internal version is 24.0.438; company is TP-Link.
+[confirmed] embedded Authenticode PKCS#7 leaf subject: C=US, ST=California, L=Irvine, O=TP-Link Systems Inc., CN=TP-Link Systems Inc.; issuer: GlobalSign GCC R45 EV CodeSigning CA 2020.
+[likely] the official page’s 2.3.5940.20 label is a distribution/revision label while the packaged product remains 2.3.5793.19; the artifact establishes the discrepancy but not its vendor rationale.
+[confirmed] no target executable was run; extraction used archive/container parsers only.

@@ -1,0 +1,10 @@
+macOS tpPLC analysis toolchain and material failures
+
+[confirmed] curl 8.5.0 acquired the official ZIP over HTTPS with --fail --location --proto =https --tlsv1.2.
+[confirmed] 7-Zip 23.01 x64 successfully parsed ZIP, ZLIB DMG, HFS+, and the app bundle.
+[confirmed] Ghidra 12.1.2 with OpenJDK 21.0.11 loaded plcu as Mac OS X Mach-O, x86:LE:64:default:gcc, image base 0x100000000, read-only disposable projects, default analyzers, 180-second per-file timeout, and max-cpu 2.
+[confirmed] Ghidra discovery pass completed in 45 seconds and transport pass in 43 seconds; targeted decompilations completed without timeout.
+[confirmed] Ghidra did not resolve external libcurl, libpcap, libc++, or libSystem binaries because the bundle does not ship those macOS system libraries; import evidence remains valid but external call prototypes are loader-derived.
+[confirmed] Ghidra emitted demangled-address-table warnings for several libc++ RTTI/typeinfo entries; no claim relies on those entries.
+[confirmed] first Ghidra invocation failed before import because /tmp/tpplc-ghidra did not exist; the directory was created and the bounded analysis reran successfully.
+[confirmed] no target executable, app bundle, BPF helper, or downloaded artifact was run.

@@ -1,0 +1,14 @@
+TP-Link tpPLC macOS utility asset metadata
+
+[confirmed] source trust: official.
+[confirmed] support page: https://www.tp-link.com/us/support/download/pg2400p-kit/
+[confirmed] page entry: tpPLC_Utility_Mac 12.5, published 2022-09-14, Mac OS 12.5, declared 3.95 MB.
+[confirmed] page change note: "Newly support the G.hn products like PG2400P/PG2405P/PG1200" and Monterey 12.5.
+[confirmed] direct URL: https://static.tp-link.com/upload/software/2022/202209/20220914/PowerlineUtility(MAC).zip
+[confirmed] acquisition time: 2026-08-14T01:46:51.776916938Z, derived from the immutable asset ctime/mtime recorded on a Europe/Berlin CEST host.
+[confirmed] asset path: data/assets/tpPLC-12.5-macos-PowerlineUtility.zip
+[confirmed] ZIP size: 4046708 bytes; sha256 b48356c6b31d572c5fe8e52d3bbff68a262bcfe970514affa12cde870f32e17e.
+[confirmed] response: HTTP/2 200; content-length 4046708; Last-Modified 2022-09-14T02:43:38Z; S3 version ID vdUFbvc_dpca_R_X92noQb7st6.xwQxJ; ETag 6feaa35d555f15948079541732c0c70d; saved headers: http-headers.txt.
+[confirmed] ZIP contains TP-LINK PLC Utility.dmg, 4075548 bytes, sha256 ad2ef903836c04317ec3d31a3594097bb91d3c100ebf14f30312472f916f7cd1.
+[confirmed] app Info.plist: bundle ID com.tplink.plcutility; executable tpPLC; CFBundleShortVersionString 1.2.4570.5; minimum macOS 10.9; SDK macosx10.15; copyright TP-Link TECHNOLOGIES CO., LTD. 2022.
+[confirmed] no target executable or bundle script was run.

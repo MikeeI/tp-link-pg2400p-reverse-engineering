@@ -1,0 +1,13 @@
+Windows tpPLC analysis toolchain and material failures
+
+[confirmed] curl 8.5.0 (OpenSSL 3.0.13); acquired over HTTPS with --fail --location --proto =https --tlsv1.2.
+[confirmed] 7-Zip 23.01 x64; parsed ZIP, PE wrapper/resources, MSI compound file, and Data1.cab MSZip payload.
+[confirmed] unshield 1.5.1; exact failure on the extracted ISSetupStream overlay: "Failed to open .../[0] as an InstallShield Cabinet File".  This was expected format mismatch, not absence of payload.
+[confirmed] binary-refinery 0.11.2 xtiss; successfully parsed ISSetupStream in-process and extracted 25 members.
+[confirmed] LIEF 0.17.6-08dc3b7f; successfully parsed PE32 headers/import tables.
+[confirmed] @electron/asar 3.2.16; successfully listed and extracted the one app.asar.
+[confirmed] Ghidra 12.1.2; OpenJDK 21.0.11; successfully loaded plcoperation.dll as Portable Executable, x86:LE:32:default:windows; no timeout.
+[confirmed] Ghidra loader found direct WPCAP.DLL and PACKET.DLL dependencies; it did not find local copies because the installer does not ship them.
+[confirmed] current Windows string-consumer postscript failed before execution: "FindStringConsumers.java : The class could not be found. It must be the public class of the .java file".  The completed PE import/string inventory remains valid; no claim depends on that failed script.
+[confirmed] Python cryptography PKCS#7 loading failed with ModuleNotFoundError: No module named _cffi_backend; OpenSSL pkcs7 then successfully parsed the embedded Authenticode certificates.
+[confirmed] no downloaded target executable, installer, DLL, MSI custom action, Electron app, or driver was executed.
