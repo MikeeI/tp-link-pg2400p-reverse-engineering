@@ -54,11 +54,11 @@ Live-device tests require an explicit test name and invocation naming the bounde
 - Hardware revision: `1.0` on both live devices; official artifacts are PG2400P KIT EU V1
 - Firmware version: `1.0.3 Build 20221213 Rel.62540` on both live devices
 - Firmware source URL: `https://www.tp-link.com/uk/support/download/pg2400p-kit/`
-- Architecture: Xtensa8 indicated by official firmware strings; exact CPU/ABI unresolved
+- Architecture: 32-bit little-endian Xtensa8 [likely]; static raw map `0x63000000 + offset`; exact CPU/ABI/runtime unresolved
 - Operating system: no Linux filesystem or ELF evidenced; firmware/RTOS-like stack is a working inference
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `live-readonly-static-firmware-and-companion-evidenced`
-- Current provenance: bounded live capture plus immutable official firmware and tpPLC assets with parser-only extraction
+- Current readiness: `live-readonly-static-firmware-companion-and-raw-map-evidenced`
+- Current provenance: bounded live capture, immutable official assets, parser-only extraction, and read-only Ghidra maps
 - Current action status: `NOW`
 
 ## Current Asset
@@ -69,7 +69,7 @@ hardwareRevision = V1 (official artifact label; live hardware reports 1.0)
 firmwareVersion = 1.1.0
 build = 20250710
 region = EU
-architecture = Xtensa8 [likely; artifact strings only]
+architecture = 32-bit little-endian Xtensa8 [likely]; static raw base 0x63000000; exact CPU/ABI/runtime unresolved
 containerFormat = ZIP > proprietary .ftp > carved XZ raw firmware + XZ POSIX TAR FFS
 sizeBytes = 2863018
 sha256 = 3c2db75e1ca16da388bb614a6e7184fe4a863e6bf07bda668573b806b0174d13
@@ -138,7 +138,8 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Asset identity and provenance | `data/extracted-{version}-{hardware}/extracted-knowledge/asset-metadata.txt` | present for both acquired EU V1 releases | retain immutable assets |
 | Container and partition inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/container-inventory.txt` | ZIP / `.ftp` / XZ / FFS TAR parsed; component schema unresolved | establish physical flash map |
 | Filesystem inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/filesystem-inventory.txt` | FFS TAR and every web XZ asset parsed | bind deploy/mount behavior |
-| Binary and architecture inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/binary-inventory.txt` | raw payload; Xtensa8 indicated, no ELF/load map | establish raw-image map |
+| Binary and architecture inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/binary-inventory.txt` | raw non-ELF payload; little-endian Xtensa map established | recover loader handoff |
+| Raw image map | `data/extracted-{version}-{hardware}/extracted-knowledge/raw-image-map-evidence.txt` | base `0x63000000`, LE code, and pointer table corroborated | decode `descriptor.upg` |
 | Services and process map | `data/extracted-{version}-{hardware}/extracted-knowledge/process-map.md` | static web/filesystem symbols only | recover activation/xrefs |
 | Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
 | Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
@@ -150,17 +151,17 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 
 | Topic | File | Current truth | Confidence | Action status | Next proof |
 | --- | --- | --- | --- | --- | --- |
-| Firmware identity | `context/findings-firmware-identity.md` | live 1.0.3 bound to two official EU V1 artifacts | confirmed | `NOW` | explain 1.1.0 security changes |
+| Firmware identity | `context/findings-firmware-identity.md` | live 1.0.3 bound to two official EU V1 artifacts | confirmed | `NOW` | establish 1.1.0 updater semantics |
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
-| Architecture and processes | `context/findings-architecture-processes.md` | raw non-ELF payload; Xtensa8 indicated; static service names | confirmed/likely | `RUNTIME-NEEDED` | raw-image map and xrefs |
+| Architecture and processes | `context/findings-architecture-processes.md` | usable LE Xtensa static map; runtime/reset and service activation unresolved | confirmed/likely | `NOW` | decode loader handoff |
 | Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
 | Official tpPLC companion | `context/findings-companion-utility.md` | PG2400P UI branch and raw-Ethernet G.hn discovery owners mapped | confirmed/likely | `RUNTIME-NEEDED` | isolated `rescan` capture |
 | Web interface and API | `context/findings-web-api.md` | live root/form contract plus version-scoped static evidence | confirmed/likely | `NOW` | versioned handler implementation |
 | Auth and cryptography | `context/findings-auth-crypto.md` | MD5 login and `_t` token flow captured on both devices | confirmed | `NOW` | token lifecycle and server validation |
 | Storage and configuration | `context/findings-storage-config.md` | authenticated configuration snapshots captured | confirmed | `RUNTIME-NEEDED` | persistent storage ownership |
-| Update and signature flow | `context/findings-update-signing.md` | CRC and encryption-state evidence; signature call graph unresolved | confirmed/likely | `BLOCKED` | isolated updater xrefs |
+| Update and signature flow | `context/findings-update-signing.md` | CRC and encryption-state evidence; candidate updater xrefs rejected | confirmed/likely | `BLOCKED` | decode `descriptor.upg` and loader handoff |
 | Vulnerability and patch research | `context/findings-security.md` | not started | | `BLOCKED` | named reachable boundary |
-| Version comparisons | `context/findings-version-comparisons.md` | normalized web/key comparison complete | confirmed | `NOW` | compare raw code after load mapping |
+| Version comparisons | `context/findings-version-comparisons.md` | raw layout and anchor contexts compared; no semantic updater delta | confirmed | `BLOCKED` | compare validated updater functions |
 | Read-only CLI | `context/findings-cli.md` | identity, settings, peers, rates, JSON, logout, and guards live-verified | confirmed | `NOW` | extend only from proven semantics |
 
 ## Status
@@ -171,6 +172,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 - [x] Official firmware acquired with URL, time, size, SHA256, provenance, and immutable originals
 - [x] Official Windows and macOS tpPLC utilities acquired, hashed, extracted, and statically mapped
 - [x] Container, compression, FFS TAR, and web filesystem formats inventoried
+- [x] Usable little-endian Xtensa static map established for both raw firmware payloads
 - [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries fully inventoried
 - [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped
 - [x] Safe read-only CLI implemented and verified against both live devices
@@ -181,8 +183,8 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 ## Aktuelle Top-Ziele
 
 - Extend the CLI only for read semantics proven by artifact callsites and bounded runtime evidence.
-- Compare installed 1.0.3 behavior with the security changes in official version 1.1.0.
-- Establish the raw Xtensa load base, entry, CPU variant, boot component boundaries, and updater xrefs without executing firmware on a live adapter.
+- Determine whether 1.1.0 changes updater security; identical raw anchor contexts do not establish semantics.
+- Decode `descriptor.upg` after `firmware B:/fw` and recover the validated loader-to-firmware handoff.
 - Recover the tpPLC G.hn discovery payload, reply validation, filters, and retry schedule in an isolated VM.
 - Resolve whether `FLUPGRADE.GENERAL.SECURE` enforces encryption, signature verification, or another policy in an isolated target.
 - Bind unrecovered write behavior to static callsites and controlled runtime evidence.
@@ -198,7 +200,7 @@ network isolation = management LAN 10.0.1.0/24; keep live probes bounded to owne
 management address = 10.0.1.184 and 10.0.1.185
 accounts = password-only web authentication; credential recorded in Authorization and Live Targets
 proxy / capture point = workstation Ethernet path or isolated companion-software VM; record exact interface per capture
-known blockers = persistent storage, non-HTTP discovery, token lifecycle, write-handler semantics, raw Xtensa load map, physical flash map, updater secure-policy branch, and versioned server-handler callsites
+known blockers = persistent storage, non-HTTP discovery, token lifecycle, write-handler semantics, physical flash/runtime map, reset transfer, updater secure-policy branch, and versioned server-handler callsites
 mutation-risk endpoints = firmware update, factory reset, reboot, pairing, network/password/QoS/LED/power-saving/compatibility writes, bootloader and NVRAM writes
 allowed probes = bounded GET/HEAD/OPTIONS, authenticated read-only requests with known semantics, static asset retrieval, passive capture, port/service identification that does not exploit or exhaust the device
 forbidden probes = destructive or availability-risking actions, credential spraying, unbounded fuzzing, firmware flashing, reset, reboot, pairing changes, and requests with unknown state effects against live devices
