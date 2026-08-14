@@ -47,40 +47,38 @@ Tests must not contact live devices unless the test name and invocation explicit
 - Device: TP-Link PG2400P
 - Vendor: TP-Link
 - Product class: G.hn2400 passthrough powerline adapter
-- Hardware revision: `1.0` on both live devices; official artifacts still need a hardware binding.
-- Firmware version: `1.0.3 Build 20221213 Rel.62540` on both live devices.
+- Hardware revision: `1.0` on both live devices; official artifacts are PG2400P KIT EU V1
+- Firmware version: `1.0.3 Build 20221213 Rel.62540` on both live devices
 - Firmware source URL: `https://www.tp-link.com/uk/support/download/pg2400p-kit/`
-- Architecture: unknown
-- Operating system: unknown; embedded Linux is a working hypothesis, not a finding
+- Architecture: Xtensa8 indicated by official firmware strings; exact CPU/ABI unresolved
+- Operating system: no Linux filesystem or ELF evidenced; firmware/RTOS-like stack is a working inference
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `live-readonly-evidenced`; firmware acquisition remains pending.
-- Current provenance: bounded live capture provides management identity, API, session, network, and configuration evidence; firmware artifacts remain unrecorded.
-- Current action status: `NOW`.
+- Current readiness: `live-readonly-and-static-firmware-evidenced`
+- Current provenance: bounded live capture plus two immutable official EU V1 firmware ZIPs with parser-only extraction
+- Current action status: `NOW`
 
 ## Current Asset
 
-No firmware image or device dump is currently recorded.
-
 ```text
-model = TP-Link PG2400P
-hardwareRevision =
-firmwareVersion =
-build =
-region =
-architecture =
-containerFormat =
-sizeBytes =
-sha256 =
-signatureState =
-sourceUrl =
-redirectChain =
-userAgentContext =
-provenance =
-sourceTrust =
-acquiredAt =
-assetPath =
-extractedPath =
-notes =
+model = TP-Link PG2400P KIT
+hardwareRevision = V1 (official artifact label; live hardware reports 1.0)
+firmwareVersion = 1.1.0
+build = 20250710
+region = EU
+architecture = Xtensa8 [likely; artifact strings only]
+containerFormat = ZIP > proprietary .ftp > carved XZ raw firmware + XZ POSIX TAR FFS
+sizeBytes = 2863018
+sha256 = 3c2db75e1ca16da388bb614a6e7184fe4a863e6bf07bda668573b806b0174d13
+signatureState = no detached signature or signed-container metadata acquired
+sourceUrl = https://static.tp-link.com/upload/firmware/2025/202508/20250827/PG2400P(EU)_V1_250710.zip
+redirectChain = direct HTTP/2 200; no redirects
+userAgentContext = Chrome 138 Linux UA; curl TLS verification succeeded
+provenance = official TP-Link support page to static.tp-link.com CDN
+sourceTrust = official
+acquiredAt = 2026-08-14T01:46:21Z
+assetPath = data/assets/PG2400P-EU-V1-1.1.0-build-20250710.zip
+extractedPath = data/extracted-1.1.0-build-20250710-v1/
+notes = current official EU V1 release; prior 1.0.3 is retained intact
 ```
 
 ## Versionen
@@ -89,7 +87,8 @@ Newest first. Never derive version or hardware revision from a filename when art
 
 | Firmware | Build | Hardware | Region | Arch | OS/Stack | Format | Datum | Provenienz | Quelle | SHA256 | Notizen |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| | | | | | | | | | | | |
+| 1.1.0 | 20250710 / Rel.56841 | PG2400P KIT EU V1 | EU | Xtensa8 [likely] | raw firmware + FFS web TAR; OS unresolved | ZIP / `.ftp` | 2025-08-27 | official | static.tp-link.com | `3c2db75e1ca16da388bb614a6e7184fe4a863e6bf07bda668573b806b0174d13` | decoded release string confirms version |
+| 1.0.3 | 20221213 / Rel.62540 | PG2400P KIT EU V1 | EU | Xtensa8 [likely] | raw firmware + FFS web TAR; OS unresolved | ZIP / `.ftp` | 2023-02-02 | official | static.tp-link.com | `1175f14f34b2f85c1dfe2a8bac558d711be27b1177fa0844bda566a3f8f37643` | live devices report this build |
 
 ## Pfade
 
@@ -128,63 +127,63 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 
 | Artifact | Path | Current truth | Next |
 | --- | --- | --- | --- |
-| Asset identity and provenance | `data/extracted-{version}-{hardware}/extracted-knowledge/asset-metadata.txt` | absent | acquire an identifiable artifact |
-| Container and partition inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/container-inventory.txt` | absent | parse without executing target code |
-| Filesystem inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/filesystem-inventory.txt` | absent | derive from extraction |
-| Binary and architecture inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/binary-inventory.txt` | absent | identify every executable architecture |
-| Services and process map | `data/extracted-{version}-{hardware}/extracted-knowledge/process-map.md` | absent | map init and activation paths |
-| Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | absent | bind declarations to consumers |
-| Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | absent | record tools actually used |
+| Asset identity and provenance | `data/extracted-{version}-{hardware}/extracted-knowledge/asset-metadata.txt` | present for both acquired EU V1 releases | retain immutable assets |
+| Container and partition inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/container-inventory.txt` | ZIP / `.ftp` / XZ / FFS TAR parsed; component schema unresolved | establish physical flash map |
+| Filesystem inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/filesystem-inventory.txt` | FFS TAR and every web XZ asset parsed | bind deploy/mount behavior |
+| Binary and architecture inventory | `data/extracted-{version}-{hardware}/extracted-knowledge/binary-inventory.txt` | raw payload; Xtensa8 indicated, no ELF/load map | establish raw-image map |
+| Services and process map | `data/extracted-{version}-{hardware}/extracted-knowledge/process-map.md` | static web/filesystem symbols only | recover activation/xrefs |
+| Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
+| Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
 | Raw subagent notes | `data/subagents/` | empty | use only for separable analysis lanes |
 
 ## Findings Router
 
 | Topic | File | Current truth | Confidence | Action status | Next proof |
 | --- | --- | --- | --- | --- | --- |
-| Firmware identity | `context/findings-firmware-identity.md` | no artifact | | `BLOCKED` | acquire firmware or device dump |
+| Firmware identity | `context/findings-firmware-identity.md` | two official EU V1 artifacts with hashes and decoded version strings | confirmed | `NOW` | bind live fields to artifact |
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
-| Architecture and processes | `context/findings-architecture-processes.md` | unknown | | `BLOCKED` | filesystem and ELF inventory |
+| Architecture and processes | `context/findings-architecture-processes.md` | raw non-ELF payload; Xtensa8 indicated; static service names | confirmed/likely | `RUNTIME-NEEDED` | raw-image map and xrefs |
 | Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
-| Web interface and API | `context/findings-web-api.md` | root, module, request, response, and mutation-risk inventory captured | confirmed | `NOW` | versioned handler implementation |
+| Web interface and API | `context/findings-web-api.md` | live root/form contract plus version-scoped static evidence | confirmed/likely | `NOW` | versioned handler implementation |
 | Auth and cryptography | `context/findings-auth-crypto.md` | MD5 login and `_t` token flow captured on both devices | confirmed | `NOW` | token lifecycle and server validation |
 | Storage and configuration | `context/findings-storage-config.md` | authenticated configuration snapshots captured | confirmed | `RUNTIME-NEEDED` | persistent storage ownership |
-| Update and signature flow | `context/findings-update-signing.md` | unknown | | `BLOCKED` | updater and image verification path |
+| Update and signature flow | `context/findings-update-signing.md` | CRC and encryption-state evidence; signature call graph unresolved | confirmed/likely | `BLOCKED` | isolated updater xrefs |
 | Vulnerability and patch research | `context/findings-security.md` | not started | | `BLOCKED` | named reachable boundary |
-| Version comparisons | `context/findings-version-comparisons.md` | no comparable versions | | `BLOCKED` | two normalized artifacts |
+| Version comparisons | `context/findings-version-comparisons.md` | normalized web/key comparison complete | confirmed | `NOW` | compare raw code after load mapping |
 
 ## Status
 
 - [x] Repository and project-local router initialized
 - [x] Baseline folders and artifact ignore boundaries established
 - [x] Exact product identity and hardware revision evidenced on both live devices.
-- [ ] Official firmware or immutable device dump acquired with URL, time, size, SHA256, and provenance.
-- [ ] Container, partition, compression, and filesystem formats inventoried.
-- [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries inventoried.
-- [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped.
-- [x] Tool identities and material direct-curl failures recorded.
-- [x] Runtime targets defined for material static gaps.
+- [x] Official firmware acquired with URL, time, size, SHA256, provenance, and immutable originals
+- [x] Container, compression, FFS TAR, and web filesystem formats inventoried
+- [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries fully inventoried
+- [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped
+- [x] Tool identities and material parser failures recorded
+- [x] Runtime targets defined for material static gaps
 - [x] Findings use claim-local confidence and independent action status.
 
 ## Aktuelle Top-Ziele
 
 - Bind the captured model-key and command semantics to the safe CLI.
-- Acquire current and prior official firmware plus relevant tpPLC utilities.
-- Preserve every asset's URL, timestamp, size, hash, and immutable original.
-- Extract firmware and companion software without executing target code.
+- Retain both official EU V1 firmware assets and bind live 1.0.3 identity to its immutable artifact.
+- Establish the raw Xtensa load base, entry, CPU variant, boot component boundaries, and updater xrefs without executing firmware on a live adapter.
+- Resolve whether `FLUPGRADE.GENERAL.SECURE` enforces encryption, signature verification, or another policy in an isolated target.
 - Bind unrecovered write behavior to static callsites and controlled runtime evidence.
 
 ## Project-Specific Runtime Notes
 
 ```text
 device ownership / serial = user-owned; serials not yet recorded
-hardware revision = 1.0 on both live devices
+hardware revision = 1.0 on both live devices; official artifacts are KIT EU V1
 recovery interface = unknown; do not probe electrically until hardware work is explicitly selected
 UART / JTAG access = unknown
 network isolation = management LAN 10.0.1.0/24; keep live probes bounded to owned device IPs
 management address = 10.0.1.184 and 10.0.1.185
 accounts = password-only web authentication; credential recorded in Authorization and Live Targets
 proxy / capture point = workstation Ethernet path or isolated companion-software VM; record exact interface per capture
-known blockers = persistent storage, non-HTTP discovery, token lifecycle, and write-handler semantics are not yet collected
+known blockers = persistent storage, non-HTTP discovery, token lifecycle, write-handler semantics, raw Xtensa load map, physical flash map, updater secure-policy branch, and versioned server-handler callsites
 mutation-risk endpoints = firmware update, factory reset, reboot, pairing, network/password/QoS/LED/power-saving/compatibility writes, bootloader and NVRAM writes
 allowed probes = bounded GET/HEAD/OPTIONS, authenticated read-only requests with known semantics, static asset retrieval, passive capture, port/service identification that does not exploit or exhaust the device
 forbidden probes = destructive or availability-risking actions, credential spraying, unbounded fuzzing, firmware flashing, reset, reboot, pairing changes, and requests with unknown state effects against live devices

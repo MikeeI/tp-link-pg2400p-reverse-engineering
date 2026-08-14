@@ -1,0 +1,23 @@
+# Toolchain and parser record
+file-5.45
+UnZip 6.00 (Debian, 20 April 2009)
+GNU tar 1.35
+XZ Utils 5.4.5
+7-Zip 23.01
+Binwalk 2.3.3 (Ubuntu package binwalk 2.3.4+dfsg1-5; CLI identifies itself 2.3.3)
+radare2 6.2.0 +1 abi:132
+pdftotext 24.02.0
+
+Parser-only actions:
+1. `unzip -Z -v` listed the official ZIP; `unzip` extracted entries to raw/zip without execution.
+2. liblzma verified/decompressed only the two valid carved XZ streams recorded in container-inventory.txt.
+3. Python tarfile preflight rejected no members; GNU tar extracted only the preflighted FFS TAR with source ownership/permissions disabled.
+4. liblzma decompressed every individual FFS `.xz` web asset: 124 successes, 0 failures.
+5. `pdftotext` decoded bundled update guides; no installer/utility payload was analyzed.
+
+Material parser limits/failures:
+- `file` reports the `.ftp` as `data` and misidentifies the decompressed raw firmware payload as Photoshop data.
+- 7-Zip reports a valid embedded firmware XZ but exits 2 because the surrounding `.ftp` data remains; this is a container-layout limitation, not decompression failure.
+- liblzma rejected apparent XZ magics at raw `.ftp` offsets 37067 and 39951 with `Corrupt input data`.
+- Binwalk found no parseable ELF or standard filesystem in the raw firmware payload.
+- radare2 has an Xtensa decoder, but raw code analysis is deferred: image base, entry, exact core, and endianness are unresolved.

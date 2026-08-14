@@ -1,0 +1,36 @@
+# Asset metadata
+asset=PG2400P-EU-V1-1.0.3-build-20221213.zip
+release=1.0.3
+build=20221213
+releaseString=1.0.3 Build 20221213 Rel.62540
+hardware=PG2400P KIT EU V1 (official support-page release label)
+region=EU
+publishedDate=2023-02-02
+sourceSupportPage=https://www.tp-link.com/uk/support/download/pg2400p-kit/
+sourceUrl=https://static.tp-link.com/upload/firmware/2023/202302/20230202/PG2400P_V1_221213.zip
+redirectChain=https://static.tp-link.com/upload/firmware/2023/202302/20230202/PG2400P_V1_221213.zip [HTTP/2 200; no redirect responses]
+acquiredAt=2026-08-14T01:46:28Z
+userAgent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36
+httpContentType=application/octet-stream
+httpContentLength=2970972
+httpLastModified=2023-02-02T10:22:14Z
+sourceTrust=official: www.tp-link.com support page for PG2400P KIT V1 exposed this static.tp-link.com URL; TLS verification succeeded (curl ssl_verify_result=0).
+provenance=official vendor CDN; immutable local asset mode 0444
+assetSizeBytes=2970972
+assetSha256=1175f14f34b2f85c1dfe2a8bac558d711be27b1177fa0844bda566a3f8f37643
+assetFileIdentity=Zip archive data, at least v2.0 to extract, compression method=deflate
+signatureState=no detached signature or signed-container metadata was published/acquired with this ZIP; ZIP entries are unencrypted. This does not establish the device-side verification policy.
+assetPath=data/assets/PG2400P-EU-V1-1.0.3-build-20221213.zip
+extractedPath=data/extracted-1.0.3-build-20221213-v1/raw/
+responseHeaders=acquisition-headers.txt
+
+ZIP members (name	uncompressed bytes	CRC32):
+- How to update the firmware of Powerline ac Adapters via web-based management interface.pdf	146611	crc32=1f1c1653
+- How to update the firmware of TP-LINK Powerline Adapters using the tpPLC Utility.pdf	182382	crc32=3ddb5a8f
+- pg2400p_v1-HN_osup_ver1-0-3-P1-20221213-rel62540.ftp	2701736	crc32=aaa7a31b
+
+Extracted update payload:
+path=data/extracted-1.0.3-build-20221213-v1/raw/zip/pg2400p_v1-HN_osup_ver1-0-3-P1-20221213-rel62540.ftp
+sizeBytes=2701736
+sha256=ac22c971a0d5bcc0f88adec20a9010db8e5e5f1beb13f8c291e8e8f0c5155819
+fileIdentity=data

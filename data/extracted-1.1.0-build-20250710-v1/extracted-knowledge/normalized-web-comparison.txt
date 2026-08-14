@@ -1,0 +1,41 @@
+# Normalized static comparison
+new=1.1.0 Build 20250710 Rel.56841
+old=1.0.3 Build 20221213 Rel.62540
+comparisonScope=decoded FFS web asset paths, decoded-byte SHA-256, client mapped dot-keys, and literal COMMAND strings only
+
+[confirmed] New decoded web files=142; old=124; added=23; removed=5; same-path content changed=96; same-path content unchanged=23.
+[confirmed] Added dot-keys: TPLINK.GENERAL.INCREASE_CONTRAST, TR064.GENERAL.DETECTED, TR064.GENERAL.ENABLE. Removed dot-keys: (none).
+[confirmed] Added UI assets include accessibility module and libraries (`modules/advanced/system/a11y/*`, `js/libs/a11y.js`, `focus-trap.min.js`, `mousetrap.min.js`, `tabbable.min.js`) plus new SVGs; removed assets include `locale/es_LA/*` and three loading GIFs.
+[unresolved] This static asset comparison does not prove the vendor's claimed security enhancement, server behavior, or binary semantics.
+
+Added paths:
+- js/libs/a11y.js
+- js/libs/focus-trap.min.js
+- js/libs/mousetrap.min.js
+- js/libs/tabbable.min.js
+- locale/es_MX/lan.css
+- locale/es_MX/lan.js
+- modules/advanced/system/a11y/controllers.js
+- modules/advanced/system/a11y/models.js
+- modules/advanced/system/a11y/view.html
+- themes/default/img/svg/a11y-white.svg
+- themes/default/img/svg/a11y.svg
+- themes/default/img/svg/caret-down-filled.svg
+- themes/default/img/svg/checked2-filled.svg
+- themes/default/img/svg/enable-not-selected-default.svg
+- themes/default/img/svg/enable-selected-default.svg
+- themes/default/img/svg/information-default.svg
+- themes/default/img/svg/loading-animate-outlined.svg
+- themes/default/img/svg/loading-animate-primary.svg
+- themes/default/img/svg/picture-outlined.svg
+- themes/default/img/svg/port-disabled-contrast-default.svg
+- themes/default/img/svg/question-filled.svg
+- themes/default/img/svg/support.svg
+- themes/default/img/svg/upgrade.svg
+
+Removed paths:
+- locale/es_LA/lan.css
+- locale/es_LA/lan.js
+- themes/default/img/Loading.gif
+- themes/default/img/Switch_Loading.gif
+- themes/default/img/button_loading.gif

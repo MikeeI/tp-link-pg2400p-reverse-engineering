@@ -1,0 +1,10 @@
+# Filesystem and web asset inventory
+sourceTar=data/extracted-1.1.0-build-20250710-v1/raw/FFS.tar.xz
+sourceTarSha256=ff5eddf965f24be7828e984cd2ba9dd5b3a98f0bc9a6370fddcc61184ba08707
+[confirmed] POSIX TAR preflight: 201 members; 143 regular files; 58 directories; 0 symlinks, hardlinks, devices, absolute paths, or `..` paths. Extracted with GNU tar preserving no source ownership or permissions.
+[confirmed] FFS archive contains `logfile/logfile.cfg` and compressed `web/` assets. 142 individual XZ files decompressed successfully with liblzma; 0 failures; compressed asset bytes=626184; decoded bytes=1959845.
+[confirmed] Decoded `web/` tree has 142 files. Major static paths: `config/`, `locale/`, `js/app/`, `js/su/`, `js/libs/`, `models/`, `modules/`, and `themes/default/`.
+[confirmed] UI navigation is data-driven: `config/navigator.json` exposes Status/networkMap; PLC (settings, soft pair, power saving, compatibility); Network (LAN, QoS); System (LED, time, accessibility if present, firmware, factory reset, reboot, change password).
+[likely] This FFS TAR is the web filesystem deployed by the runtime. The descriptor explicitly names `/web` and `FFS.tar.xz.upg`, but mounting/install behavior needs updater/runtime evidence.
+
+`web-asset-inventory.tsv` is a deterministic path, decoded-byte-size, SHA-256 inventory. All web source offsets in sibling evidence are decoded-file byte offsets bound to its listed hash.

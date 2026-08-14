@@ -1,0 +1,21 @@
+# Container inventory
+outerArtifact=data/assets/PG2400P-EU-V1-1.1.0-build-20250710.zip
+outerSha256=3c2db75e1ca16da388bb614a6e7184fe4a863e6bf07bda668573b806b0174d13
+updatePayload=data/extracted-1.1.0-build-20250710-v1/raw/zip/pg2400p_v1-HN_osup_ver1-1-0-P1-20250710-rel56841.ftp
+updatePayloadSha256=1bca420934f2073649ae9b0046c1f10c9a19d2b61b331bcedf3b1845c752039a
+
+[confirmed] ZIP is a single-part, unencrypted deflate archive with 2 members (asset-metadata.txt).
+[confirmed] The `.ftp` payload is `file`-classified as `data`; Binwalk did not parse a top-level ELF or standard filesystem from it. Verified embedded streams are recorded below.
+[confirmed] Header literal `descriptor.upg` is at raw `.ftp` byte 160 (0xa0). Its manifest names `params_update`, `/web`, `/fw`, loader, firmware, factory settings, and `FFS.tar.xz.upg`: `params_update B:/params_update` @288 (0x120); `loader B:/loader` @351 (0x15f); `firmware B:/fw` @376 (0x178); `factory B:/factory_settings.bin` @401 (0x191); `file FFS.tar.xz.upg` @479 (0x1df).
+[confirmed] Carved XZ stream: `.ftp` byte 42976 (0xa7e0), compressed 2028404, decompresses with liblzma to 3837292 bytes; output SHA-256 `79745b3a349b2d92ff0a6801f4f35fa2e8893725119334260ba7175c05f47716`.
+[confirmed] Carved FFS stream: `.ftp` byte 2102124 (0x20136c), compressed 629340, decompresses with liblzma to POSIX tar `data/extracted-1.1.0-build-20250710-v1/raw/FFS.tar.xz` (768000 bytes, SHA-256 `ff5eddf965f24be7828e984cd2ba9dd5b3a98f0bc9a6370fddcc61184ba08707`).
+[confirmed] `FFS.tar.xz.upg` exact carved bytes SHA-256 `5497468a4c653cc3f5e81d9f591e3f353926429b64b5bcfbf0e3be0b7a4c65e7`; its compressed size equals the descriptor FFS member size.
+[confirmed] `firmware-payload.xz` exact carved bytes SHA-256 `26224db21d3e020829e9df344e4aa46b57a661762b3228e4fd26b32cdb275ef1`.
+
+Parser results:
+- `7z 23.01 l` auto-detected the firmware XZ at 42976, then exited 2 with `There are data after the end of archive`; the `.ftp` prefix and tail make it unsuitable as a standalone XZ archive. The stream was carved at the reported offset and decoded by liblzma.
+- Binwalk 2.3.3 reported apparent XZ signatures at 38152, 41036, 42976, and 2102124. liblzma rejected the first two with `Corrupt input data`; only the latter two are confirmed streams.
+- `file` misclassifies decompressed `firmware-payload` as an Adobe Photoshop color swatch from leading bytes. Binwalk found no filesystem/ELF signature in it. Treat it as an unclassified raw executable/data image, not a Photoshop file.
+
+[likely] Descriptor size/type fields identify update components, but their exact physical boundaries and any per-component signature/encryption envelope remain unresolved because no vendor container parser was found.
+Action=RUNTIME-NEEDED for physical flash map and updater call chain; BLOCKED for an independently parsed descriptor schema.

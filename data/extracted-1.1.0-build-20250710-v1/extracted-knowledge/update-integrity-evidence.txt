@@ -1,0 +1,15 @@
+# Update and integrity evidence
+Sources: raw `.ftp` `data/extracted-1.1.0-build-20250710-v1/raw/zip/pg2400p_v1-HN_osup_ver1-1-0-P1-20250710-rel56841.ftp` SHA-256 `1bca420934f2073649ae9b0046c1f10c9a19d2b61b331bcedf3b1845c752039a`; raw payload `data/extracted-1.1.0-build-20250710-v1/raw/firmware-payload` SHA-256 `79745b3a349b2d92ff0a6801f4f35fa2e8893725119334260ba7175c05f47716`; decoded firmware UI assets listed in `web-asset-inventory.tsv`. Offsets are raw `.ftp` or raw payload bytes as stated.
+
+## Confirmed
+- `.ftp` manifest declares loader, firmware, factory settings, params update, and FFS payload components (container-inventory.txt; raw `.ftp` offsets 351, 376, 401, 288, 479).
+- Boot-loader text: `= G.hn Generic Boot Loader` @ raw `.ftp` 39293 (0x997d); `ERROR Loader with encryption key but firmware not encrypted` @39861 (0x9bb5); `ERROR CHECKING CRC in firmware encrypted image` @40037 (0x9c65); `CHECKING CRC OK in firmware encrypted image` @40089 (0x9c99).
+- Raw payload contains `FlUpgradeFLASHCRCValidation` @2710144 (0x295a80), `FlUpgradeFileCRCValidation:` @2939668 (0x2cdb14), `FLUPGRADE.GENERAL.START` @2817720 (0x2afeb8), `FLUPGRADE.GENERAL.SECURE` @2840948 (0x2b5974), `Running: calculating CRC` @2827084 (0x2b234c), and `Failed: CRC check failed` @2939848 (0x2cdbc8).
+- Raw payload logs update lifecycle values: `Upgrade thread started` @2838300 (0x2b4f1c); `Upgrade thread finished` @2838324 (0x2b4f34); `upgrade success` @2840840 (0x2b5908); `upgrade failed` @2840860 (0x2b591c); `httpupg` @2840976 (0x2b5990).
+- Web client accepts only `.ftp` in this firmware screen and uploads to its literal `COMMAND=firmware upgrade` request (protocol-map.md). Its controller then starts a reboot timer; this is client behavior, not a safe endpoint.
+- Official v1.0.3 bundle's decoded web-update guide states the firmware must correspond to hardware and that an upgrade is followed by reboot (`raw/web-update-guide.txt` lines 20, 35–43).
+
+## Interpretation
+[confirmed] CRC validation and an encryption-state/error path exist in the supplied boot/update code. [likely] `FLUPGRADE.GENERAL.SECURE` controls a secure-upgrade policy, but string proximity does not prove its exact branch semantics.
+[unresolved] No RSA/ECDSA/public-key/signature verification callsite or signed-container metadata was recovered. This is not evidence that signature verification is absent: raw Xtensa code has no established image base/entry point and xrefs cannot yet be resolved.
+Action status: BLOCKED for an authenticated updater branch/call graph; RUNTIME-NEEDED only in an isolated non-live test target.

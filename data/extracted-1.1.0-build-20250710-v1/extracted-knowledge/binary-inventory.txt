@@ -1,0 +1,14 @@
+# Binary and architecture inventory
+rawPayload=data/extracted-1.1.0-build-20250710-v1/raw/firmware-payload
+rawPayloadSha256=79745b3a349b2d92ff0a6801f4f35fa2e8893725119334260ba7175c05f47716
+rawPayloadBytes=3837292
+rawPayloadFileResult=Adobe Photoshop Color swatch, version 0, 128 colors; 1st RGB space (0), w 0xf0ff, x 0xffff, y 0xdf7f, z 0; 2nd space (61567), w 0xffff, x 0xf00, y 0xffff, z 0xf80
+
+[confirmed] The payload contains release string `1.1.0 Build 20250710 Rel.56841` at raw payload byte 2693936 (0x291b30).
+[confirmed] Container metadata names `loader.5152_v3_uartdw.xtensa8` at raw `.ftp` byte 37960 (0x9448); payload contains `coreversion.standard.xtensa8` at byte 2705744 (0x294950).
+[likely] The firmware/loader code targets Tensilica Xtensa 32-bit because two independently extracted artifact strings use `xtensa8`. This is not an ELF architecture determination: the raw payload has no ELF header, ABI metadata, sections, entry point, or load base.
+[confirmed] `radare2 6.2.0` exposes an Xtensa 32-bit decoder; no raw disassembly was treated as evidence because the image base, entry offset, CPU variant, and endianness are not yet established.
+[confirmed] Static payload component/file labels: `loader` @2699288; `firmware` @2699432; `B:/loader` @2699664; `B:/loader2` @2699680; `B:/params_update` @2699696; `B:/factory_update` @2699728.
+[confirmed] No parsed Linux filesystem or ELF product binary was recovered from the two verified XZ streams.
+[likely] OS/process model is firmware/RTOS-like rather than Linux, based on the missing Linux-format structures and static service symbols. Prove it with a valid raw-image load map or runtime trace.
+Action=RUNTIME-NEEDED for CPU variant, image base, entry point, scheduler/tasks, and flash partition ownership.
