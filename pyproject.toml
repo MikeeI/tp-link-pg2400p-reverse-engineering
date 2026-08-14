@@ -1,0 +1,22 @@
+[project]
+name = "pg2400p-cli"
+version = "0.1.0"
+description = "Read-only diagnostics and protocol tooling for TP-Link PG2400P devices"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx>=0.28,<0.29",
+    "orjson>=3.11,<4",
+    "typer>=0.26,<0.27",
+]
+
+[project.scripts]
+pg2400p = "pg2400p_cli.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4,<9",
+]

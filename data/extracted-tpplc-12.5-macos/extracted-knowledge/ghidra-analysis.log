@@ -1,0 +1,343 @@
+2026-08-14 03:50:24 INFO  (LoggingInitialization) Using log config file: jar:file:/opt/ghidra_12.1.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2026-08-14 03:50:24 INFO  (LoggingInitialization) Using log file: data/extracted-tpplc-12.5-macos/extracted-knowledge/ghidra-analysis.log  
+2026-08-14 03:50:24 DEBUG (GhidraObjectInputFilter) Including serial input filter: FileSystem/data/client.rmi.serial.filter  
+2026-08-14 03:50:24 INFO  (Preferences) Loading user preferences: /root/.config/ghidra/ghidra_12.1.2_PUBLIC/preferences  
+2026-08-14 03:50:24 INFO  (ClassSearcher) Searching for classes...  
+2026-08-14 03:50:25 INFO  (ClassSearcher) Class search complete (804 ms)  
+2026-08-14 03:50:25 INFO  (DefaultSSLContextInitializer) Initializing SSL Context  
+2026-08-14 03:50:25 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2026-08-14 03:50:25 INFO  (SecureRandomFactory) Random Number Generator initialization complete: NativePRNGNonBlocking  
+2026-08-14 03:50:25 INFO  (DefaultTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2026-08-14 03:50:25 INFO  (FileCacheMaintenanceDaemon) Starting cache cleanup: /var/tmp/root-ghidra/fscache2  
+2026-08-14 03:50:25 INFO  (FileCacheMaintenanceDaemon) Finished cache cleanup, estimated storage used: 0  
+2026-08-14 03:50:26 INFO  (AnalyzeHeadless) Headless startup complete (1796 ms)  
+2026-08-14 03:50:26 INFO  (ClassSearcher) Class searcher loaded 59 extension points (20 false positives)  
+2026-08-14 03:50:26 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /tmp
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts  
+2026-08-14 03:50:26 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2026-08-14 03:50:26 INFO  (HeadlessAnalyzer) Creating temporary project: /tmp/tpplc-ghidra/tpplc-ghn  
+2026-08-14 03:50:26 DEBUG (DefaultProjectManager) No tools found; Installing default tools  
+2026-08-14 03:50:26 DEBUG (DefaultProjectManager) 	no recent project directories found  
+2026-08-14 03:50:26 ERROR (HeadlessAnalyzer) Abort due to Headless analyzer error: Directory not found: /tmp/tpplc-ghidra java.io.FileNotFoundException: Directory not found: /tmp/tpplc-ghidra
+	at ghidra.framework.project.DefaultProjectManager.createProject(DefaultProjectManager.java:100)
+	at ghidra.app.util.headless.HeadlessAnalyzer.processLocal(HeadlessAnalyzer.java:451)
+	at ghidra.app.util.headless.AnalyzeHeadless.launch(AnalyzeHeadless.java:199)
+	at ghidra.GhidraLauncher.launch(GhidraLauncher.java:81)
+	at ghidra.Ghidra.main(Ghidra.java:54)
+ 
+2026-08-14 03:50:37 INFO  (LoggingInitialization) Using log config file: jar:file:/opt/ghidra_12.1.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2026-08-14 03:50:37 INFO  (LoggingInitialization) Using log file: data/extracted-tpplc-12.5-macos/extracted-knowledge/ghidra-analysis.log  
+2026-08-14 03:50:37 DEBUG (GhidraObjectInputFilter) Including serial input filter: FileSystem/data/client.rmi.serial.filter  
+2026-08-14 03:50:37 INFO  (Preferences) Loading user preferences: /root/.config/ghidra/ghidra_12.1.2_PUBLIC/preferences  
+2026-08-14 03:50:37 INFO  (ClassSearcher) Searching for classes...  
+2026-08-14 03:50:37 INFO  (ClassSearcher) Class search complete (529 ms)  
+2026-08-14 03:50:37 INFO  (DefaultSSLContextInitializer) Initializing SSL Context  
+2026-08-14 03:50:37 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2026-08-14 03:50:37 INFO  (SecureRandomFactory) Random Number Generator initialization complete: NativePRNGNonBlocking  
+2026-08-14 03:50:37 INFO  (DefaultTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2026-08-14 03:50:37 INFO  (AnalyzeHeadless) Headless startup complete (1300 ms)  
+2026-08-14 03:50:37 INFO  (ClassSearcher) Class searcher loaded 59 extension points (20 false positives)  
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /tmp
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts  
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer) Creating temporary project: /tmp/tpplc-ghidra/tpplc-ghn  
+2026-08-14 03:50:38 INFO  (DefaultProject) Creating project: /tmp/tpplc-ghidra/tpplc-ghn  
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer) REPORT: Processing input files:   
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer)      project: /tmp/tpplc-ghidra/tpplc-ghn  
+2026-08-14 03:50:38 INFO  (HeadlessAnalyzer) IMPORTING: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:50:38 INFO  (ProgramLoader) Using Loader: Mac OS X Mach-O  
+2026-08-14 03:50:38 INFO  (ProgramLoader) Using Language/Compiler: x86:LE:64:default:gcc  
+2026-08-14 03:50:38 INFO  (ProgramLoader) Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni]  
+2026-08-14 03:50:41 INFO  (ProgramLoader) Additional info:
+Loading file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu?MD5=85203ee3c2c505ffc066c3e6e29a753e...
+------------------------------------------------
+
+Linking the External Programs of 'plcu' to imported libraries...
+  [/usr/lib/libcurl.4.dylib] -> not found in project
+  [/usr/lib/libpcap.A.dylib] -> not found in project
+  [/usr/lib/libc++.1.dylib] -> not found in project
+  [/usr/lib/libSystem.B.dylib] -> not found in project
+------------------------------------------------
+
+  
+2026-08-14 03:50:41 INFO  (HeadlessAnalyzer) IMPORTING: Loaded 0 additional files  
+2026-08-14 03:50:41 INFO  (HeadlessAnalyzer) ANALYZING all memory and code: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:50:50 INFO  (DecompilerSwitchAnalyzer) hit non-returning function, restarting decompiler switch analyzer later  
+2026-08-14 03:51:07 INFO  (PackedDatabaseCache) Packed database cache: /var/tmp/root-ghidra/packed-db-cache  
+2026-08-14 03:51:07 DEBUG (PackedDatabaseCache) Caching packed database: /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/data/typeinfo/mac_10.9/mac_osx.gdt  
+2026-08-14 03:51:07 DEBUG (PackedDatabase) Unpacking database /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/data/typeinfo/mac_10.9/mac_osx.gdt -> /var/tmp/root-ghidra/packed-db-cache/pdbC7EDF01C/db.1.gbf  
+2026-08-14 03:51:07 DEBUG (PackedDatabaseCache) Cache update completed: /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/data/typeinfo/mac_10.9/mac_osx.gdt  
+2026-08-14 03:51:08 INFO  (ApplyDataArchiveAnalyzer) Applied data type archive: mac_osx  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9000: std::istream::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9100: std::ostream::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9200: std::streambuf::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9300: std::length_error::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9400: std::runtime_error::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9500: std::bad_cast::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9600: std::bad_alloc::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9700: __cxxabiv1::__class_type_info::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9800: __cxxabiv1::__si_class_type_info::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9900: std::ios_base::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9a00: std::ios::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9b00: std::length_error::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9c00: std::bad_alloc::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9d00: std::exception::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::istream::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ostream::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::streambuf::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::length_error::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::runtime_error::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_cast::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_alloc::typeinfo  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::__cxxabiv1::__class_type_info::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::__cxxabiv1::__si_class_type_info::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ios_base::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ios::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::length_error::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_alloc::vtable  
+2026-08-14 03:51:13 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::exception::vtable  
+2026-08-14 03:51:27 INFO  (AutoAnalysisManager) -----------------------------------------------------
+    ASCII Strings                              0.495 secs
+    Apply Data Archives                        0.555 secs
+    Call Convention ID                         9.355 secs
+    Call-Fixup Installer                       0.063 secs
+    Create Address Tables                      0.417 secs
+    Create Address Tables - One Time           0.182 secs
+    Create Function                            0.684 secs
+    Data Reference                             0.475 secs
+    Decompiler Switch Analysis                 2.313 secs
+    Decompiler Switch Analysis - One Time      4.815 secs
+    Demangler GNU                              1.094 secs
+    Disassemble                                0.504 secs
+    Disassemble Entry Points                   6.200 secs
+    Disassemble Entry Points - One Time        0.038 secs
+    Embedded Media                             0.012 secs
+    External Entry References                  0.019 secs
+    Function ID                                1.766 secs
+    Function Start Pre Search                  0.017 secs
+    Function Start Search                      0.141 secs
+    Function Start Search After Code           0.165 secs
+    Function Start Search After Data           0.166 secs
+    Mach-O Function Starts                     0.257 secs
+    Non-Returning Functions - Discovered       0.857 secs
+    Non-Returning Functions - Known            0.019 secs
+    Reference                                  0.350 secs
+    Scalar Operand References                  1.696 secs
+    Shared Return Calls                        0.466 secs
+    Stack                                      6.435 secs
+    Subroutine References                      0.231 secs
+    Subroutine References - One Time           0.000 secs
+    x86 Constant Reference Analyzer            5.662 secs
+-----------------------------------------------------
+     Total Time   45 secs
+-----------------------------------------------------
+  
+2026-08-14 03:51:27 INFO  (HeadlessAnalyzer) REPORT: Analysis succeeded for file: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:51:27 INFO  (HeadlessAnalyzer) REPORT: Execute script: ExportNamed.java 'make_GHN_DISCOVERY_Packet' 'ghnScanMXLLocalDev' 'ghnMXLGetIP' 'initDiscoveryDestAv'   
+2026-08-14 03:51:28 INFO  (HeadlessAnalyzer) SCRIPT: /tmp/ExportNamed.java  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> FUNCTION make_GHN_DISCOVERY_Packet entry=100062d30 body=[[100062d30, 100062e0b]]  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> 
+/* make_GHN_DISCOVERY_Packet(unsigned char*, unsigned char*, unsigned char*) */
+
+undefined8 make_GHN_DISCOVERY_Packet(uchar *param_1,uchar *param_2,uchar *param_3)
+
+{
+  undefined1 local_48 [48];
+  undefined8 local_18;
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  *(undefined4 *)param_3 = *(undefined4 *)param_1;
+  *(undefined2 *)(param_3 + 4) = *(undefined2 *)(param_1 + 4);
+  *(undefined4 *)(param_3 + 6) = *(undefined4 *)param_2;
+  *(undefined2 *)(param_3 + 10) = *(undefined2 *)(param_2 + 4);
+  local_18 = DAT_100170390;
+  _memset(local_48,0,0x26);
+  param_3[0xc] = '.';
+  param_3[0xd] = '\0';
+  *(undefined8 *)(param_3 + 0xe) = local_18;
+  _memcpy(param_3 + 0x16,local_48,0x184);
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 == local_10) {
+    return 0x40;
+  }
+                    /* WARNING: Subroutine does not return */
+  ___stack_chk_fail();
+}
+
+  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> FUNCTION ghnScanMXLLocalDev entry=100060d60 body=[[100060d60, 100060eb8]]  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> 
+/* ghnScanMXLLocalDev(unsigned char, _NEW_DEV_INFO*) */
+
+undefined4 ghnScanMXLLocalDev(uchar param_1,_NEW_DEV_INFO *param_2)
+
+{
+  int iVar1;
+  long local_130;
+  _NEW_DEV_INFO *local_128;
+  uchar local_11d;
+  undefined4 local_11c;
+  char local_118 [264];
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  local_128 = param_2;
+  local_11d = param_1;
+  _memset(local_118,0,0x100);
+  iVar1 = hpGetIfName(local_11d,local_118,0x100);
+  if (iVar1 == 0) {
+    local_11c = 0;
+  }
+  else {
+    local_130 = 0;
+    iVar1 = _MACDiscoverGet(local_118,0,&local_130);
+    if (iVar1 == 0) {
+      if (local_130 != 0) {
+        if (local_128 != (_NEW_DEV_INFO *)0x0) {
+          *(undefined4 *)(local_128 + 8) = 1;
+          *(undefined4 *)(local_128 + 0x10) = *(undefined4 *)(local_130 + 0xe);
+          *(undefined2 *)(local_128 + 0x14) = *(undefined2 *)(local_130 + 0x12);
+        }
+        _DeviceListFree(local_130);
+        local_11c = 1;
+        goto LAB_100060e82;
+      }
+    }
+    local_11c = 0;
+  }
+LAB_100060e82:
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 == local_10) {
+    return local_11c;
+  }
+                    /* WARNING: Subroutine does not return */
+  ___stack_chk_fail();
+}
+
+  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> FUNCTION ghnMXLGetIP entry=100062450 body=[[100062450, 1000625a9]]  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> 
+/* ghnMXLGetIP(int, unsigned char*, char*) */
+
+undefined4 ghnMXLGetIP(int param_1,uchar *param_2,char *param_3)
+
+{
+  int iVar1;
+  long lVar2;
+  undefined4 local_4c;
+  char local_48 [32];
+  char local_28 [24];
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  _memset(local_28,0,0x10);
+  _memset(local_48,0,0x20);
+  iVar1 = configlayerGetParam(param_1 & 0xff,param_2,0,"TCPIP.IPV4.IP_ADDRESS",local_28);
+  if (iVar1 != 0) {
+    iVar1 = configlayerGetParam(param_1 & 0xff,param_2,0,"TCPIP.IPV4.ADDITIONAL_IP_ADDRESS",local_48
+                               );
+    if (iVar1 != 0) {
+      iVar1 = _strncmp(local_28,"0.0.0.0",0x10);
+      if (iVar1 == 0) {
+        lVar2 = __ZL6strchrUa9enable_ifIXLb1EEEPci(local_48,0x2c);
+        _strncpy(param_3,local_48,lVar2 - (long)local_48);
+      }
+      else {
+        _strncpy(param_3,local_28,0x10);
+      }
+      local_4c = 1;
+      goto LAB_100062576;
+    }
+  }
+  local_4c = 0;
+LAB_100062576:
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 == local_10) {
+    return local_4c;
+  }
+                    /* WARNING: Subroutine does not return */
+  ___stack_chk_fail();
+}
+
+  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> FUNCTION initDiscoveryDestAv entry=1000bc5d0 body=[[1000bc5d0, 1000bc66d]]  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> 
+/* initDiscoveryDestAv(unsigned char*, CONTROLAPIAUDIENCE) */
+
+void initDiscoveryDestAv(undefined1 *param_1,int param_2)
+
+{
+  if (param_2 == 0) {
+    *param_1 = 0xff;
+    param_1[1] = 0xff;
+    param_1[2] = 0xff;
+    param_1[3] = 0xff;
+    param_1[4] = 0xff;
+    param_1[5] = 0xff;
+  }
+  else if (param_2 == 1) {
+    *param_1 = 0;
+    param_1[1] = 0xb0;
+    param_1[2] = 0x52;
+    param_1[3] = 0;
+    param_1[4] = 0;
+    param_1[5] = 1;
+  }
+  return;
+}
+
+  
+2026-08-14 03:51:28 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:51:28 INFO  (HeadlessAnalyzer) ANALYZING changes made by post scripts: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:51:28 INFO  (HeadlessAnalyzer) REPORT: Post-analysis succeeded for file: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:51:28 INFO  (HeadlessAnalyzer) REPORT: Discarded file import due to readOnly option: /plcu  
+2026-08-14 03:51:28 INFO  (HeadlessAnalyzer) REPORT: Import succeeded  

@@ -22,6 +22,12 @@ Map every reachable surface with artifact plus callsite or runtime evidence.
 Otherwise, record a precise unresolved gap and its next proof method.
 Broad string inventories, screenshots, and decompiler output alone are not completion.
 
+## Test Authorization
+
+New tests are authorized only under `tests/`.
+They may cover protocol codecs, authentication parsing, HTTP request shape, fixtures, CLI output, and mutation guards.
+Tests must not contact live devices unless the test name and invocation explicitly identify the bounded read-only integration target.
+
 ## Authorization and Live Targets
 
 - User authorization is established for this target and scope.

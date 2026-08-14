@@ -1,0 +1,14 @@
+HTTP/2 200 
+content-type: application/octet-stream
+content-length: 2970972
+date: Fri, 14 Aug 2026 01:46:28 GMT
+last-modified: Thu, 02 Feb 2023 10:22:14 GMT
+x-amz-version-id: Ash6f7RzXqz98UB1.aPzcBxH.zIO7esi
+etag: "d88bbaf1adb2115bbe54a03896ba6246"
+server: AmazonS3
+x-cache: Miss from cloudfront
+via: 1.1 89a6fa6293c9b0bbce683ad0b9f7f538.cloudfront.net (CloudFront)
+x-amz-cf-pop: VIE50-P1
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: D4x9GmYv3a9QONa8kdajMdFO_wrnoZwvpoX7tPssjCOsxXc0m0ZoyQ==
+

@@ -1,0 +1,1185 @@
+2026-08-14 03:53:21 INFO  (LoggingInitialization) Using log config file: jar:file:/opt/ghidra_12.1.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2026-08-14 03:53:21 INFO  (LoggingInitialization) Using log file: data/extracted-tpplc-12.5-macos/extracted-knowledge/ghidra-transport-analysis.log  
+2026-08-14 03:53:21 DEBUG (GhidraObjectInputFilter) Including serial input filter: FileSystem/data/client.rmi.serial.filter  
+2026-08-14 03:53:21 INFO  (Preferences) Loading user preferences: /root/.config/ghidra/ghidra_12.1.2_PUBLIC/preferences  
+2026-08-14 03:53:21 INFO  (ClassSearcher) Searching for classes...  
+2026-08-14 03:53:21 INFO  (ClassSearcher) Class search complete (571 ms)  
+2026-08-14 03:53:22 INFO  (DefaultSSLContextInitializer) Initializing SSL Context  
+2026-08-14 03:53:22 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2026-08-14 03:53:22 INFO  (SecureRandomFactory) Random Number Generator initialization complete: NativePRNGNonBlocking  
+2026-08-14 03:53:22 INFO  (DefaultTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2026-08-14 03:53:22 INFO  (AnalyzeHeadless) Headless startup complete (1339 ms)  
+2026-08-14 03:53:22 INFO  (ClassSearcher) Class searcher loaded 59 extension points (20 false positives)  
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /tmp
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts  
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer) Creating temporary project: /tmp/tpplc-ghidra/tpplc-transport  
+2026-08-14 03:53:22 INFO  (DefaultProject) Creating project: /tmp/tpplc-ghidra/tpplc-transport  
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer) REPORT: Processing input files:   
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer)      project: /tmp/tpplc-ghidra/tpplc-transport  
+2026-08-14 03:53:22 INFO  (HeadlessAnalyzer) IMPORTING: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:53:23 INFO  (ProgramLoader) Using Loader: Mac OS X Mach-O  
+2026-08-14 03:53:23 INFO  (ProgramLoader) Using Language/Compiler: x86:LE:64:default:gcc  
+2026-08-14 03:53:23 INFO  (ProgramLoader) Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni]  
+2026-08-14 03:53:25 INFO  (ProgramLoader) Additional info:
+Loading file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu?MD5=85203ee3c2c505ffc066c3e6e29a753e...
+------------------------------------------------
+
+Linking the External Programs of 'plcu' to imported libraries...
+  [/usr/lib/libcurl.4.dylib] -> not found in project
+  [/usr/lib/libpcap.A.dylib] -> not found in project
+  [/usr/lib/libc++.1.dylib] -> not found in project
+  [/usr/lib/libSystem.B.dylib] -> not found in project
+------------------------------------------------
+
+  
+2026-08-14 03:53:25 INFO  (HeadlessAnalyzer) IMPORTING: Loaded 0 additional files  
+2026-08-14 03:53:25 INFO  (HeadlessAnalyzer) ANALYZING all memory and code: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:53:33 INFO  (DecompilerSwitchAnalyzer) hit non-returning function, restarting decompiler switch analyzer later  
+2026-08-14 03:53:49 INFO  (PackedDatabaseCache) Packed database cache: /var/tmp/root-ghidra/packed-db-cache  
+2026-08-14 03:53:49 DEBUG (PackedDatabaseCache) Using cached packed database: /opt/ghidra_12.1.2_PUBLIC/Ghidra/Features/Base/data/typeinfo/mac_10.9/mac_osx.gdt  
+2026-08-14 03:53:50 INFO  (ApplyDataArchiveAnalyzer) Applied data type archive: mac_osx  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9000: std::istream::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9100: std::ostream::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9200: std::streambuf::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9300: std::length_error::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9400: std::runtime_error::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9500: std::bad_cast::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9600: std::bad_alloc::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9700: __cxxabiv1::__class_type_info::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9800: __cxxabiv1::__si_class_type_info::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9900: std::ios_base::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9a00: std::ios::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9b00: std::length_error::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9c00: std::bad_alloc::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table at 1002f9d00: std::exception::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::istream::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ostream::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::streambuf::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::length_error::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::runtime_error::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_cast::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_alloc::typeinfo  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::__cxxabiv1::__class_type_info::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::__cxxabiv1::__si_class_type_info::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ios_base::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::ios::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::length_error::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::bad_alloc::vtable  
+2026-08-14 03:53:55 WARN  (DemangledAddressTable) Unable to fully apply external demangled Address Table: /usr/lib/libc++.1.dylib::std::exception::vtable  
+2026-08-14 03:54:09 INFO  (AutoAnalysisManager) -----------------------------------------------------
+    ASCII Strings                              0.499 secs
+    Apply Data Archives                        0.562 secs
+    Call Convention ID                         9.474 secs
+    Call-Fixup Installer                       0.061 secs
+    Create Address Tables                      0.525 secs
+    Create Address Tables - One Time           0.235 secs
+    Create Function                            0.608 secs
+    Data Reference                             0.497 secs
+    Decompiler Switch Analysis                 2.082 secs
+    Decompiler Switch Analysis - One Time      4.290 secs
+    Demangler GNU                              1.103 secs
+    Disassemble                                0.490 secs
+    Disassemble Entry Points                   5.490 secs
+    Disassemble Entry Points - One Time        0.039 secs
+    Embedded Media                             0.051 secs
+    External Entry References                  0.020 secs
+    Function ID                                1.597 secs
+    Function Start Pre Search                  0.019 secs
+    Function Start Search                      0.144 secs
+    Function Start Search After Code           0.203 secs
+    Function Start Search After Data           0.170 secs
+    Mach-O Function Starts                     0.231 secs
+    Non-Returning Functions - Discovered       0.805 secs
+    Non-Returning Functions - Known            0.019 secs
+    Reference                                  0.291 secs
+    Scalar Operand References                  1.790 secs
+    Shared Return Calls                        0.510 secs
+    Stack                                      6.432 secs
+    Subroutine References                      0.222 secs
+    Subroutine References - One Time           0.001 secs
+    x86 Constant Reference Analyzer            5.081 secs
+-----------------------------------------------------
+     Total Time   43 secs
+-----------------------------------------------------
+  
+2026-08-14 03:54:09 INFO  (HeadlessAnalyzer) REPORT: Analysis succeeded for file: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:54:09 INFO  (HeadlessAnalyzer) REPORT: Execute script: ExportNamed.java 'MACDiscoverGet' 'SendPcapPacket' 'MakeHttpJsonObject' 'MakeRequestLoginDevServerPacket'   
+2026-08-14 03:54:09 INFO  (HeadlessAnalyzer) SCRIPT: /tmp/ExportNamed.java  
+2026-08-14 03:54:09 INFO  (GhidraScript) ExportNamed.java> FUNCTION _MACDiscoverGet entry=1000b7680 body=[[1000b7680, 1000b7789]]  
+2026-08-14 03:54:09 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:54:09 INFO  (GhidraScript) ExportNamed.java> 
+undefined4 _MACDiscoverGet(long param_1,undefined1 param_2,undefined8 param_3)
+
+{
+  undefined8 *local_40;
+  undefined8 *local_38;
+  undefined4 local_2c;
+  undefined8 local_28;
+  undefined1 local_19;
+  long local_18;
+  undefined4 local_c;
+  
+  local_2c = 0;
+  local_38 = (undefined8 *)0x0;
+  _firstDevice = 0;
+  _multipleDevices = param_2;
+  local_28 = param_3;
+  local_19 = param_2;
+  local_18 = param_1;
+  if (param_1 == 0) {
+    _InterfaceListGet(&local_38);
+    if (local_38 == (undefined8 *)0x0) {
+      _fprintf(*(FILE **)PTR____stderrp_1001b70e0,
+               "Error: Empty interface list (maybe you need to run as root)\n");
+    }
+    else {
+      _firstThread = 0;
+      for (local_40 = local_38; local_40 != (undefined8 *)0x0; local_40 = (undefined8 *)local_40[2])
+      {
+        _CreateNewThread(*local_40);
+      }
+      _InterfaceListFree(local_38);
+      _WaitForResult();
+    }
+    local_c = _MACDiscoverLastGet(local_28);
+  }
+  else {
+    _firstThread = 0;
+    local_c = _NoThreadDiscover(param_1,param_3);
+  }
+  return local_c;
+}
+
+  
+2026-08-14 03:54:09 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:54:09 INFO  (GhidraScript) ExportNamed.java> FUNCTION _SendPcapPacket entry=1000b7b10 body=[[1000b7b10, 1000b7e17]]  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> 
+/* WARNING: Removing unreachable block (ram,0x0001000b7c1f) */
+/* WARNING: Removing unreachable block (ram,0x0001000b7cdb) */
+/* WARNING: Type propagation algorithm not settling */
+
+undefined4 _SendPcapPacket(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+
+{
+  FILE *pFVar1;
+  int iVar2;
+  undefined8 uVar3;
+  __uint16_t local_4c [2];
+  uint local_48;
+  __uint16_t local_44;
+  ushort local_42;
+  void *local_40;
+  undefined4 local_34;
+  undefined8 local_30;
+  undefined8 local_28;
+  undefined8 local_20;
+  undefined8 local_18;
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  local_34 = 0;
+  local_18 = DAT_100170390;
+  local_48 = 0;
+  local_30 = param_3;
+  local_28 = param_2;
+  local_20 = param_1;
+  local_40 = _malloc(0x5ee);
+  if (local_40 == (void *)0x0) {
+    local_34 = 0xfffffff8;
+  }
+  else {
+    ___memset_chk(local_40,0,0x5ee,0xffffffffffffffff);
+    ___memcpy_chk(local_40,local_30,6,0xffffffffffffffff);
+    ___memcpy_chk((long)local_40 + 6,local_28,6,0xffffffffffffffff);
+    if (_vlanEnabled != '\0') {
+      local_48 = 4;
+      local_4c[1] = 0x81;
+      ___memcpy_chk((long)local_40 + 0xc,local_4c + 1,2,0xffffffffffffffff);
+      local_4c[0] = __OSSwapInt16((ushort)_vlanClass * 0x2000 + _vlanId);
+      ___memcpy_chk((long)local_40 + 0xe,local_4c,2,0xffffffffffffffff);
+    }
+    local_42 = 0x2e;
+    local_44 = __OSSwapInt16(0x2e);
+    ___memcpy_chk((long)local_40 + (ulong)local_48 + 0xc,&local_44,2,0xffffffffffffffff);
+    ___memcpy_chk((long)local_40 + (ulong)local_48 + 0xe,&local_18,8,0xffffffffffffffff);
+    iVar2 = _pcap_sendpacket(local_20,local_40,local_42 + 0xe + local_48);
+    if (iVar2 != 0) {
+      pFVar1 = *(FILE **)PTR____stderrp_1001b70e0;
+      uVar3 = _pcap_geterr(local_20);
+      _fprintf(pFVar1,"\nError sending the packet: %s\n",uVar3);
+      local_34 = 0xfffffffd;
+    }
+    _free(local_40);
+  }
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 != local_10) {
+                    /* WARNING: Subroutine does not return */
+    ___stack_chk_fail();
+  }
+  return local_34;
+}
+
+  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> FUNCTION JsonCommand::MakeHttpJsonObject entry=1000a6510 body=[[1000a6510, 1000a66bb] [1000a6710, 1000a6adb] [1000a6b36, 1000a6c90] [1000a6ca3, 1000a6ee8] [1000a6f8b, 1000a7196] [1000a71c9, 1000a71cd]]  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> 
+/* JsonCommand::MakeHttpJsonObject(char const*, char const*, char const*, char const*, _GDPR_STRUCT
+   const*) */
+
+undefined4 __thiscall
+JsonCommand::MakeHttpJsonObject
+          (JsonCommand *this,char *param_1,char *param_2,char *param_3,char *param_4,
+          _GDPR_STRUCT *param_5)
+
+{
+  int iVar1;
+  _GDPR_STRUCT *p_Var2;
+  byte bVar3;
+  size_t sVar4;
+  Value *pVVar5;
+  char *pcVar6;
+  long lVar7;
+  size_t sVar8;
+  _GDPR_STRUCT *p_Var9;
+  Value local_8a8 [24];
+  Value local_890 [24];
+  Value local_878 [24];
+  Value local_860 [24];
+  Value local_848 [24];
+  string local_830 [24];
+  Value local_818 [24];
+  Value local_800 [24];
+  Value local_7e8 [28];
+  int local_7cc;
+  string local_7c8 [24];
+  FastWriter local_7b0 [56];
+  Value local_778 [24];
+  Reader local_760 [192];
+  ulong local_6a0;
+  size_t local_698;
+  size_t local_690;
+  size_t local_688;
+  _GDPR_STRUCT *local_680;
+  char *local_678;
+  char *local_670;
+  char *local_668;
+  char *local_660;
+  JsonCommand *local_658;
+  undefined4 local_64c;
+  char local_648 [528];
+  char local_438 [272];
+  uchar local_328 [16];
+  uchar local_318 [512];
+  uchar local_118 [128];
+  undefined8 local_98;
+  undefined8 uStack_90;
+  undefined8 local_88;
+  undefined8 uStack_80;
+  undefined8 local_78;
+  undefined8 uStack_70;
+  undefined8 local_68;
+  undefined8 uStack_60;
+  undefined8 local_58;
+  undefined8 uStack_50;
+  undefined8 local_48;
+  undefined8 uStack_40;
+  undefined8 local_38;
+  undefined8 uStack_30;
+  undefined8 local_28;
+  undefined8 uStack_20;
+  char local_18 [8];
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  local_18[0] = '\0';
+  local_18[1] = '\0';
+  local_18[2] = '\0';
+  local_18[3] = '\0';
+  local_18[4] = '\0';
+  local_18[5] = '\0';
+  local_18[6] = '\0';
+  local_18[7] = '\0';
+  local_28 = 0;
+  uStack_20 = 0;
+  local_38 = 0;
+  uStack_30 = 0;
+  local_48 = 0;
+  uStack_40 = 0;
+  local_58 = 0;
+  uStack_50 = 0;
+  local_68 = 0;
+  uStack_60 = 0;
+  local_78 = 0;
+  uStack_70 = 0;
+  local_88 = 0;
+  uStack_80 = 0;
+  local_98 = 0;
+  uStack_90 = 0;
+  local_688 = 0;
+  local_690 = 0;
+  local_698 = 0;
+  local_118[0x70] = '\0';
+  local_118[0x71] = '\0';
+  local_118[0x72] = '\0';
+  local_118[0x73] = '\0';
+  local_118[0x74] = '\0';
+  local_118[0x75] = '\0';
+  local_118[0x76] = '\0';
+  local_118[0x77] = '\0';
+  local_118[0x78] = '\0';
+  local_118[0x79] = '\0';
+  local_118[0x7a] = '\0';
+  local_118[0x7b] = '\0';
+  local_118[0x7c] = '\0';
+  local_118[0x7d] = '\0';
+  local_118[0x7e] = '\0';
+  local_118[0x7f] = '\0';
+  local_118[0x60] = '\0';
+  local_118[0x61] = '\0';
+  local_118[0x62] = '\0';
+  local_118[99] = '\0';
+  local_118[100] = '\0';
+  local_118[0x65] = '\0';
+  local_118[0x66] = '\0';
+  local_118[0x67] = '\0';
+  local_118[0x68] = '\0';
+  local_118[0x69] = '\0';
+  local_118[0x6a] = '\0';
+  local_118[0x6b] = '\0';
+  local_118[0x6c] = '\0';
+  local_118[0x6d] = '\0';
+  local_118[0x6e] = '\0';
+  local_118[0x6f] = '\0';
+  local_118[0x50] = '\0';
+  local_118[0x51] = '\0';
+  local_118[0x52] = '\0';
+  local_118[0x53] = '\0';
+  local_118[0x54] = '\0';
+  local_118[0x55] = '\0';
+  local_118[0x56] = '\0';
+  local_118[0x57] = '\0';
+  local_118[0x58] = '\0';
+  local_118[0x59] = '\0';
+  local_118[0x5a] = '\0';
+  local_118[0x5b] = '\0';
+  local_118[0x5c] = '\0';
+  local_118[0x5d] = '\0';
+  local_118[0x5e] = '\0';
+  local_118[0x5f] = '\0';
+  local_118[0x40] = '\0';
+  local_118[0x41] = '\0';
+  local_118[0x42] = '\0';
+  local_118[0x43] = '\0';
+  local_118[0x44] = '\0';
+  local_118[0x45] = '\0';
+  local_118[0x46] = '\0';
+  local_118[0x47] = '\0';
+  local_118[0x48] = '\0';
+  local_118[0x49] = '\0';
+  local_118[0x4a] = '\0';
+  local_118[0x4b] = '\0';
+  local_118[0x4c] = '\0';
+  local_118[0x4d] = '\0';
+  local_118[0x4e] = '\0';
+  local_118[0x4f] = '\0';
+  local_118[0x30] = '\0';
+  local_118[0x31] = '\0';
+  local_118[0x32] = '\0';
+  local_118[0x33] = '\0';
+  local_118[0x34] = '\0';
+  local_118[0x35] = '\0';
+  local_118[0x36] = '\0';
+  local_118[0x37] = '\0';
+  local_118[0x38] = '\0';
+  local_118[0x39] = '\0';
+  local_118[0x3a] = '\0';
+  local_118[0x3b] = '\0';
+  local_118[0x3c] = '\0';
+  local_118[0x3d] = '\0';
+  local_118[0x3e] = '\0';
+  local_118[0x3f] = '\0';
+  local_118[0x20] = '\0';
+  local_118[0x21] = '\0';
+  local_118[0x22] = '\0';
+  local_118[0x23] = '\0';
+  local_118[0x24] = '\0';
+  local_118[0x25] = '\0';
+  local_118[0x26] = '\0';
+  local_118[0x27] = '\0';
+  local_118[0x28] = '\0';
+  local_118[0x29] = '\0';
+  local_118[0x2a] = '\0';
+  local_118[0x2b] = '\0';
+  local_118[0x2c] = '\0';
+  local_118[0x2d] = '\0';
+  local_118[0x2e] = '\0';
+  local_118[0x2f] = '\0';
+  local_118[0x10] = '\0';
+  local_118[0x11] = '\0';
+  local_118[0x12] = '\0';
+  local_118[0x13] = '\0';
+  local_118[0x14] = '\0';
+  local_118[0x15] = '\0';
+  local_118[0x16] = '\0';
+  local_118[0x17] = '\0';
+  local_118[0x18] = '\0';
+  local_118[0x19] = '\0';
+  local_118[0x1a] = '\0';
+  local_118[0x1b] = '\0';
+  local_118[0x1c] = '\0';
+  local_118[0x1d] = '\0';
+  local_118[0x1e] = '\0';
+  local_118[0x1f] = '\0';
+  local_118[0] = '\0';
+  local_118[1] = '\0';
+  local_118[2] = '\0';
+  local_118[3] = '\0';
+  local_118[4] = '\0';
+  local_118[5] = '\0';
+  local_118[6] = '\0';
+  local_118[7] = '\0';
+  local_118[8] = '\0';
+  local_118[9] = '\0';
+  local_118[10] = '\0';
+  local_118[0xb] = '\0';
+  local_118[0xc] = '\0';
+  local_118[0xd] = '\0';
+  local_118[0xe] = '\0';
+  local_118[0xf] = '\0';
+  local_6a0 = 0x80;
+  local_680 = param_5;
+  local_678 = param_4;
+  local_670 = param_3;
+  local_668 = param_2;
+  local_660 = param_1;
+  local_658 = this;
+  ___bzero(local_318,0x200);
+  Json::Reader::Reader(local_760);
+  Json::Value::Value(local_778,0);
+  Json::FastWriter::FastWriter(local_7b0);
+  std::string::string<decltype(nullptr)>(local_7c8,local_678);
+  bVar3 = Json::Reader::parse(local_760,local_7c8,local_778,true);
+  std::string::~string(local_7c8);
+  if (((bVar3 ^ 0xff) & 1) == 0) {
+    if (local_670 != (char *)0x0) {
+      if ((local_668 != (char *)0x0) && (sVar4 = _strlen(local_668), sVar4 != 0)) {
+        local_688 = _strlen(local_668);
+        _memcpy(&local_98,local_668,local_688);
+        *(char *)((long)&local_98 + local_688) = s___1001a802e[0];
+      }
+      local_690 = _strlen(local_670);
+      sVar4 = _strlen((char *)&local_98);
+      _memcpy((char *)((long)&local_98 + sVar4),local_670,local_690);
+    }
+    local_698 = _strlen(local_678);
+    pcVar6 = local_670;
+    if (local_698 == 0) {
+      local_64c = 0;
+      local_7cc = 1;
+    }
+    else {
+      if ((local_688 == 0) && (local_690 == 0)) {
+        _strncpy((char *)local_318,local_678,local_698);
+      }
+      else {
+        if (local_680 == (_GDPR_STRUCT *)0x0) {
+          sVar4 = _strlen((char *)&local_98);
+          bVar3 = base64Encode((uchar *)&local_98,sVar4,local_118,&local_6a0);
+          if ((bVar3 & 1) == 0) {
+            local_64c = 0;
+            local_7cc = 1;
+            goto LAB_1000a7141;
+          }
+        }
+        else {
+          sVar4 = _strlen(local_670);
+          MD_string(pcVar6,sVar4 & 0xffffffff,local_328,5);
+          lVar7 = hex2String(local_328,0x10,(char *)local_118,0x80);
+          if (lVar7 == 0) {
+            local_64c = 0;
+            local_7cc = 1;
+            goto LAB_1000a7141;
+          }
+        }
+        Json::Value::Value(local_7e8,(char *)local_118);
+        pVVar5 = (Value *)Json::Value::operator[](local_778,"cookie");
+        Json::Value::operator=(pVVar5,local_7e8);
+        Json::Value::~Value(local_7e8);
+        Json::FastWriter::write(local_800);
+        pcVar6 = (char *)std::string::c_str((string *)local_800);
+        local_698 = _strlen(pcVar6);
+        std::string::~string((string *)local_800);
+        Json::FastWriter::write(local_818);
+        pcVar6 = (char *)std::string::c_str((string *)local_818);
+        _strncpy((char *)local_318,pcVar6,local_698);
+        std::string::~string((string *)local_818);
+      }
+      if (local_680 == (_GDPR_STRUCT *)0x0) {
+        simpleEncode(local_318,(int)local_698);
+      }
+      else {
+        std::string::string<decltype(nullptr)>(local_830,"k=");
+        std::string::operator+=(local_830,(char *)(local_680 + 0x122));
+        std::string::operator+=(local_830,"&i=");
+        std::string::operator+=(local_830,(char *)(local_680 + 0x133));
+        ___bzero(local_438,0x101);
+        ___bzero(local_648,0x201);
+        lVar7 = encodeAES((char *)(local_680 + 0x122),(char *)(local_680 + 0x133),(char *)local_318,
+                          local_648,0x201);
+        p_Var2 = local_680;
+        if (lVar7 == 0) {
+          local_64c = 0;
+          local_7cc = 1;
+        }
+        else {
+          p_Var9 = local_680 + 0x101;
+          pcVar6 = (char *)std::string::c_str(local_830);
+          lVar7 = RSAPublicEncrypt((char *)p_Var2,(char *)p_Var9,pcVar6,local_438,0x101);
+          if (lVar7 == 0) {
+            local_64c = 0;
+            local_7cc = 1;
+          }
+          else {
+            Json::Value::Value(local_848,0);
+            Json::Value::Value(local_860,local_438);
+            pVVar5 = (Value *)Json::Value::operator[](local_848,"sign");
+            Json::Value::operator=(pVVar5,local_860);
+            Json::Value::~Value(local_860);
+            Json::Value::Value(local_878,local_648);
+            pVVar5 = (Value *)Json::Value::operator[](local_848,"data");
+            Json::Value::operator=(pVVar5,local_878);
+            Json::Value::~Value(local_878);
+            Json::FastWriter::write(local_890);
+            pcVar6 = (char *)std::string::c_str((string *)local_890);
+            local_698 = _strlen(pcVar6);
+            std::string::~string((string *)local_890);
+            Json::FastWriter::write(local_8a8);
+            pcVar6 = (char *)std::string::c_str((string *)local_8a8);
+            _strncpy((char *)local_318,pcVar6,local_698);
+            std::string::~string((string *)local_8a8);
+            Json::Value::~Value(local_848);
+            local_7cc = 0;
+          }
+        }
+        std::string::~string(local_830);
+        if (local_7cc != 0) goto LAB_1000a7141;
+      }
+      _sprintf(local_18,"%ld",local_698);
+      ___bzero(this + 4,0x400);
+      _strcat((char *)(this + 4),_NO_AUTH_POST);
+      _strcat((char *)(this + 4),_HOST);
+      _strcat((char *)(this + 4),local_660);
+      _strcat((char *)(this + 4),_HOST_SUFFIX);
+      _strcat((char *)(this + 4),_CONTENT_LEN);
+      _strcat((char *)(this + 4),local_18);
+      _strcat((char *)(this + 4),_SPACE_LINE);
+      _strcat((char *)(this + 4),(char *)local_318);
+      iVar1 = FIXED_HTTP_LEN + (int)local_698;
+      sVar4 = _strlen(local_660);
+      sVar8 = _strlen(local_18);
+      *(int *)this = iVar1 + (int)sVar4 + (int)sVar8;
+      local_64c = 1;
+      local_7cc = 1;
+    }
+  }
+  else {
+    local_64c = 0;
+    local_7cc = 1;
+  }
+LAB_1000a7141:
+  Json::FastWriter::~FastWriter(local_7b0);
+  Json::Value::~Value(local_778);
+  Json::Reader::~Reader(local_760);
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 != local_10) {
+                    /* WARNING: Subroutine does not return */
+    ___stack_chk_fail();
+  }
+  return local_64c;
+}
+
+  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> FUNCTION JsonCommand::MakeRequestLoginDevServerPacket entry=1000a8d90 body=[[1000a8d90, 1000a9026] [1000a908d, 1000a94e0] [1000a9595, 1000a960e] [1000a964d, 1000a9651]]  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> DECOMPILE completed=true timedOut=false  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> 
+/* JsonCommand::MakeRequestLoginDevServerPacket(char const*, char const*, char const*, _GDPR_STRUCT
+   const*, int) */
+
+JsonCommand * __thiscall
+JsonCommand::MakeRequestLoginDevServerPacket
+          (JsonCommand *this,char *param_1,char *param_2,char *param_3,_GDPR_STRUCT *param_4,
+          int param_5)
+
+{
+  byte bVar1;
+  int iVar2;
+  Value *pVVar3;
+  size_t sVar4;
+  long lVar5;
+  char *pcVar6;
+  char *pcVar7;
+  Value local_3b0 [24];
+  Value local_398 [24];
+  Value local_380 [24];
+  Value local_368 [24];
+  Value local_350 [24];
+  Value local_338 [28];
+  undefined4 local_31c;
+  Value local_318 [24];
+  ulong local_300 [2];
+  size_t local_2f0;
+  size_t local_2e8;
+  FastWriter local_2e0 [40];
+  Value local_2b8 [40];
+  Value local_290 [24];
+  Value local_278 [28];
+  int local_25c;
+  _GDPR_STRUCT *local_258;
+  char *local_250;
+  char *local_248;
+  char *local_240;
+  JsonCommand *local_238;
+  JsonCommand *local_230;
+  uchar local_228 [16];
+  uchar local_218 [128];
+  undefined8 local_198;
+  undefined8 uStack_190;
+  undefined8 local_188;
+  undefined8 uStack_180;
+  undefined8 local_178;
+  undefined8 uStack_170;
+  undefined8 local_168;
+  undefined8 uStack_160;
+  undefined8 local_158;
+  undefined8 uStack_150;
+  undefined8 local_148;
+  undefined8 uStack_140;
+  undefined8 local_138;
+  undefined8 uStack_130;
+  undefined8 local_128;
+  undefined8 uStack_120;
+  char local_118 [264];
+  long local_10;
+  
+  local_10 = *(long *)PTR____stack_chk_guard_1001b70d8;
+  local_25c = param_5;
+  local_258 = param_4;
+  local_250 = param_3;
+  local_248 = param_2;
+  local_240 = param_1;
+  local_238 = this;
+  Json::Value::Value(local_278,0);
+  Json::Value::Value(local_290,0);
+  Json::Value::Value(local_2b8,0);
+  Json::FastWriter::FastWriter(local_2e0);
+  local_118[0xf0] = '\0';
+  local_118[0xf1] = '\0';
+  local_118[0xf2] = '\0';
+  local_118[0xf3] = '\0';
+  local_118[0xf4] = '\0';
+  local_118[0xf5] = '\0';
+  local_118[0xf6] = '\0';
+  local_118[0xf7] = '\0';
+  local_118[0xf8] = '\0';
+  local_118[0xf9] = '\0';
+  local_118[0xfa] = '\0';
+  local_118[0xfb] = '\0';
+  local_118[0xfc] = '\0';
+  local_118[0xfd] = '\0';
+  local_118[0xfe] = '\0';
+  local_118[0xff] = '\0';
+  local_118[0xe0] = '\0';
+  local_118[0xe1] = '\0';
+  local_118[0xe2] = '\0';
+  local_118[0xe3] = '\0';
+  local_118[0xe4] = '\0';
+  local_118[0xe5] = '\0';
+  local_118[0xe6] = '\0';
+  local_118[0xe7] = '\0';
+  local_118[0xe8] = '\0';
+  local_118[0xe9] = '\0';
+  local_118[0xea] = '\0';
+  local_118[0xeb] = '\0';
+  local_118[0xec] = '\0';
+  local_118[0xed] = '\0';
+  local_118[0xee] = '\0';
+  local_118[0xef] = '\0';
+  local_118[0xd0] = '\0';
+  local_118[0xd1] = '\0';
+  local_118[0xd2] = '\0';
+  local_118[0xd3] = '\0';
+  local_118[0xd4] = '\0';
+  local_118[0xd5] = '\0';
+  local_118[0xd6] = '\0';
+  local_118[0xd7] = '\0';
+  local_118[0xd8] = '\0';
+  local_118[0xd9] = '\0';
+  local_118[0xda] = '\0';
+  local_118[0xdb] = '\0';
+  local_118[0xdc] = '\0';
+  local_118[0xdd] = '\0';
+  local_118[0xde] = '\0';
+  local_118[0xdf] = '\0';
+  local_118[0xc0] = '\0';
+  local_118[0xc1] = '\0';
+  local_118[0xc2] = '\0';
+  local_118[0xc3] = '\0';
+  local_118[0xc4] = '\0';
+  local_118[0xc5] = '\0';
+  local_118[0xc6] = '\0';
+  local_118[199] = '\0';
+  local_118[200] = '\0';
+  local_118[0xc9] = '\0';
+  local_118[0xca] = '\0';
+  local_118[0xcb] = '\0';
+  local_118[0xcc] = '\0';
+  local_118[0xcd] = '\0';
+  local_118[0xce] = '\0';
+  local_118[0xcf] = '\0';
+  local_118[0xb0] = '\0';
+  local_118[0xb1] = '\0';
+  local_118[0xb2] = '\0';
+  local_118[0xb3] = '\0';
+  local_118[0xb4] = '\0';
+  local_118[0xb5] = '\0';
+  local_118[0xb6] = '\0';
+  local_118[0xb7] = '\0';
+  local_118[0xb8] = '\0';
+  local_118[0xb9] = '\0';
+  local_118[0xba] = '\0';
+  local_118[0xbb] = '\0';
+  local_118[0xbc] = '\0';
+  local_118[0xbd] = '\0';
+  local_118[0xbe] = '\0';
+  local_118[0xbf] = '\0';
+  local_118[0xa0] = '\0';
+  local_118[0xa1] = '\0';
+  local_118[0xa2] = '\0';
+  local_118[0xa3] = '\0';
+  local_118[0xa4] = '\0';
+  local_118[0xa5] = '\0';
+  local_118[0xa6] = '\0';
+  local_118[0xa7] = '\0';
+  local_118[0xa8] = '\0';
+  local_118[0xa9] = '\0';
+  local_118[0xaa] = '\0';
+  local_118[0xab] = '\0';
+  local_118[0xac] = '\0';
+  local_118[0xad] = '\0';
+  local_118[0xae] = '\0';
+  local_118[0xaf] = '\0';
+  local_118[0x90] = '\0';
+  local_118[0x91] = '\0';
+  local_118[0x92] = '\0';
+  local_118[0x93] = '\0';
+  local_118[0x94] = '\0';
+  local_118[0x95] = '\0';
+  local_118[0x96] = '\0';
+  local_118[0x97] = '\0';
+  local_118[0x98] = '\0';
+  local_118[0x99] = '\0';
+  local_118[0x9a] = '\0';
+  local_118[0x9b] = '\0';
+  local_118[0x9c] = '\0';
+  local_118[0x9d] = '\0';
+  local_118[0x9e] = '\0';
+  local_118[0x9f] = '\0';
+  local_118[0x80] = '\0';
+  local_118[0x81] = '\0';
+  local_118[0x82] = '\0';
+  local_118[0x83] = '\0';
+  local_118[0x84] = '\0';
+  local_118[0x85] = '\0';
+  local_118[0x86] = '\0';
+  local_118[0x87] = '\0';
+  local_118[0x88] = '\0';
+  local_118[0x89] = '\0';
+  local_118[0x8a] = '\0';
+  local_118[0x8b] = '\0';
+  local_118[0x8c] = '\0';
+  local_118[0x8d] = '\0';
+  local_118[0x8e] = '\0';
+  local_118[0x8f] = '\0';
+  local_118[0x70] = '\0';
+  local_118[0x71] = '\0';
+  local_118[0x72] = '\0';
+  local_118[0x73] = '\0';
+  local_118[0x74] = '\0';
+  local_118[0x75] = '\0';
+  local_118[0x76] = '\0';
+  local_118[0x77] = '\0';
+  local_118[0x78] = '\0';
+  local_118[0x79] = '\0';
+  local_118[0x7a] = '\0';
+  local_118[0x7b] = '\0';
+  local_118[0x7c] = '\0';
+  local_118[0x7d] = '\0';
+  local_118[0x7e] = '\0';
+  local_118[0x7f] = '\0';
+  local_118[0x60] = '\0';
+  local_118[0x61] = '\0';
+  local_118[0x62] = '\0';
+  local_118[99] = '\0';
+  local_118[100] = '\0';
+  local_118[0x65] = '\0';
+  local_118[0x66] = '\0';
+  local_118[0x67] = '\0';
+  local_118[0x68] = '\0';
+  local_118[0x69] = '\0';
+  local_118[0x6a] = '\0';
+  local_118[0x6b] = '\0';
+  local_118[0x6c] = '\0';
+  local_118[0x6d] = '\0';
+  local_118[0x6e] = '\0';
+  local_118[0x6f] = '\0';
+  local_118[0x50] = '\0';
+  local_118[0x51] = '\0';
+  local_118[0x52] = '\0';
+  local_118[0x53] = '\0';
+  local_118[0x54] = '\0';
+  local_118[0x55] = '\0';
+  local_118[0x56] = '\0';
+  local_118[0x57] = '\0';
+  local_118[0x58] = '\0';
+  local_118[0x59] = '\0';
+  local_118[0x5a] = '\0';
+  local_118[0x5b] = '\0';
+  local_118[0x5c] = '\0';
+  local_118[0x5d] = '\0';
+  local_118[0x5e] = '\0';
+  local_118[0x5f] = '\0';
+  local_118[0x40] = '\0';
+  local_118[0x41] = '\0';
+  local_118[0x42] = '\0';
+  local_118[0x43] = '\0';
+  local_118[0x44] = '\0';
+  local_118[0x45] = '\0';
+  local_118[0x46] = '\0';
+  local_118[0x47] = '\0';
+  local_118[0x48] = '\0';
+  local_118[0x49] = '\0';
+  local_118[0x4a] = '\0';
+  local_118[0x4b] = '\0';
+  local_118[0x4c] = '\0';
+  local_118[0x4d] = '\0';
+  local_118[0x4e] = '\0';
+  local_118[0x4f] = '\0';
+  local_118[0x30] = '\0';
+  local_118[0x31] = '\0';
+  local_118[0x32] = '\0';
+  local_118[0x33] = '\0';
+  local_118[0x34] = '\0';
+  local_118[0x35] = '\0';
+  local_118[0x36] = '\0';
+  local_118[0x37] = '\0';
+  local_118[0x38] = '\0';
+  local_118[0x39] = '\0';
+  local_118[0x3a] = '\0';
+  local_118[0x3b] = '\0';
+  local_118[0x3c] = '\0';
+  local_118[0x3d] = '\0';
+  local_118[0x3e] = '\0';
+  local_118[0x3f] = '\0';
+  local_118[0x20] = '\0';
+  local_118[0x21] = '\0';
+  local_118[0x22] = '\0';
+  local_118[0x23] = '\0';
+  local_118[0x24] = '\0';
+  local_118[0x25] = '\0';
+  local_118[0x26] = '\0';
+  local_118[0x27] = '\0';
+  local_118[0x28] = '\0';
+  local_118[0x29] = '\0';
+  local_118[0x2a] = '\0';
+  local_118[0x2b] = '\0';
+  local_118[0x2c] = '\0';
+  local_118[0x2d] = '\0';
+  local_118[0x2e] = '\0';
+  local_118[0x2f] = '\0';
+  local_118[0x10] = '\0';
+  local_118[0x11] = '\0';
+  local_118[0x12] = '\0';
+  local_118[0x13] = '\0';
+  local_118[0x14] = '\0';
+  local_118[0x15] = '\0';
+  local_118[0x16] = '\0';
+  local_118[0x17] = '\0';
+  local_118[0x18] = '\0';
+  local_118[0x19] = '\0';
+  local_118[0x1a] = '\0';
+  local_118[0x1b] = '\0';
+  local_118[0x1c] = '\0';
+  local_118[0x1d] = '\0';
+  local_118[0x1e] = '\0';
+  local_118[0x1f] = '\0';
+  local_118[0] = '\0';
+  local_118[1] = '\0';
+  local_118[2] = '\0';
+  local_118[3] = '\0';
+  local_118[4] = '\0';
+  local_118[5] = '\0';
+  local_118[6] = '\0';
+  local_118[7] = '\0';
+  local_118[8] = '\0';
+  local_118[9] = '\0';
+  local_118[10] = '\0';
+  local_118[0xb] = '\0';
+  local_118[0xc] = '\0';
+  local_118[0xd] = '\0';
+  local_118[0xe] = '\0';
+  local_118[0xf] = '\0';
+  local_128 = 0;
+  uStack_120 = 0;
+  local_138 = 0;
+  uStack_130 = 0;
+  local_148 = 0;
+  uStack_140 = 0;
+  local_158 = 0;
+  uStack_150 = 0;
+  local_168 = 0;
+  uStack_160 = 0;
+  local_178 = 0;
+  uStack_170 = 0;
+  local_188 = 0;
+  uStack_180 = 0;
+  local_198 = 0;
+  uStack_190 = 0;
+  local_2e8 = 0;
+  local_2f0 = 0;
+  local_300[1] = 0;
+  local_218[0x70] = '\0';
+  local_218[0x71] = '\0';
+  local_218[0x72] = '\0';
+  local_218[0x73] = '\0';
+  local_218[0x74] = '\0';
+  local_218[0x75] = '\0';
+  local_218[0x76] = '\0';
+  local_218[0x77] = '\0';
+  local_218[0x78] = '\0';
+  local_218[0x79] = '\0';
+  local_218[0x7a] = '\0';
+  local_218[0x7b] = '\0';
+  local_218[0x7c] = '\0';
+  local_218[0x7d] = '\0';
+  local_218[0x7e] = '\0';
+  local_218[0x7f] = '\0';
+  local_218[0x60] = '\0';
+  local_218[0x61] = '\0';
+  local_218[0x62] = '\0';
+  local_218[99] = '\0';
+  local_218[100] = '\0';
+  local_218[0x65] = '\0';
+  local_218[0x66] = '\0';
+  local_218[0x67] = '\0';
+  local_218[0x68] = '\0';
+  local_218[0x69] = '\0';
+  local_218[0x6a] = '\0';
+  local_218[0x6b] = '\0';
+  local_218[0x6c] = '\0';
+  local_218[0x6d] = '\0';
+  local_218[0x6e] = '\0';
+  local_218[0x6f] = '\0';
+  local_218[0x50] = '\0';
+  local_218[0x51] = '\0';
+  local_218[0x52] = '\0';
+  local_218[0x53] = '\0';
+  local_218[0x54] = '\0';
+  local_218[0x55] = '\0';
+  local_218[0x56] = '\0';
+  local_218[0x57] = '\0';
+  local_218[0x58] = '\0';
+  local_218[0x59] = '\0';
+  local_218[0x5a] = '\0';
+  local_218[0x5b] = '\0';
+  local_218[0x5c] = '\0';
+  local_218[0x5d] = '\0';
+  local_218[0x5e] = '\0';
+  local_218[0x5f] = '\0';
+  local_218[0x40] = '\0';
+  local_218[0x41] = '\0';
+  local_218[0x42] = '\0';
+  local_218[0x43] = '\0';
+  local_218[0x44] = '\0';
+  local_218[0x45] = '\0';
+  local_218[0x46] = '\0';
+  local_218[0x47] = '\0';
+  local_218[0x48] = '\0';
+  local_218[0x49] = '\0';
+  local_218[0x4a] = '\0';
+  local_218[0x4b] = '\0';
+  local_218[0x4c] = '\0';
+  local_218[0x4d] = '\0';
+  local_218[0x4e] = '\0';
+  local_218[0x4f] = '\0';
+  local_218[0x30] = '\0';
+  local_218[0x31] = '\0';
+  local_218[0x32] = '\0';
+  local_218[0x33] = '\0';
+  local_218[0x34] = '\0';
+  local_218[0x35] = '\0';
+  local_218[0x36] = '\0';
+  local_218[0x37] = '\0';
+  local_218[0x38] = '\0';
+  local_218[0x39] = '\0';
+  local_218[0x3a] = '\0';
+  local_218[0x3b] = '\0';
+  local_218[0x3c] = '\0';
+  local_218[0x3d] = '\0';
+  local_218[0x3e] = '\0';
+  local_218[0x3f] = '\0';
+  local_218[0x20] = '\0';
+  local_218[0x21] = '\0';
+  local_218[0x22] = '\0';
+  local_218[0x23] = '\0';
+  local_218[0x24] = '\0';
+  local_218[0x25] = '\0';
+  local_218[0x26] = '\0';
+  local_218[0x27] = '\0';
+  local_218[0x28] = '\0';
+  local_218[0x29] = '\0';
+  local_218[0x2a] = '\0';
+  local_218[0x2b] = '\0';
+  local_218[0x2c] = '\0';
+  local_218[0x2d] = '\0';
+  local_218[0x2e] = '\0';
+  local_218[0x2f] = '\0';
+  local_218[0x10] = '\0';
+  local_218[0x11] = '\0';
+  local_218[0x12] = '\0';
+  local_218[0x13] = '\0';
+  local_218[0x14] = '\0';
+  local_218[0x15] = '\0';
+  local_218[0x16] = '\0';
+  local_218[0x17] = '\0';
+  local_218[0x18] = '\0';
+  local_218[0x19] = '\0';
+  local_218[0x1a] = '\0';
+  local_218[0x1b] = '\0';
+  local_218[0x1c] = '\0';
+  local_218[0x1d] = '\0';
+  local_218[0x1e] = '\0';
+  local_218[0x1f] = '\0';
+  local_218[0] = '\0';
+  local_218[1] = '\0';
+  local_218[2] = '\0';
+  local_218[3] = '\0';
+  local_218[4] = '\0';
+  local_218[5] = '\0';
+  local_218[6] = '\0';
+  local_218[7] = '\0';
+  local_218[8] = '\0';
+  local_218[9] = '\0';
+  local_218[10] = '\0';
+  local_218[0xb] = '\0';
+  local_218[0xc] = '\0';
+  local_218[0xd] = '\0';
+  local_218[0xe] = '\0';
+  local_218[0xf] = '\0';
+  local_300[0] = 0x80;
+  Json::Value::Value(local_318,local_25c);
+  pVVar3 = (Value *)Json::Value::operator[](local_278,"issetpwd");
+  Json::Value::operator=(pVVar3,local_318);
+  Json::Value::~Value(local_318);
+  if (local_250 != (char *)0x0) {
+    if ((local_248 != (char *)0x0) && (sVar4 = _strlen(local_248), sVar4 != 0)) {
+      local_2e8 = _strlen(local_248);
+      _memcpy(&local_198,local_248,local_2e8);
+      *(char *)((long)&local_198 + local_2e8) = s___1001a802e[0];
+    }
+    local_2f0 = _strlen(local_250);
+    sVar4 = _strlen((char *)&local_198);
+    _memcpy((char *)((long)&local_198 + sVar4),local_250,local_2f0);
+  }
+  pcVar6 = local_250;
+  if (local_258 == (_GDPR_STRUCT *)0x0) {
+    sVar4 = _strlen((char *)&local_198);
+    bVar1 = base64Encode((uchar *)&local_198,sVar4,local_218,local_300);
+    if ((bVar1 & 1) == 0) {
+      local_230 = (JsonCommand *)0x0;
+      goto LAB_1000a95aa;
+    }
+  }
+  else {
+    sVar4 = _strlen(local_250);
+    MD_string(pcVar6,sVar4 & 0xffffffff,local_228,5);
+    lVar5 = hex2String(local_228,0x10,(char *)local_218,0x80);
+    if (lVar5 == 0) {
+      local_230 = (JsonCommand *)0x0;
+      goto LAB_1000a95aa;
+    }
+  }
+  Json::Value::Value(local_338,(char *)local_218);
+  pVVar3 = (Value *)Json::Value::operator[](local_278,"cookie");
+  Json::Value::operator=(pVVar3,local_338);
+  Json::Value::~Value(local_338);
+  Json::Value::Value(local_350,local_278);
+  pVVar3 = (Value *)Json::Value::operator[](local_290,"admin");
+  Json::Value::operator=(pVVar3,local_350);
+  Json::Value::~Value(local_350);
+  Json::Value::Value(local_368,"do");
+  pVVar3 = (Value *)Json::Value::operator[](local_2b8,"method");
+  Json::Value::operator=(pVVar3,local_368);
+  Json::Value::~Value(local_368);
+  Json::Value::Value(local_380,local_290);
+  pVVar3 = (Value *)Json::Value::operator[](local_2b8,"systool");
+  Json::Value::operator=(pVVar3,local_380);
+  Json::Value::~Value(local_380);
+  Json::FastWriter::write(local_398);
+  pcVar6 = (char *)std::string::c_str((string *)local_398);
+  Json::FastWriter::write(local_3b0);
+  pcVar7 = (char *)std::string::c_str((string *)local_3b0);
+  sVar4 = _strlen(pcVar7);
+  _strncpy(local_118,pcVar6,sVar4);
+  std::string::~string((string *)local_3b0);
+  std::string::~string((string *)local_398);
+  _printf("wifi command : %s\n",local_118);
+  iVar2 = MakeHttpJsonObject(this,local_240,(char *)0x0,(char *)0x0,local_118,local_258);
+  if (iVar2 == 0) {
+    local_230 = (JsonCommand *)0x0;
+  }
+  else {
+    local_230 = this + 4;
+  }
+LAB_1000a95aa:
+  local_31c = 1;
+  Json::FastWriter::~FastWriter(local_2e0);
+  Json::Value::~Value(local_2b8);
+  Json::Value::~Value(local_290);
+  Json::Value::~Value(local_278);
+  if (*(long *)PTR____stack_chk_guard_1001b70d8 != local_10) {
+                    /* WARNING: Subroutine does not return */
+    ___stack_chk_fail();
+  }
+  return local_230;
+}
+
+  
+2026-08-14 03:54:10 INFO  (GhidraScript) ExportNamed.java> END_FUNCTION  
+2026-08-14 03:54:10 INFO  (HeadlessAnalyzer) ANALYZING changes made by post scripts: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:54:10 INFO  (HeadlessAnalyzer) REPORT: Post-analysis succeeded for file: file:///root/projects/REVERSE/project-reverse-device-tplinkpg2400p/data/extracted-tpplc-12.5-macos/raw/dmg/TP-LINK PLC Utility/tpPLC.app/Contents/Resources/plcu  
+2026-08-14 03:54:10 INFO  (HeadlessAnalyzer) REPORT: Discarded file import due to readOnly option: /plcu  
+2026-08-14 03:54:10 INFO  (HeadlessAnalyzer) REPORT: Import succeeded  

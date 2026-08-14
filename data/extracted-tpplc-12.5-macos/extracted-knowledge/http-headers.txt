@@ -1,0 +1,14 @@
+HTTP/2 200 
+content-type: application/x-zip-compressed
+content-length: 4046708
+date: Fri, 14 Aug 2026 01:46:52 GMT
+last-modified: Wed, 14 Sep 2022 02:43:38 GMT
+x-amz-version-id: vdUFbvc_dpca_R_X92noQb7st6.xwQxJ
+etag: "6feaa35d555f15948079541732c0c70d"
+server: AmazonS3
+x-cache: Miss from cloudfront
+via: 1.1 1c6954b6a2b349a78fb0daa669c3e984.cloudfront.net (CloudFront)
+x-amz-cf-pop: VIE50-P1
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: P68sIq7XfkLcpqAacNff36aP-LcT7kGAtQtYnYjkBpvhqE-qzCJ2PQ==
+
