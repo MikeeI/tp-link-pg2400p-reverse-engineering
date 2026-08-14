@@ -27,6 +27,7 @@
 | `GET /?TPLINK.GENERAL.LANGUAGE=&SYSTEM.PRODUCTION.HW_PRODUCT=&SYSTEM.PRODUCTION.HW_REVISION=&SYSTEM.GENERAL.FW_VERSION=` | `.184` pre-auth; both after browser auth | model and firmware identity in storage findings |
 | `POST /` body `COMMAND=is+factorydefault` | both devices, pre-auth | `ERROR=000`, `RESULT=0` |
 | tokenized GET identity, local powerline, LAN, and `DIDMNG.GENERAL.*` model keys | both devices | `200`, `ERROR=000`; values in network/storage findings |
+| tokenized GET of 21 hidden telemetry values | both devices, one key/request | 20 returned `ERROR=000`; `FLOWMONITOR.STATS.LINK_STATUS` returned `ERROR=009` |
 | tokenized `POST /` body `COMMAND=lan+link+speed` | both devices | `200`, `ERROR=000`; values in network findings |
 | tokenized `POST /` body `COMMAND=logout` | `.185` browser session | `200`, `ERROR=000`; local and session storage cleared |
 
@@ -35,6 +36,13 @@
 - [confirmed] Both devices report `PG2400P`, hardware revision `1.0`, firmware `1.0.3 Build 20221213 Rel.62540`, and locale `en_US` through the authenticated model route.
 - [confirmed] `.184` returned the same hardware and firmware fields before authentication.
 - [confirmed] No `Server`, authentication challenge, cookie, or TLS identity was present in the root capture; HTTPS port 443 was closed in the bounded TCP inventory.
+
+## Hidden G.hn telemetry
+
+- [confirmed] Both devices expose 20 hidden read-only ConfigLayer values through the existing authenticated GET grammar.
+- [confirmed] Data includes attenuation, wire length, estimated application throughput, G.9962 block/retry/error counters, QoS drops, LLC integrity, channel-adaptation events, Ethernet counters/errors, and Domain Master losses.
+- [confirmed] Baseline identity/topology/rates and root hashes matched before and after the bounded probe; no setter, reset, re-estimation, or diagnostic-enable key was called.
+- Schemas, raw samples, deltas, external semantics, limitations, and safety boundary: `findings-ghn-telemetry.md`.
 
 ## Uncalled mutation-risk routes
 
@@ -56,7 +64,7 @@
 ## Provenance
 
 Raw captures are ignored under `data/captures/`.
-Compact hashes, tools, parent browser-trace hash, and direct-curl discrepancies are in `data/extracted-live/extracted-knowledge/live-web-evidence.txt`.
+Compact hashes, tools, parent browser-trace hash, direct-curl discrepancies, and live telemetry samples are in `data/extracted-live/extracted-knowledge/{live-web-evidence,live-telemetry-evidence}.txt`.
 
 ## Firmware-static evidence
 

@@ -15,6 +15,7 @@
 - [confirmed] The link-state instruction is `POST /?_t=<token>` with `COMMAND=lan+link+speed`.
 - [confirmed] The static UI maps link codes 0 through 6 to disconnected; 10/100/1000 Mbps half/full duplex respectively.
 - [confirmed] The static UI divides each `DIDMNG.GENERAL.{RX,TX}_BPS` value by 32 and truncates to render Mbps.
+- [confirmed] Hidden G.hn quality/status GETs, schemas, live measurements, and safety limits are owned by `findings-ghn-telemetry.md`.
 
 ## Runtime topology and link snapshot
 
@@ -38,6 +39,14 @@
 - [confirmed] `COMMAND=lan+link+speed` returned `PORT1=0`, `PORT2=6`.
 - [confirmed] By the static link-code mapping, LAN 1 is disconnected and LAN 2 is 1000 Mbps full duplex.
 
+## Hidden quality snapshot
+
+- [confirmed] Directional attenuation/length: `.184 = 43.0 dB / 60 m`; `.185 = 39.7 dB / 59 m`.
+- [confirmed] Estimated application throughput: `.184 = 365 Mbps`; `.185 = 310` then `301 Mbps`.
+- [confirmed] Approximately 90-second deltas: `.184` receive BLER `2.7221%`, retransmission `0.0589%`; `.185` receive BLER `0.0622%`, retransmission `1.9672%`.
+- [confirmed] No packet-, LLC-, or Ethernet-layer error increased; no new discard, channel-adaptation event, or Domain Master loss occurred.
+- [confirmed] `FLOWMONITOR.STATS.LINK_STATUS` returned `ERROR=009`; its schema descriptor remained readable.
+
 ## State-changing protocol paths intentionally uncalled
 
 - [confirmed] The UI binds peer deletion to `COMMAND=plc remove <MAC>`; it was not called.
@@ -47,13 +56,13 @@
 
 ## Action status
 
-- `NOW`: the client can expose bounded TCP/HTTP identity, peer enumeration, rendered link rates, and Ethernet status read-only.
+- `NOW`: authenticated API exposes bounded identity, peers, rendered rates, Ethernet status, and the proven hidden telemetry set read-only.
 - `RUNTIME-NEEDED`: protocol packet framing and non-HTTP discovery remain unobserved.
 - `BLOCKED`: no pairing, removal, reset, or unbounded network probe is authorized.
 
 ## Provenance
 
-`data/captures/live-tcp-1-1024-8080-8443.nmap` is ignored raw evidence; its SHA-256 and browser-read provenance are in `data/extracted-live/extracted-knowledge/live-web-evidence.txt`.
+Raw scan/captures are ignored; compact web and telemetry evidence is in `data/extracted-live/extracted-knowledge/{live-web-evidence,live-telemetry-evidence}.txt`.
 
 ## Official companion transport evidence
 

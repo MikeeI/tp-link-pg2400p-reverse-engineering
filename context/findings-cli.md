@@ -52,6 +52,7 @@ uv run --locked pg2400p status \
 
 ## Limits
 
-- [unresolved] Reported PHY rates are firmware values, not measured application throughput.
+- [confirmed] Hidden telemetry is proven live in `findings-ghn-telemetry.md` but not yet exposed by the CLI.
+  `FLOWMONITOR.INFO.XPUT_INDICATOR` is a firmware estimate, not measured application throughput.
 - [unresolved] Server-side implementations remain unbound until the raw Xtensa image has a reliable load map and xrefs.
 - [unresolved] Write behavior remains intentionally unavailable until exact state effects and rollback are proven.

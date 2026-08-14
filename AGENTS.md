@@ -57,7 +57,7 @@ Live-device tests require an explicit test name and invocation naming the bounde
 - Architecture: 32-bit little-endian Xtensa8 [likely]; static raw map `0x63000000 + offset`; exact CPU/ABI/runtime unresolved
 - Operating system: no Linux filesystem or ELF evidenced; firmware/RTOS-like stack is a working inference
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `live-readonly-static-firmware-companion-and-raw-map-evidenced`
+- Current readiness: `live-readonly-hidden-telemetry-static-firmware-companion-and-raw-map-evidenced`
 - Current provenance: bounded live capture, immutable official assets, parser-only extraction, and read-only Ghidra maps
 - Current action status: `NOW`
 
@@ -144,6 +144,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
 | Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
 | Safe read-only CLI | `src/pg2400p_cli/` and `context/findings-cli.md` | live-verified on both devices | extend only from proven semantics |
+| Live hidden G.hn telemetry | `data/extracted-live/extracted-knowledge/live-telemetry-evidence.txt` | 20 fields live-confirmed on both devices; two-sample deltas recorded | add fixture-backed read-only CLI ownership |
 | Official tpPLC utilities | `data/extracted-tpplc-*/extracted-knowledge/` | Windows and macOS stacks mapped; raw G.hn discovery evidenced | recover payload grammar in an isolated VM |
 | Raw subagent notes | `data/subagents/` | empty | use only for separable analysis lanes |
 
@@ -155,6 +156,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
 | Architecture and processes | `context/findings-architecture-processes.md` | usable LE Xtensa static map; runtime/reset and service activation unresolved | confirmed/likely | `NOW` | decode loader handoff |
 | Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
+| Hidden G.hn telemetry | `context/findings-ghn-telemetry.md` | attenuation, length, XPUT, G.9962, LLC, adaptation, Ethernet, and master-loss values live-confirmed | confirmed/corroborated | `NOW` | controlled traffic windows |
 | Official tpPLC companion | `context/findings-companion-utility.md` | PG2400P UI branch and raw-Ethernet G.hn discovery owners mapped | confirmed/likely | `RUNTIME-NEEDED` | isolated `rescan` capture |
 | Web interface and API | `context/findings-web-api.md` | live root/form contract plus version-scoped static evidence | confirmed/likely | `NOW` | versioned handler implementation |
 | Auth and cryptography | `context/findings-auth-crypto.md` | MD5 login and `_t` token flow captured on both devices | confirmed | `NOW` | token lifecycle and server validation |
@@ -176,13 +178,14 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 - [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries fully inventoried
 - [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped
 - [x] Safe read-only CLI implemented and verified against both live devices
+- [x] Hidden G.hn telemetry schemas and 20 read-only values live-verified on both devices
 - [x] Tool identities and material parser failures recorded
 - [x] Runtime targets defined for material static gaps
 - [x] Findings use claim-local confidence and independent action status.
 
 ## Aktuelle Top-Ziele
 
-- Extend the CLI only for read semantics proven by artifact callsites and bounded runtime evidence.
+- Add fixture-backed CLI ownership for the 20 proven hidden telemetry fields; preserve raw values and compute interval rates from deltas.
 - Determine whether 1.1.0 changes updater security; identical raw anchor contexts do not establish semantics.
 - Decode `descriptor.upg` after `firmware B:/fw` and recover the validated loader-to-firmware handoff.
 - Recover the tpPLC G.hn discovery payload, reply validation, filters, and retry schedule in an isolated VM.
