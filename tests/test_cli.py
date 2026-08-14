@@ -74,10 +74,9 @@ def test_status_json_contains_only_one_machine_readable_value(
             "status",
             "--host",
             "10.0.1.184",
-            "--password",
-            "secret",
             "--json",
         ],
+        env={"PG2400P_PASSWORD": "secret"},
     )
 
     assert result.exit_code == 0
@@ -99,9 +98,85 @@ def test_expected_authentication_error_uses_stderr(
 
     result = runner.invoke(
         app,
-        ["auth-check", "--host", "10.0.1.184", "--password", "wrong"],
+        ["auth-check", "--host", "10.0.1.184"],
+        env={"PG2400P_PASSWORD": "wrong"},
     )
 
     assert result.exit_code == 1
     assert result.stdout == ""
     assert "device rejected the password" in result.stderr
+
+
+def test_hidden_prompt_does_not_echo_password(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr("pg2400p_cli.cli.PG2400PClient", FakeClient)
+
+    result = runner.invoke(
+        app,
+        ["auth-check", "--host", "10.0.1.184"],
+        input="prompt-secret\n",
+        env={"PG2400P_PASSWORD": None},
+    )
+
+    assert result.exit_code == 0
+    assert "prompt-secret" not in result.output
+    assert "Device management password:" in result.output
+
+
+def test_human_output_escapes_remote_terminal_controls(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class ControlCharacterClient(FakeClient):
+        def read_device_info(self) -> DeviceInfo:
+            return DeviceInfo(
+                host=self.host,
+                product="PG\x1b]52;c;payload\x07\n2400P",
+                hardware_revision="1.0",
+                firmware_version="1.0.3",
+                language="en_GB",
+            )
+
+    monkeypatch.setattr(
+        "pg2400p_cli.cli.PG2400PClient",
+        ControlCharacterClient,
+    )
+
+    result = runner.invoke(
+        app,
+        ["info", "--host", "10.0.1.184"],
+        env={"PG2400P_PASSWORD": "secret"},
+    )
+
+    assert result.exit_code == 0
+    assert "\x1b" not in result.stdout
+    assert "product=PG\\x1b]52;c;payload\\x07\\n2400P" in result.stdout
+
+
+def test_error_output_includes_cleanup_failure_note(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class DualFailureClient(FakeClient):
+        def __exit__(
+            self,
+            exc_type: type[BaseException] | None,
+            exc_value: BaseException | None,
+            traceback: TracebackType | None,
+        ) -> None:
+            if exc_value is not None:
+                exc_value.add_note("session cleanup failed: logout rejected")
+
+        def read_device_info(self) -> DeviceInfo:
+            raise AuthenticationError("primary read failure")
+
+    monkeypatch.setattr("pg2400p_cli.cli.PG2400PClient", DualFailureClient)
+
+    result = runner.invoke(
+        app,
+        ["info", "--host", "10.0.1.184"],
+        env={"PG2400P_PASSWORD": "secret"},
+    )
+
+    assert result.exit_code == 1
+    assert "Error: primary read failure" in result.stderr
+    assert "Note: session cleanup failed: logout rejected" in result.stderr

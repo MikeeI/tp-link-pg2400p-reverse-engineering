@@ -213,6 +213,36 @@ def test_authenticate_maps_invalid_password() -> None:
             client.authenticate()
 
 
+def test_operation_and_logout_failures_remain_visible_after_transport_close() -> None:
+    def failed_read(request: httpx.Request) -> httpx.Response:
+        assert request.method == "GET"
+        return httpx.Response(200, text="ERROR=900\r\n")
+
+    def failed_logout(request: httpx.Request) -> httpx.Response:
+        assert request.content == b"COMMAND=logout"
+        return httpx.Response(200, text="ERROR=901\r\n")
+
+    transport = _sequence_transport(
+        [_preflight, _successful_login, failed_read, failed_logout],
+    )
+    client = PG2400PClient(
+        host="10.0.1.184",
+        password="MyStrongPassword",
+        transport=transport,
+    )
+
+    with pytest.raises(ProtocolError) as exc_info:
+        with client:
+            client.authenticate()
+            client.read_device_info()
+
+    assert any(
+        "session cleanup failed" in note
+        for note in getattr(exc_info.value, "__notes__", ())
+    )
+    assert client._client.is_closed
+
+
 @pytest.mark.parametrize(
     "host", ["", "http://10.0.1.184", "10.0.1.184/path", "bad host"]
 )

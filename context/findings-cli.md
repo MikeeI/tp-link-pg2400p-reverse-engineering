@@ -11,6 +11,9 @@ Live verification: both owned PG2400P devices on 2026-08-14
 - [confirmed] Human output is stable `key=value` text.
 - [confirmed] `--json` emits one JSON value on stdout and keeps diagnostics on stderr.
 - [confirmed] HTTP sessions own preflight, MD5 login, `_t` token use, logout, and transport cleanup.
+- [confirmed] Credentials come from `PG2400P_PASSWORD` or a hidden prompt; no public command accepts a password argument.
+- [confirmed] Human output visibly escapes terminal controls; JSON preserves raw values with JSON escaping.
+- [confirmed] Cleanup failures remain visible beside a primary command failure, while transport closure remains unconditional.
 - [confirmed] The client accepts only `get compatibility mode`, `get qos`, and `logout` as POST commands.
 - [confirmed] No generic field-write, arbitrary `COMMAND`, firmware, reset, reboot, pairing, or configuration API is exposed.
 
@@ -23,12 +26,12 @@ Live verification: both owned PG2400P devices on 2026-08-14
 
 ## Live Results
 
-The following command completed successfully against both devices and sent `COMMAND=logout` during cleanup:
+The following command completed successfully against both devices and sent `COMMAND=logout` during cleanup.
+The password was supplied through `PG2400P_PASSWORD`, not the process argument vector:
 
 ```bash
 uv run --locked pg2400p status \
   --host <device-ip> \
-  --password <management-password> \
   --json
 ```
 
@@ -43,8 +46,9 @@ uv run --locked pg2400p status \
 
 - [confirmed] Ruff formatting and linting completed successfully for `src` and `tests`.
 - [confirmed] Pyright completed with zero errors and zero warnings.
-- [confirmed] Pytest completed with 18 focused protocol, request-shape, cleanup, output, and safety tests.
+- [confirmed] Pytest completed with 22 focused protocol, request-shape, cleanup, credential, output, and safety tests.
 - [confirmed] Aggregate live `status --json` completed on both devices without configuration changes.
+- [confirmed] A focused security review found and drove fixes for argv secret exposure, dual-failure cleanup reporting, and terminal-control output.
 
 ## Limits
 
