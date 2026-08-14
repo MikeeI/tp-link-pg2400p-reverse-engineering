@@ -14,7 +14,9 @@ def parse_key_value_response(body: str) -> dict[str, str]:
         if not line:
             continue
         if "=" not in line:
-            raise ProtocolError(f"response line {line_number} has no key/value separator")
+            raise ProtocolError(
+                f"response line {line_number} has no key/value separator"
+            )
 
         key, value = line.split("=", maxsplit=1)
         key = key.strip()

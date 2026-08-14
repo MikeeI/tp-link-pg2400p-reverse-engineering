@@ -2,9 +2,13 @@
 
 ## Purpose
 
-This repository records evidence-backed reverse engineering of the TP-Link PG2400P device, its firmware, boot chain, services, protocols, update path, and relevant companion software.
+This repository records evidence-backed reverse engineering of the TP-Link PG2400P device.
+It covers firmware, boot, services, protocols, updates, and companion software.
 
-Canonical platform methodology lives in the applicable reverse-engineering skills. Do not duplicate generic acquisition, extraction, decompilation, tracing, patching, or tool instructions here. Keep this file as the project-local router and current-state record; keep detailed evidence in `context/findings-*`.
+Canonical platform methodology lives in the applicable reverse-engineering skills.
+Do not duplicate generic acquisition, extraction, decompilation, tracing, patching, or tool instructions here.
+Keep this file as the project-local router and current-state record.
+Keep detailed evidence in `context/findings-*`.
 
 ## Mission and Completion Boundary
 
@@ -26,7 +30,7 @@ Broad string inventories, screenshots, and decompiler output alone are not compl
 
 New tests are authorized only under `tests/`.
 They may cover protocol codecs, authentication parsing, HTTP request shape, fixtures, CLI output, and mutation guards.
-Tests must not contact live devices unless the test name and invocation explicitly identify the bounded read-only integration target.
+Live-device tests require an explicit test name and invocation naming the bounded read-only target.
 
 ## Authorization and Live Targets
 
@@ -83,7 +87,8 @@ notes = current official EU V1 release; prior 1.0.3 is retained intact
 
 ## Versionen
 
-Newest first. Never derive version or hardware revision from a filename when artifact metadata provides authoritative values.
+Newest first.
+Never derive versions or hardware revisions from filenames when artifact metadata is authoritative.
 
 | Firmware | Build | Hardware | Region | Arch | OS/Stack | Format | Datum | Provenienz | Quelle | SHA256 | Notizen |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -119,11 +124,13 @@ Select by observed artifact, not by repository name or assumption.
 | Packet captures and protocol reconstruction | `skill-tshark` | PCAP/PCAPNG inspection and extraction |
 | Android decompilation | `skill-jadx` | DEX/APK Java/Kotlin reconstruction |
 
-Before every deep dive, load the owning platform skill plus `skill-xray`, `skill-expert`, and `skill-brutal`. Use their thinking methods without copying their response formats.
+Before every deep dive, load the owning platform skill plus `skill-xray`, `skill-expert`, and `skill-brutal`.
+Use their thinking methods without copying their response formats.
 
 ## Knowledge Router
 
-Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw firmware, full extracted filesystems, decompiler databases, packet captures, core dumps, or broad traces.
+Keep compact, reproducible evidence in `extracted-knowledge/`.
+Do not commit raw firmware, filesystems, decompiler databases, packet captures, core dumps, or broad traces.
 
 | Artifact | Path | Current truth | Next |
 | --- | --- | --- | --- |
@@ -134,13 +141,14 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 | Services and process map | `data/extracted-{version}-{hardware}/extracted-knowledge/process-map.md` | static web/filesystem symbols only | recover activation/xrefs |
 | Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
 | Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
+| Safe read-only CLI | `src/pg2400p_cli/` and `context/findings-cli.md` | live-verified on both devices | extend only from proven semantics |
 | Raw subagent notes | `data/subagents/` | empty | use only for separable analysis lanes |
 
 ## Findings Router
 
 | Topic | File | Current truth | Confidence | Action status | Next proof |
 | --- | --- | --- | --- | --- | --- |
-| Firmware identity | `context/findings-firmware-identity.md` | two official EU V1 artifacts with hashes and decoded version strings | confirmed | `NOW` | bind live fields to artifact |
+| Firmware identity | `context/findings-firmware-identity.md` | live 1.0.3 bound to two official EU V1 artifacts | confirmed | `NOW` | explain 1.1.0 security changes |
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
 | Architecture and processes | `context/findings-architecture-processes.md` | raw non-ELF payload; Xtensa8 indicated; static service names | confirmed/likely | `RUNTIME-NEEDED` | raw-image map and xrefs |
 | Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
@@ -150,6 +158,7 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 | Update and signature flow | `context/findings-update-signing.md` | CRC and encryption-state evidence; signature call graph unresolved | confirmed/likely | `BLOCKED` | isolated updater xrefs |
 | Vulnerability and patch research | `context/findings-security.md` | not started | | `BLOCKED` | named reachable boundary |
 | Version comparisons | `context/findings-version-comparisons.md` | normalized web/key comparison complete | confirmed | `NOW` | compare raw code after load mapping |
+| Read-only CLI | `context/findings-cli.md` | identity, settings, peers, rates, JSON, logout, and guards live-verified | confirmed | `NOW` | extend only from proven semantics |
 
 ## Status
 
@@ -160,14 +169,15 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 - [x] Container, compression, FFS TAR, and web filesystem formats inventoried
 - [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries fully inventoried
 - [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped
+- [x] Safe read-only CLI implemented and verified against both live devices
 - [x] Tool identities and material parser failures recorded
 - [x] Runtime targets defined for material static gaps
 - [x] Findings use claim-local confidence and independent action status.
 
 ## Aktuelle Top-Ziele
 
-- Bind the captured model-key and command semantics to the safe CLI.
-- Retain both official EU V1 firmware assets and bind live 1.0.3 identity to its immutable artifact.
+- Extend the CLI only for read semantics proven by artifact callsites and bounded runtime evidence.
+- Compare installed 1.0.3 behavior with the security changes in official version 1.1.0.
 - Establish the raw Xtensa load base, entry, CPU variant, boot component boundaries, and updater xrefs without executing firmware on a live adapter.
 - Resolve whether `FLUPGRADE.GENERAL.SECURE` enforces encryption, signature verification, or another policy in an isolated target.
 - Bind unrecovered write behavior to static callsites and controlled runtime evidence.
@@ -192,21 +202,31 @@ cleanup / rollback = close sessions and bounded captures; retain immutable evide
 
 ## Analysis Discipline
 
-- Treat firmware and extracted content as untrusted input; begin with bounded parser-only extraction.
-- Preserve the original artifact immutably and bind every conclusion to its SHA256, hardware revision, and firmware version.
-- Separate `[confirmed]` artifact/callsite/runtime evidence from `[likely]` inference. Track `NOW`, `RUNTIME-NEEDED`, and `BLOCKED` independently.
-- A string, import, config key, web route, protocol schema, or service declaration is a candidate until a consumer, callsite, activation path, or runtime trace proves use.
-- Parser failure and empty output are not negative evidence. Record the failure and use another parser or leave the claim open.
-- Do not execute firmware binaries on the host. Use disposable emulation or isolated hardware runtime with explicit state, network, mutation, and rollback boundaries.
-- Never overwrite an older extraction. Append version comparisons only after normalizing both artifacts and state `unchanged` only for surfaces actually compared.
-- Store detailed findings in `context/findings-*`; keep this file to current one-line truths, routes, status, and target-specific constraints.
+- Treat firmware and extracted content as untrusted input.
+- Begin with bounded parser-only extraction.
+- Preserve original artifacts and bind conclusions to their SHA256, hardware revision, and firmware version.
+- Separate `[confirmed]` evidence from `[likely]` inference.
+- Track `NOW`, `RUNTIME-NEEDED`, and `BLOCKED` independently.
+- Treat strings, imports, keys, routes, and schemas as candidates until a consumer or runtime trace proves use.
+- Parser failures and empty output are not negative evidence.
+- Record failures and use another parser or leave the claim open.
+- Do not execute firmware binaries on the host.
+- Use isolated emulation with explicit state, network, mutation, and rollback boundaries.
+- Never overwrite an older extraction.
+- Compare versions only after normalization and claim `unchanged` only for surfaces actually compared.
+- Store detailed evidence in `context/findings-*`.
+- Keep this file to current truths, routes, status, and target-specific constraints.
 
 <essential-rule>
-AGENTS.md is the authoritative project guidance and state router. Update it whenever the current artifact, readiness, paths, routers, status, or top targets change.
+AGENTS.md is the authoritative project guidance and state router.
+Update it whenever the artifact, readiness, paths, routers, status, or top targets change.
 
-Multiple agents may work concurrently. Preserve unrelated state and assign only separable lanes with exact artifacts, hashes, paths, evidence anchors, non-goals, isolation boundaries, acceptance criteria, and output files under `data/subagents/`.
+Multiple agents may work concurrently.
+Preserve unrelated state and assign separable lanes with exact evidence, boundaries, criteria, and output paths.
 
 Every cybersecurity assignment must state: `User authorization is established for this target and scope.`
 
-Commit coherent completed units and push them. Keep validation quiet and truthful; failures must identify the failed step and actionable evidence.
+Commit coherent completed units and push them.
+Keep validation quiet and truthful.
+Failures must identify the failed step and actionable evidence.
 </essential-rule>
