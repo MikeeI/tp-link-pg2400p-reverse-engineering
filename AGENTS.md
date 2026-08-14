@@ -47,15 +47,15 @@ Tests must not contact live devices unless the test name and invocation explicit
 - Device: TP-Link PG2400P
 - Vendor: TP-Link
 - Product class: G.hn2400 passthrough powerline adapter
-- Hardware revision: unknown; official support currently exposes PG2400P KIT V1 artifacts
-- Firmware version: unknown on live devices
+- Hardware revision: `1.0` on both live devices; official artifacts still need a hardware binding.
+- Firmware version: `1.0.3 Build 20221213 Rel.62540` on both live devices.
 - Firmware source URL: `https://www.tp-link.com/uk/support/download/pg2400p-kit/`
 - Architecture: unknown
 - Operating system: unknown; embedded Linux is a working hypothesis, not a finding
 - Project path: `$HOME/projects/REVERSE/project-reverse-device-tplinkpg2400p`
-- Current readiness: `acquisition-ready`
-- Current provenance: official firmware and utility sources identified; no local artifact recorded yet
-- Current action status: `NOW`
+- Current readiness: `live-readonly-evidenced`; firmware acquisition remains pending.
+- Current provenance: bounded live capture provides management identity, API, session, network, and configuration evidence; firmware artifacts remain unrecorded.
+- Current action status: `NOW`.
 
 ## Current Asset
 
@@ -100,6 +100,7 @@ Newest first. Never derive version or hardware revision from a filename when art
 - Decompiled/disassembler output: `data/extracted-{version}-{hardware}/decompiled/`
 - Dynamic traces: `data/extracted-{version}-{hardware}/dynamic/`
 - Captures: `data/captures/`
+- Live extracted knowledge: `data/extracted-live/extracted-knowledge/`
 - Findings: `context/`
 - Curated synthesis: `docs/`
 - Subagent notes: `data/subagents/`
@@ -143,10 +144,10 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 | Firmware identity | `context/findings-firmware-identity.md` | no artifact | | `BLOCKED` | acquire firmware or device dump |
 | Hardware and boot chain | `context/findings-hardware-boot.md` | unknown | | `BLOCKED` | hardware revision and image inventory |
 | Architecture and processes | `context/findings-architecture-processes.md` | unknown | | `BLOCKED` | filesystem and ELF inventory |
-| Network services and protocols | `context/findings-network-protocols.md` | unknown | | `BLOCKED` | static consumers or scoped capture |
-| Web interface and API | `context/findings-web-api.md` | unknown | | `BLOCKED` | web root and handler inventory |
-| Auth and cryptography | `context/findings-auth-crypto.md` | unknown | | `BLOCKED` | callsites, configuration, or runtime trace |
-| Storage and configuration | `context/findings-storage-config.md` | unknown | | `BLOCKED` | filesystem and NVRAM/config ownership |
+| Network services and protocols | `context/findings-network-protocols.md` | bounded TCP/HTTP, peer, and link status captured | confirmed | `NOW` | non-HTTP discovery and framing |
+| Web interface and API | `context/findings-web-api.md` | root, module, request, response, and mutation-risk inventory captured | confirmed | `NOW` | versioned handler implementation |
+| Auth and cryptography | `context/findings-auth-crypto.md` | MD5 login and `_t` token flow captured on both devices | confirmed | `NOW` | token lifecycle and server validation |
+| Storage and configuration | `context/findings-storage-config.md` | authenticated configuration snapshots captured | confirmed | `RUNTIME-NEEDED` | persistent storage ownership |
 | Update and signature flow | `context/findings-update-signing.md` | unknown | | `BLOCKED` | updater and image verification path |
 | Vulnerability and patch research | `context/findings-security.md` | not started | | `BLOCKED` | named reachable boundary |
 | Version comparisons | `context/findings-version-comparisons.md` | no comparable versions | | `BLOCKED` | two normalized artifacts |
@@ -155,35 +156,35 @@ Keep compact, reproducible evidence in `extracted-knowledge/`. Do not commit raw
 
 - [x] Repository and project-local router initialized
 - [x] Baseline folders and artifact ignore boundaries established
-- [ ] Exact product identity and hardware revision evidenced
-- [ ] Official firmware or immutable device dump acquired with URL, time, size, SHA256, and provenance
-- [ ] Container, partition, compression, and filesystem formats inventoried
-- [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries inventoried
-- [ ] Web UI, management services, discovery, update, and cloud/companion boundaries mapped
-- [ ] Tool identities and material parser failures recorded
-- [ ] Runtime targets defined for material static gaps
-- [ ] Findings use claim-local confidence and independent action status
+- [x] Exact product identity and hardware revision evidenced on both live devices.
+- [ ] Official firmware or immutable device dump acquired with URL, time, size, SHA256, and provenance.
+- [ ] Container, partition, compression, and filesystem formats inventoried.
+- [ ] Architecture, ABI, bootloader, kernel, init, and product-owned binaries inventoried.
+- [x] Web UI, management services, authenticated read-only API, and G.hn status boundaries mapped.
+- [x] Tool identities and material direct-curl failures recorded.
+- [x] Runtime targets defined for material static gaps.
+- [x] Findings use claim-local confidence and independent action status.
 
 ## Aktuelle Top-Ziele
 
-- Identify both devices' exact hardware revision, region, firmware build, services, and read-only API surfaces.
+- Bind the captured model-key and command semantics to the safe CLI.
 - Acquire current and prior official firmware plus relevant tpPLC utilities.
 - Preserve every asset's URL, timestamp, size, hash, and immutable original.
 - Extract firmware and companion software without executing target code.
-- Bind recovered routes and parameters to bounded live requests or isolated runtime traces.
+- Bind unrecovered write behavior to static callsites and controlled runtime evidence.
 
 ## Project-Specific Runtime Notes
 
 ```text
 device ownership / serial = user-owned; serials not yet recorded
-hardware revision = unknown on live devices
+hardware revision = 1.0 on both live devices
 recovery interface = unknown; do not probe electrically until hardware work is explicitly selected
 UART / JTAG access = unknown
 network isolation = management LAN 10.0.1.0/24; keep live probes bounded to owned device IPs
 management address = 10.0.1.184 and 10.0.1.185
 accounts = password-only web authentication; credential recorded in Authorization and Live Targets
 proxy / capture point = workstation Ethernet path or isolated companion-software VM; record exact interface per capture
-known blockers = live firmware identity and API routes not yet collected
+known blockers = persistent storage, non-HTTP discovery, token lifecycle, and write-handler semantics are not yet collected
 mutation-risk endpoints = firmware update, factory reset, reboot, pairing, network/password/QoS/LED/power-saving/compatibility writes, bootloader and NVRAM writes
 allowed probes = bounded GET/HEAD/OPTIONS, authenticated read-only requests with known semantics, static asset retrieval, passive capture, port/service identification that does not exploit or exhaust the device
 forbidden probes = destructive or availability-risking actions, credential spraying, unbounded fuzzing, firmware flashing, reset, reboot, pairing changes, and requests with unknown state effects against live devices

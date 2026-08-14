@@ -1,0 +1,41 @@
+Live PG2400P web evidence
+Captured: 2026-08-14T03:46:00+02:00 to 2026-08-14T03:58:30+02:00
+Scope: bounded TCP 1-1024, 8080, 8443; HTTP root/static assets; browser-proven MD5/token authentication; only statically established read-only status/configuration requests; session logout.
+
+Targets
+10.0.1.184 = 8c:90:2d:10:49:e2 (ARP REACHABLE on enp3s0)
+10.0.1.185 = 3c:64:cf:59:d4:88 (ARP REACHABLE on enp3s0)
+
+Tool versions
+nmap 7.94SVN; curl 8.5.0; iproute2 6.1.0; Chromium 151.0.0.0 via OMP browser.
+
+Raw capture SHA-256
+live-tcp-1-1024-8080-8443.nmap 5e1b4fafbec030d6af628aee1ad47bcc20568b54b5e0f9be7ecc975b92b5e1c8
+10.0.1.184-root.headers 696204f6f400a57a1e720ef0dd2004cc8e73dc999fc3be223b76fd9b84e324bd
+10.0.1.184-root.body 2048bb33776afb3c8e2fdd3dbaad1c162b43d1739b37b0234dccc870d6bcd4bf
+10.0.1.185-root.headers 696204f6f400a57a1e720ef0dd2004cc8e73dc999fc3be223b76fd9b84e324bd
+10.0.1.185-root.body 2048bb33776afb3c8e2fdd3dbaad1c162b43d1739b37b0234dccc870d6bcd4bf
+10.0.1.184-identity.body c5cef9836f2b98b66953528bf7a3b0e6b08e712d0ac62f7223e5e818c443d13a
+10.0.1.185-identity.body 82e4e6f0e6374f81ecb716bed04f56d52d8c59e23ad266af7f35ba3d2a820fb3
+10.0.1.184-factory-state.body aaf4798cb002746d55bd668759686440c9bdbc8ae66edeed1dc75f5620c90887
+10.0.1.185-factory-state.body aaf4798cb002746d55bd668759686440c9bdbc8ae66edeed1dc75f5620c90887
+10.0.1.184-main-models.js daafaca6c264e1eeec2e19ef22e6dd7f5b5064072b4c4931a1844ff2387d7b8e
+10.0.1.185-main-models.js daafaca6c264e1eeec2e19ef22e6dd7f5b5064072b4c4931a1844ff2387d7b8e
+10.0.1.184-localLogin-models.js 64541493829137718d35ec428e1769b6a9f4cc6da8a2a7662d8b859f856010bf
+10.0.1.185-localLogin-models.js 64541493829137718d35ec428e1769b6a9f4cc6da8a2a7662d8b859f856010bf
+Sorted `sha256sum data/captures/10.0.1.184-*.js` manifest hash 8ca52d65c92015c6e410c78de9d8f0d625e1e7844f6d1a7dbe500eda6f969e4f.
+
+Authenticated browser trace provenance
+OMP browser artifact://155 SHA-256 6756fb6cbd84101ef0303c0120fb173e37f4c6b62385259629ce10f6b5897efd.
+The artifact contains the successful .184 browser MD5 login and authenticated read-only trace.
+The .185 browser login and read-only snapshot were run in the isolated tab; no token value is retained here.
+
+Failures
+The first direct .184 form POST received HTTP 401.
+One browser-header-shaped direct retry received HTTP 405.
+The correct browser flow subsequently authenticated successfully on .184 and .185.
+No credential or lockout conclusion follows from the transient direct-curl outcomes.
+
+Safety ledger
+Only root/static GETs, model-key GETs, `COMMAND=is factorydefault`, `COMMAND=lan link speed`, MD5 login, and `COMMAND=logout` were invoked.
+No firmware, reset, reboot, pairing, configuration, password, QoS, LED, power-saving, compatibility, or PLC-removal write was invoked.
