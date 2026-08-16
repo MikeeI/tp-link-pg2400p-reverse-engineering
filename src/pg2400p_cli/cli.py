@@ -7,8 +7,9 @@ from typing import Annotated, Never
 import orjson
 import typer
 
-from pg2400p_cli.client import DEFAULT_TIMEOUT_SECONDS, PG2400PClient
-from pg2400p_cli.errors import PG2400PError
+from pg2400p_cli.application.inspection import InspectionService
+from pg2400p_cli.domain.errors import PG2400PError
+from pg2400p_cli.infrastructure.client import DEFAULT_TIMEOUT_SECONDS, PG2400PClient
 
 CLI_NAME = "pg2400p"
 PACKAGE_NAME = "pg2400p-cli"
@@ -60,12 +61,7 @@ def auth_check(
 ) -> None:
     """Verify authentication without changing device state."""
     try:
-        with PG2400PClient(
-            host=host,
-            password=_management_password(),
-            timeout_seconds=timeout_seconds,
-        ) as client:
-            client.authenticate()
+        _inspection_service(host, timeout_seconds).check_authentication()
     except (PG2400PError, ValueError) as exc:
         _fail(exc)
 
@@ -86,13 +82,7 @@ def info(
 ) -> None:
     """Read device identity and firmware information."""
     try:
-        with PG2400PClient(
-            host=host,
-            password=_management_password(),
-            timeout_seconds=timeout_seconds,
-        ) as client:
-            client.authenticate()
-            device = client.read_device_info()
+        device = _inspection_service(host, timeout_seconds).read_device_info()
     except (PG2400PError, ValueError) as exc:
         _fail(exc)
 
@@ -122,13 +112,7 @@ def peers(
 ) -> None:
     """Read remote G.hn peers and negotiated rates."""
     try:
-        with PG2400PClient(
-            host=host,
-            password=_management_password(),
-            timeout_seconds=timeout_seconds,
-        ) as client:
-            client.authenticate()
-            links = client.read_peer_links()
+        links = _inspection_service(host, timeout_seconds).read_peer_links()
     except (PG2400PError, ValueError) as exc:
         _fail(exc)
 
@@ -159,13 +143,7 @@ def settings(
 ) -> None:
     """Read performance-relevant Powerline settings."""
     try:
-        with PG2400PClient(
-            host=host,
-            password=_management_password(),
-            timeout_seconds=timeout_seconds,
-        ) as client:
-            client.authenticate()
-            result = client.read_powerline_settings()
+        result = _inspection_service(host, timeout_seconds).read_powerline_settings()
     except (PG2400PError, ValueError) as exc:
         _fail(exc)
 
@@ -198,17 +176,13 @@ def status(
 ) -> None:
     """Read identity, settings, peers, and link rates in one session."""
     try:
-        with PG2400PClient(
-            host=host,
-            password=_management_password(),
-            timeout_seconds=timeout_seconds,
-        ) as client:
-            client.authenticate()
-            device = client.read_device_info()
-            powerline = client.read_powerline_settings()
-            links = client.read_peer_links()
+        snapshot = _inspection_service(host, timeout_seconds).read_status()
     except (PG2400PError, ValueError) as exc:
         _fail(exc)
+
+    device = snapshot.device
+    powerline = snapshot.powerline
+    links = snapshot.peers
 
     if json_output:
         _emit_json(
@@ -243,6 +217,15 @@ def status(
         _emit_pair(f"peer[{index}].mac", link.mac)
         _emit_pair(f"peer[{index}].rx_mbps", link.rx_mbps)
         _emit_pair(f"peer[{index}].tx_mbps", link.tx_mbps)
+
+
+def _inspection_service(host: str, timeout_seconds: float) -> InspectionService:
+    return InspectionService(
+        host=host,
+        password=_management_password(),
+        timeout_seconds=timeout_seconds,
+        client_factory=PG2400PClient,
+    )
 
 
 def _emit(result: dict[str, str | bool], *, json_output: bool) -> None:

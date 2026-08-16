@@ -1,7 +1,10 @@
 import pytest
 
-from pg2400p_cli.errors import ProtocolError
-from pg2400p_cli.protocol import parse_key_value_response, password_digest
+from pg2400p_cli.domain.errors import ProtocolError
+from pg2400p_cli.infrastructure.protocol import (
+    parse_key_value_response,
+    password_digest,
+)
 
 
 def test_password_digest_matches_observed_pg2400p_login() -> None:

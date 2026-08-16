@@ -19,10 +19,11 @@ Live verification: both owned PG2400P devices on 2026-08-14
 
 ## Protocol Ownership
 
-- [confirmed] `protocol.py` owns MD5 encoding and strict CRLF-compatible `KEY=VALUE` parsing.
-- [confirmed] `client.py` owns HTTP lifecycle, allowed requests, response errors, and field-to-model translation.
-- [confirmed] `models.py` owns device identity, peer-link, and performance-relevant settings results.
-- [confirmed] `cli.py` owns Typer grammar, presentation, JSON output, and expected-error translation.
+- [confirmed] `domain/models.py` and `domain/errors.py` own result types and project error meanings.
+- [confirmed] `infrastructure/protocol.py` owns MD5 encoding and strict CRLF-compatible `KEY=VALUE` parsing.
+- [confirmed] `infrastructure/client.py` owns HTTP lifecycle, approved requests, response mapping, and cleanup.
+- [confirmed] `application/inspection.py` owns authenticated read-only workflows through a consumer-owned client port.
+- [confirmed] `cli.py` owns composition, Typer grammar, presentation, JSON output, and expected-error translation.
 
 ## Live Results
 
@@ -45,7 +46,7 @@ uv run --locked pg2400p status \
 ## Verification
 
 - [confirmed] Ruff formatting and linting completed successfully for `src` and `tests`.
-- [confirmed] Pyright completed with zero errors and zero warnings.
+- [confirmed] Pyright and ty completed against `src` with zero diagnostics after the layered cutover.
 - [confirmed] Pytest completed with 22 focused protocol, request-shape, cleanup, credential, output, and safety tests.
 - [confirmed] Aggregate live `status --json` completed on both devices without configuration changes.
 - [confirmed] A focused security review found and drove fixes for argv secret exposure, dual-failure cleanup reporting, and terminal-control output.

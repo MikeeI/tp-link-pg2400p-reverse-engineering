@@ -3,8 +3,8 @@ from collections.abc import Callable
 import httpx
 import pytest
 
-from pg2400p_cli.client import PG2400PClient
-from pg2400p_cli.errors import AuthenticationError, ProtocolError
+from pg2400p_cli.domain.errors import AuthenticationError, ProtocolError
+from pg2400p_cli.infrastructure.client import PG2400PClient
 
 
 def _sequence_transport(
@@ -30,9 +30,7 @@ def _warmup_login(request: httpx.Request) -> httpx.Response:
     assert request.headers["x-requested-with"] == "XMLHttpRequest"
     assert request.headers["origin"] == "http://10.0.1.184"
     assert request.headers["referer"] == "http://10.0.1.184/"
-    assert request.content == (
-        b"TPLINK.GENERAL.LOGIN_PASSWORD=f78e7ab810633ab3a6bbaa49d7d6d5eb"
-    )
+    assert request.content == (b"TPLINK.GENERAL.LOGIN_PASSWORD=f78e7ab810633ab3a6bbaa49d7d6d5eb")
     return httpx.Response(200, text="ERROR=004\n")
 
 
@@ -189,13 +187,15 @@ def test_unapproved_command_is_blocked_before_transport() -> None:
     def unexpected_request(request: httpx.Request) -> httpx.Response:
         pytest.fail(f"unexpected request: {request.method} {request.url}")
 
-    with PG2400PClient(
-        host="10.0.1.184",
-        password="unused",
-        transport=httpx.MockTransport(unexpected_request),
-    ) as client:
-        with pytest.raises(ProtocolError, match="not approved"):
-            client._post_command("set qos 2")
+    with (
+        PG2400PClient(
+            host="10.0.1.184",
+            password="unused",
+            transport=httpx.MockTransport(unexpected_request),
+        ) as client,
+        pytest.raises(ProtocolError, match="not approved"),
+    ):
+        client._post_command("set qos 2")
 
 
 def test_authenticate_maps_invalid_password() -> None:
@@ -204,13 +204,15 @@ def test_authenticate_maps_invalid_password() -> None:
         return httpx.Response(200, text="ERROR=006\nLOGIN_TIMES=1\n")
 
     transport = _sequence_transport([_preflight, rejected_login])
-    with PG2400PClient(
-        host="10.0.1.184",
-        password="wrong",
-        transport=transport,
-    ) as client:
-        with pytest.raises(AuthenticationError, match="1 failed attempt"):
-            client.authenticate()
+    with (
+        PG2400PClient(
+            host="10.0.1.184",
+            password="wrong",
+            transport=transport,
+        ) as client,
+        pytest.raises(AuthenticationError, match="1 failed attempt"),
+    ):
+        client.authenticate()
 
 
 def test_operation_and_logout_failures_remain_visible_after_transport_close() -> None:
@@ -231,21 +233,15 @@ def test_operation_and_logout_failures_remain_visible_after_transport_close() ->
         transport=transport,
     )
 
-    with pytest.raises(ProtocolError) as exc_info:
-        with client:
-            client.authenticate()
-            client.read_device_info()
+    with pytest.raises(ProtocolError) as exc_info, client:
+        client.authenticate()
+        client.read_device_info()
 
-    assert any(
-        "session cleanup failed" in note
-        for note in getattr(exc_info.value, "__notes__", ())
-    )
+    assert any("session cleanup failed" in note for note in getattr(exc_info.value, "__notes__", ()))
     assert client._client.is_closed
 
 
-@pytest.mark.parametrize(
-    "host", ["", "http://10.0.1.184", "10.0.1.184/path", "bad host"]
-)
+@pytest.mark.parametrize("host", ["", "http://10.0.1.184", "10.0.1.184/path", "bad host"])
 def test_client_rejects_non_host_input(host: str) -> None:
     with pytest.raises(ValueError):
         PG2400PClient(host=host, password="unused")

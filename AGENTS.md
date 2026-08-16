@@ -143,7 +143,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Services and process map | `data/extracted-{version}-{hardware}/extracted-knowledge/process-map.md` | static web/filesystem symbols only | recover activation/xrefs |
 | Network and protocol map | `data/extracted-{version}-{hardware}/extracted-knowledge/protocol-map.md` | root/form client grammar and mapped keys recovered | bind server handlers |
 | Tool versions and failures | `data/extracted-{version}-{hardware}/extracted-knowledge/toolchain.txt` | present for both releases | use only bounded next parser |
-| Safe read-only CLI | `src/pg2400p_cli/` and `context/findings-cli.md` | live-verified on both devices | extend only from proven semantics |
+| Safe read-only CLI | `src/pg2400p_cli/` and `context/findings-cli.md` | layered and live-verified on both devices | extend only from proven semantics |
 | Live hidden G.hn telemetry | `data/extracted-live/extracted-knowledge/live-telemetry-evidence.txt` | 20 fields live-confirmed on both devices; two-sample deltas recorded | add fixture-backed read-only CLI ownership |
 | Official tpPLC utilities | `data/extracted-tpplc-*/extracted-knowledge/` | Windows and macOS stacks mapped; raw G.hn discovery evidenced | recover payload grammar in an isolated VM |
 | Raw subagent notes | `data/subagents/` | empty | use only for separable analysis lanes |
@@ -164,7 +164,7 @@ Do not commit raw firmware, filesystems, decompiler databases, packet captures, 
 | Update and signature flow | `context/findings-update-signing.md` | CRC and encryption-state evidence; candidate updater xrefs rejected | confirmed/likely | `BLOCKED` | decode `descriptor.upg` and loader handoff |
 | Vulnerability and patch research | `context/findings-security.md` | not started | | `BLOCKED` | named reachable boundary |
 | Version comparisons | `context/findings-version-comparisons.md` | raw layout and anchor contexts compared; no semantic updater delta | confirmed | `BLOCKED` | compare validated updater functions |
-| Read-only CLI | `context/findings-cli.md` | identity, settings, peers, rates, JSON, logout, and guards live-verified | confirmed | `NOW` | extend only from proven semantics |
+| Read-only CLI | `context/findings-cli.md` | layered identity, settings, peers, rates, JSON, logout, and guards live-verified | confirmed | `NOW` | extend only from proven semantics |
 
 ## Status
 

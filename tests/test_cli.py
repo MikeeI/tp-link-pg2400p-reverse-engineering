@@ -5,8 +5,8 @@ import pytest
 from typer.testing import CliRunner
 
 from pg2400p_cli.cli import app
-from pg2400p_cli.errors import AuthenticationError
-from pg2400p_cli.models import DeviceInfo, PeerLink, PowerlineSettings
+from pg2400p_cli.domain.errors import AuthenticationError
+from pg2400p_cli.domain.models import DeviceInfo, PeerLink, PowerlineSettings
 
 runner = CliRunner()
 
@@ -94,7 +94,10 @@ def test_expected_authentication_error_uses_stderr(
         def authenticate(self) -> None:
             raise AuthenticationError("device rejected the password")
 
-    monkeypatch.setattr("pg2400p_cli.cli.PG2400PClient", RejectingClient)
+    monkeypatch.setattr(
+        "pg2400p_cli.cli.PG2400PClient",
+        RejectingClient,
+    )
 
     result = runner.invoke(
         app,
@@ -169,7 +172,10 @@ def test_error_output_includes_cleanup_failure_note(
         def read_device_info(self) -> DeviceInfo:
             raise AuthenticationError("primary read failure")
 
-    monkeypatch.setattr("pg2400p_cli.cli.PG2400PClient", DualFailureClient)
+    monkeypatch.setattr(
+        "pg2400p_cli.cli.PG2400PClient",
+        DualFailureClient,
+    )
 
     result = runner.invoke(
         app,

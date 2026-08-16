@@ -2,14 +2,14 @@ from types import TracebackType
 
 import httpx
 
-from pg2400p_cli.errors import (
+from pg2400p_cli.domain.errors import (
     AuthenticationError,
     DeviceConnectionError,
     PG2400PError,
     ProtocolError,
 )
-from pg2400p_cli.models import DeviceInfo, PeerLink, PowerlineSettings
-from pg2400p_cli.protocol import parse_key_value_response, password_digest
+from pg2400p_cli.domain.models import DeviceInfo, PeerLink, PowerlineSettings
+from pg2400p_cli.infrastructure.protocol import parse_key_value_response, password_digest
 
 DEFAULT_TIMEOUT_SECONDS = 8.0
 LOGIN_PASSWORD_KEY = "TPLINK.GENERAL.LOGIN_PASSWORD"
@@ -46,9 +46,7 @@ _ALLOWED_COMMANDS = frozenset(
         LOGOUT_COMMAND,
     }
 )
-_BROWSER_USER_AGENT = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0"
-)
+_BROWSER_USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0"
 _AJAX_HEADERS = {
     "Accept": "text/plain, */*; q=0.01",
     "Accept-Language": "en-GB,en;q=0.5",
@@ -224,9 +222,7 @@ class PG2400PClient:
             response = self._client.get("/", headers=_PREFLIGHT_HEADERS)
             response.raise_for_status()
         except httpx.HTTPError as exc:
-            raise DeviceConnectionError(
-                f"preflight failed for http://{self.host}/"
-            ) from exc
+            raise DeviceConnectionError(f"preflight failed for http://{self.host}/") from exc
 
     def _login_request(self) -> dict[str, str]:
         if self._password is None:
@@ -242,9 +238,7 @@ class PG2400PClient:
             response = self._client.post("/", content=body, headers=headers)
             response.raise_for_status()
         except httpx.HTTPError as exc:
-            raise DeviceConnectionError(
-                f"login request failed for {base_url}/"
-            ) from exc
+            raise DeviceConnectionError(f"login request failed for {base_url}/") from exc
         return parse_key_value_response(response.text)
 
     def _read_fields(
@@ -253,9 +247,7 @@ class PG2400PClient:
         require_authentication: bool = True,
     ) -> dict[str, str]:
         if require_authentication and self._token is None:
-            raise AuthenticationError(
-                "authenticate before reading protected device data"
-            )
+            raise AuthenticationError("authenticate before reading protected device data")
 
         params = tuple((key, "") for key in keys)
         if self._token is not None:
@@ -266,23 +258,17 @@ class PG2400PClient:
             response = self._client.get("/", params=query, headers=headers)
             response.raise_for_status()
         except httpx.HTTPError as exc:
-            raise DeviceConnectionError(
-                f"read request failed for http://{self.host}/"
-            ) from exc
+            raise DeviceConnectionError(f"read request failed for http://{self.host}/") from exc
 
         values = _parse_success_response(response.text, operation="field read")
         missing = [key for key in keys if key not in values]
         if missing:
-            raise ProtocolError(
-                f"device omitted requested field(s): {', '.join(missing)}"
-            )
+            raise ProtocolError(f"device omitted requested field(s): {', '.join(missing)}")
         return {key: values[key] for key in keys}
 
     def _post_command(self, command: str) -> dict[str, str]:
         if command not in _ALLOWED_COMMANDS:
-            raise ProtocolError(
-                f"command {command!r} is not approved by the safety boundary"
-            )
+            raise ProtocolError(f"command {command!r} is not approved by the safety boundary")
         if self._token is None:
             raise AuthenticationError("authenticate before running a protected command")
         base_url = f"http://{self.host}"
@@ -357,10 +343,7 @@ def _normalize_host(host: str) -> str:
     normalized = host.strip()
     if not normalized:
         raise ValueError("host must not be empty")
-    if (
-        any(character in normalized for character in ("/", "?", "#"))
-        or "://" in normalized
-    ):
+    if any(character in normalized for character in ("/", "?", "#")) or "://" in normalized:
         raise ValueError("host must not include a scheme, path, query, or fragment")
     if any(character.isspace() for character in normalized):
         raise ValueError("host must not contain whitespace")
