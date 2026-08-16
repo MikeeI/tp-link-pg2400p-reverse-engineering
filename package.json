@@ -1,5 +1,5 @@
 {
-    "name": "project-reverse-device-tplinkpg2400p",
+    "name": "tp-link-pg2400p-reverse-engineering",
     "private": true,
     "type": "module",
     "scripts": {
