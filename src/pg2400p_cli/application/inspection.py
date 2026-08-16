@@ -1,3 +1,4 @@
+import time
 from collections.abc import Iterator
 from contextlib import contextmanager
 from dataclasses import dataclass
@@ -5,6 +6,11 @@ from types import TracebackType
 from typing import Protocol, Self
 
 from pg2400p_cli.domain.models import DeviceInfo, PeerLink, PowerlineSettings
+from pg2400p_cli.domain.telemetry import (
+    TelemetryReport,
+    TelemetrySnapshot,
+    calculate_telemetry_interval,
+)
 
 
 class InspectionClient(Protocol):
@@ -24,6 +30,7 @@ class InspectionClient(Protocol):
     def read_peer_links(self) -> tuple[PeerLink, ...]: ...
 
     def read_powerline_settings(self) -> PowerlineSettings: ...
+    def read_telemetry_snapshot(self) -> TelemetrySnapshot: ...
 
 
 class InspectionClientFactory(Protocol):
@@ -74,6 +81,28 @@ class InspectionService:
     def read_powerline_settings(self) -> PowerlineSettings:
         with self._authenticated_client() as client:
             return client.read_powerline_settings()
+
+    def read_telemetry(self, *, interval_seconds: float | None) -> TelemetryReport:
+        if interval_seconds is not None and interval_seconds <= 0:
+            raise ValueError("telemetry interval must be greater than zero")
+
+        with self._authenticated_client() as client:
+            first = client.read_telemetry_snapshot()
+            if interval_seconds is None:
+                return TelemetryReport(snapshot=first)
+
+            started = time.monotonic()
+            time.sleep(interval_seconds)
+            second = client.read_telemetry_snapshot()
+            elapsed = time.monotonic() - started
+            return TelemetryReport(
+                snapshot=second,
+                interval=calculate_telemetry_interval(
+                    first,
+                    second,
+                    seconds=elapsed,
+                ),
+            )
 
     def read_status(self) -> DeviceStatus:
         with self._authenticated_client() as client:

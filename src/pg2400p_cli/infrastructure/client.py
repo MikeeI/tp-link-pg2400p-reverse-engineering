@@ -9,7 +9,12 @@ from pg2400p_cli.domain.errors import (
     ProtocolError,
 )
 from pg2400p_cli.domain.models import DeviceInfo, PeerLink, PowerlineSettings
+from pg2400p_cli.domain.telemetry import TelemetrySnapshot
 from pg2400p_cli.infrastructure.protocol import parse_key_value_response, password_digest
+from pg2400p_cli.infrastructure.telemetry import (
+    TELEMETRY_KEYS,
+    decode_telemetry_snapshot,
+)
 
 DEFAULT_TIMEOUT_SECONDS = 8.0
 LOGIN_PASSWORD_KEY = "TPLINK.GENERAL.LOGIN_PASSWORD"
@@ -216,6 +221,10 @@ class PG2400PClient:
                 _require_result(qos, command=QOS_COMMAND),
             ),
         )
+
+    def read_telemetry_snapshot(self) -> TelemetrySnapshot:
+        fields = {key: self._read_fields(key)[key] for key in TELEMETRY_KEYS}
+        return decode_telemetry_snapshot(self.host, fields)
 
     def _preflight(self) -> None:
         try:

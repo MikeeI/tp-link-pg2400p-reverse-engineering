@@ -9,6 +9,7 @@ import typer
 
 from pg2400p_cli.application.inspection import InspectionService
 from pg2400p_cli.domain.errors import PG2400PError
+from pg2400p_cli.domain.telemetry import TelemetryReport, TelemetrySeries
 from pg2400p_cli.infrastructure.client import DEFAULT_TIMEOUT_SECONDS, PG2400PClient
 
 CLI_NAME = "pg2400p"
@@ -163,6 +164,40 @@ def settings(
 
 
 @app.command()
+def telemetry(
+    host: Annotated[str, typer.Option("--host", help="Device IP address or hostname.")],
+    timeout_seconds: Annotated[
+        float,
+        typer.Option("--timeout", min=0.1, help="HTTP inactivity timeout in seconds."),
+    ] = DEFAULT_TIMEOUT_SECONDS,
+    interval_seconds: Annotated[
+        float | None,
+        typer.Option(
+            "--interval",
+            min=0.1,
+            help="Take a second sample after this many seconds and calculate deltas.",
+        ),
+    ] = None,
+    json_output: Annotated[
+        bool,
+        typer.Option("--json", help="Write machine-readable JSON to stdout."),
+    ] = False,
+) -> None:
+    """Read hidden G.hn link-quality and error telemetry."""
+    try:
+        report = _inspection_service(host, timeout_seconds).read_telemetry(
+            interval_seconds=interval_seconds,
+        )
+    except (PG2400PError, ValueError) as exc:
+        _fail(exc)
+
+    if json_output:
+        _emit_json(report)
+        return
+    _emit_telemetry(report)
+
+
+@app.command()
 def status(
     host: Annotated[str, typer.Option("--host", help="Device IP address or hostname.")],
     timeout_seconds: Annotated[
@@ -217,6 +252,54 @@ def status(
         _emit_pair(f"peer[{index}].mac", link.mac)
         _emit_pair(f"peer[{index}].rx_mbps", link.rx_mbps)
         _emit_pair(f"peer[{index}].tx_mbps", link.tx_mbps)
+
+
+def _emit_telemetry(report: TelemetryReport) -> None:
+    snapshot = report.snapshot
+    _emit_pair("host", snapshot.host)
+    _emit_pair("xput_indicator_mbps", snapshot.xput_indicator_mbps)
+    for index, node in enumerate(snapshot.nodes):
+        _emit_pair(f"node[{index}].did", node.did)
+        _emit_pair(f"node[{index}].active", node.active)
+        _emit_pair(f"node[{index}].attenuation_tenths_db", node.attenuation_tenths_db)
+        _emit_pair(f"node[{index}].attenuation_db", node.attenuation_db)
+        _emit_pair(f"node[{index}].wire_length_m", node.wire_length_m)
+
+    _emit_series("qos", snapshot.qos)
+    _emit_series("g9962", snapshot.g9962)
+    _emit_series("llc_errors", snapshot.llc_errors)
+    _emit_series("channel_adaptation", snapshot.channel_adaptation)
+    _emit_series("ethernet", snapshot.ethernet)
+    _emit_series("ethernet_errors", snapshot.ethernet_errors)
+    _emit_series("master_selection", snapshot.master_selection)
+
+    interval = report.interval
+    if interval is None:
+        return
+    _emit_pair("interval.seconds", interval.seconds)
+    _emit_pair("interval.tx_bits_per_second", interval.tx_bits_per_second)
+    _emit_pair("interval.rx_bits_per_second", interval.rx_bits_per_second)
+    _emit_pair("interval.retransmission_rate", interval.retransmission_rate)
+    _emit_pair("interval.receive_bler", interval.receive_bler)
+    _emit_mapping("interval.g9962", interval.g9962_deltas)
+    _emit_mapping("interval.qos", interval.qos_deltas)
+    _emit_mapping("interval.ethernet", interval.ethernet_deltas)
+    _emit_mapping("interval.ethernet_errors", interval.ethernet_error_deltas)
+    _emit_mapping("interval.llc_errors", interval.llc_error_deltas)
+    _emit_mapping(
+        "interval.channel_adaptation",
+        interval.channel_adaptation_deltas,
+    )
+    _emit_mapping("interval.master_selection", interval.master_selection_deltas)
+
+
+def _emit_series(prefix: str, series: TelemetrySeries) -> None:
+    _emit_mapping(prefix, series.named_values)
+
+
+def _emit_mapping(prefix: str, values: dict[str, int]) -> None:
+    for name, value in values.items():
+        _emit_pair(f"{prefix}.{name}", value)
 
 
 def _inspection_service(host: str, timeout_seconds: float) -> InspectionService:

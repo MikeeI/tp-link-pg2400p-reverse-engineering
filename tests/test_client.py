@@ -1,10 +1,13 @@
 from collections.abc import Callable
+from pathlib import Path
 
 import httpx
 import pytest
 
 from pg2400p_cli.domain.errors import AuthenticationError, ProtocolError
 from pg2400p_cli.infrastructure.client import PG2400PClient
+from pg2400p_cli.infrastructure.protocol import parse_key_value_response
+from pg2400p_cli.infrastructure.telemetry import TELEMETRY_KEYS
 
 
 def _sequence_transport(
@@ -245,3 +248,40 @@ def test_operation_and_logout_failures_remain_visible_after_transport_close() ->
 def test_client_rejects_non_host_input(host: str) -> None:
     with pytest.raises(ValueError):
         PG2400PClient(host=host, password="unused")
+
+
+def test_read_telemetry_uses_each_confirmed_key_as_a_read_only_request() -> None:
+    fields = parse_key_value_response(
+        (Path(__file__).parent / "fixtures" / "telemetry-sample-1.txt").read_text(
+            encoding="utf-8",
+        ),
+    )
+    requested: list[str] = []
+
+    def telemetry_read(request: httpx.Request) -> httpx.Response:
+        keys = [key for key in request.url.params if key != "_t"]
+        assert request.method == "GET"
+        assert request.url.params["_t"] == "test-token"
+        assert len(keys) == 1
+        key = keys[0]
+        requested.append(key)
+        return httpx.Response(200, text=f"ERROR=000\r\n{key}={fields[key]}\r\n")
+
+    transport = _sequence_transport(
+        [
+            _preflight,
+            _successful_login,
+            *[telemetry_read for _ in TELEMETRY_KEYS],
+            _logout,
+        ],
+    )
+    with PG2400PClient(
+        host="10.0.1.184",
+        password="MyStrongPassword",
+        transport=transport,
+    ) as client:
+        client.authenticate()
+        snapshot = client.read_telemetry_snapshot()
+
+    assert requested == list(TELEMETRY_KEYS)
+    assert snapshot.xput_indicator_mbps == 365

@@ -117,11 +117,28 @@ No packet-, LLC-, or Ethernet-layer error increased. G.hn recovery contained the
 
 Historical `CHANNEL_INFO` values were `.184 = 6,21,0,14,44,36,0,0,0,0` and `.185 = 2,22,0,6,32,21,0,0,0,0`; the descriptor names only six columns. Treat the trailing layout and absolute counts as unresolved. Both arrays were unchanged during observation; the named `SNR decr` position was zero.
 
+## CLI ownership
+
+- [confirmed] `pg2400p telemetry --host <host> --json` returns one decoded snapshot and all 20 exact raw values.
+- [confirmed] `--interval <seconds>` takes two snapshots in one authenticated session and uses measured elapsed time.
+- [confirmed] Interval output includes all counter deltas, TX/RX bit rates, retransmission rate, and receive BLER.
+- [confirmed] Descriptor/value width drift and decreasing counters fail explicitly instead of producing false rates.
+- [confirmed] Variable trailing `CHANNEL_INFO` values remain available as `UNMAPPED_<index>` and in `raw_fields`.
+- [confirmed-live] Snapshot and one-second interval collection completed on `.184` without changing device state.
+- [runtime] `.184` currently reports no remote peer, zero XPUT, and uncalculated attenuation and wire length.
+
+```bash
+uv run --locked pg2400p telemetry \
+  --host <device-ip> \
+  --interval 5 \
+  --json
+```
+
 ## Safety and state verification
 
 - [confirmed-live] Probe boundary: authenticated field GETs plus normal login/logout only; no setter, reset, re-estimation, diagnostic enable, or configuration command.
 - [confirmed-live] Identity, firmware, local MAC, domain, PHY mode, peer count/MACs, and Rx/Tx BPS matched before, immediately after, and after the second sample.
 - [confirmed-live] Both roots remained `HTTP 200`, `12321` bytes, SHA-256 `2048bb33776afb3c8e2fdd3dbaad1c162b43d1739b37b0234dccc870d6bcd4bf`.
 - `BLOCKED`: `FLOWMONITOR.GENERAL.DID_ESTIMATE`, `*.RESET`, diagnostics enables, AFE/gain, SNR collection controls, and other writable ConfigLayer keys on live devices.
-- `NOW`: repeat the proven GET set; calculate rates from deltas; implement read-only CLI ownership after fixtures cover variable array lengths and `ERROR=009`.
+- `NOW`: collect passive CLI interval snapshots when the remote peer returns.
 - `RUNTIME-NEEDED`: controlled traffic windows to characterize directionality, BLER, retries, XPUT, attenuation stability, and adaptation events.
