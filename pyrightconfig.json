@@ -1,0 +1,6 @@
+{
+    "pythonVersion": "3.13",
+    "typeCheckingMode": "standard",
+    "include": ["src"],
+    "exclude": [".venv", ".venv_*", "venv", "__pycache__", "data/tests"]
+}

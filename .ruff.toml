@@ -1,0 +1,70 @@
+extend-exclude = [
+  ".venv/**",
+  ".venv_*/**",
+  "venv/**",
+  "__pycache__",
+  ".git",
+  ".ruff_cache",
+  "**/backup/**",
+  "**/legacy/**",
+  "data/tests/input/**",
+  "data/tests/output/**",
+]
+target-version = "py313"
+line-length = 120
+[lint]
+select = [
+  "I",
+  "UP",
+  "W291",
+  "W292",
+  "W293",
+  "C4",
+  "TID",
+  "F841",
+  "RET",
+  "PIE",
+  "PTH",
+  "SIM",
+  "FURB",
+  "B",
+  "RUF",
+  "PERF",
+]
+ignore = ["F401", "SIM102", "SIM108", "SIM110", "SIM401"]
+fixable = ["ALL"]
+[lint.isort]
+combine-as-imports = true
+known-first-party = []
+force-single-line = false
+[lint.flake8-tidy-imports.banned-api]
+"argparse" = { msg = "BANNED - Use typer instead (rules_python.md Section 7)" }
+"requests" = { msg = "BANNED - Use httpx instead (rules_python.md Section 7)" }
+"subprocess" = { msg = "BANNED - Use sh instead (rules_python.md Section 7)" }
+"datetime" = { msg = "BANNED - Use pendulum instead (rules_python.md Section 7, exploration-notes)" }
+"logging" = { msg = "BANNED - Use loguru instead (rules_python.md Section 7)" }
+"bs4" = { msg = "BANNED - Use selectolax instead (rules_python.md Section 7)" }
+"BeautifulSoup4" = { msg = "BANNED - Use selectolax instead (rules_python.md Section 7)" }
+"yaml" = { msg = "BANNED - Use ruamel.yaml instead (rules_python.md Section 7)" }
+"magic" = { msg = "BANNED - Use filetype instead (rules_python.md Section 7)" }
+"os.getenv" = { msg = "BANNED - Use environs instead (rules_python.md Section 7)" }
+"BeautifulSoup" = { msg = "BANNED - Use selectolax instead (rules_python.md Section 7)" }
+"sqlite3" = { msg = "BANNED - Use apsw instead (exploration-notes-python-tools.md)" }
+"pysqlite3" = { msg = "CONSIDER - Use apsw instead for full API access (exploration-notes-python-tools.md)" }
+"json" = { msg = "BANNED - Use orjson instead (rules_python.md Section 6)" }
+"google.generativeai" = { msg = "BANNED - Use google-genai instead (rules_python.md Section 6)" }
+"pytz" = { msg = "BANNED - Use pendulum instead (exploration-notes)" }
+"dateutil" = { msg = "BANNED - Use pendulum instead (exploration-notes)" }
+"click" = { msg = "BANNED - Use typer instead (exploration-notes)" }
+"aiohttp" = { msg = "BANNED - Use httpx for async HTTP (exploration-notes)" }
+"httpx_cache" = { msg = "BANNED - Use hishel instead for httpx caching (exploration-notes)" }
+"urllib3" = { msg = "BANNED - Use httpx instead (exploration-notes)" }
+"ujson" = { msg = "BANNED - Use orjson instead (exploration-notes)" }
+"simplejson" = { msg = "BANNED - Use orjson instead (exploration-notes)" }
+"pprint" = { msg = "BANNED - Use devtools.debug() instead (exploration-notes)" }
+"pandas" = { msg = "CONSIDER - Use polars for better performance (exploration-notes)" }
+"mimetypes" = { msg = "CONSIDER - Use filetype for magic byte detection (exploration-notes)" }
+[format]
+quote-style = "double"
+skip-magic-trailing-comma = false
+indent-style = "space"

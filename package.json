@@ -1,0 +1,21 @@
+{
+    "name": "project-reverse-device-tplinkpg2400p",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "format": "prettier --cache --write . --log-level warn",
+        "format:all": "bun --silent run format:py && bun --silent run format:js && bun --silent run format:prettier && bun --silent run format:sh && bun --silent run sort:all",
+        "format:check": "prettier --cache --check . --log-level warn",
+        "format:js": "eslint . --cache --cache-location .eslintcache --fix --quiet && prettier --cache --write '**/*.{js,jsx,ts,tsx}' --log-level warn",
+        "format:prettier": "prettier --cache --write '**/*.{json,md,yml,yaml,css,scss}' --log-level warn",
+        "format:py": "ruff check --fix --unsafe-fixes --quiet . && ruff format --quiet .",
+        "format:sh": "shfmt -w .",
+        "knip": "knip",
+        "lint-staged": "lint-staged --quiet",
+        "pyupgrade": "fdfind -I -e py -x pyupgrade --py313-plus",
+        "sort:all": "bun --silent run sort:package && bun --silent run sort:toml && bun --silent run sort:requirements",
+        "sort:package": "sort-package-json package.json",
+        "sort:requirements": "fdfind -I --type f 'requirements.*\\.txt$' --exec sort -u {} -o {}",
+        "sort:toml": "fdfind -I --type f -e toml --exec taplo format {}"
+    }
+}

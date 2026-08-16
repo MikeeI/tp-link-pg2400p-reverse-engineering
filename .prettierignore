@@ -1,0 +1,14 @@
+node_modules/
+.venv/
+venv/
+__pycache__/
+.git/
+.ruff_cache/
+dist/
+.output/
+.wxt/
+vendor/
+bun.lock
+bun.lockb
+data/tests/input/
+data/tests/output/

@@ -1,0 +1,103 @@
+{
+  "files": {
+    ".editorconfig": {
+      "matches_template": true,
+      "result_hash": "sha256:6c3ff434b5efa67986d13e39a45c6a6eb1d100a5a0050d9385cd8ef9c3e84114",
+      "source": "data/templates/_shared/.editorconfig",
+      "template_hash": "sha256:6c3ff434b5efa67986d13e39a45c6a6eb1d100a5a0050d9385cd8ef9c3e84114"
+    },
+    ".gitignore": {
+      "matches_template": false,
+      "result_hash": "sha256:9394b49249b86cb3087b432e29a58ef8da0afcc9343e131818bd102af9180efb",
+      "source": "data/templates/_shared/.gitignore",
+      "template_hash": "sha256:e146d30f4f25852366b87b6f68969614f2a91728959b30bdbdec3da658389738"
+    },
+    ".husky/pre-commit": {
+      "matches_template": true,
+      "result_hash": "sha256:fd8c4f73a42665617a401524092d3fe0d51f80bd6774c6ddfcb07c7309856f39",
+      "source": "data/templates/_shared/.husky/pre-commit",
+      "template_hash": "sha256:fd8c4f73a42665617a401524092d3fe0d51f80bd6774c6ddfcb07c7309856f39"
+    },
+    ".lintstagedrc.js": {
+      "matches_template": true,
+      "result_hash": "sha256:0754d91aa7dcc2b142f770d6e76463753459f7d4925532613c71841b265ecb09",
+      "source": "data/templates/_shared/.lintstagedrc.js",
+      "template_hash": "sha256:0754d91aa7dcc2b142f770d6e76463753459f7d4925532613c71841b265ecb09"
+    },
+    ".prettierignore": {
+      "matches_template": true,
+      "result_hash": "sha256:c538aabd22461c4d37c563048a534d30c6c33beacd21f43776c4b3df5a52fce4",
+      "source": "data/templates/_shared/.prettierignore",
+      "template_hash": "sha256:c538aabd22461c4d37c563048a534d30c6c33beacd21f43776c4b3df5a52fce4"
+    },
+    ".prettierrc": {
+      "matches_template": true,
+      "result_hash": "sha256:65cc8d9a0583c5bc39911168a2b732b20c94db672e30b7e44c0a02e40875158a",
+      "source": "data/templates/_shared/.prettierrc",
+      "template_hash": "sha256:65cc8d9a0583c5bc39911168a2b732b20c94db672e30b7e44c0a02e40875158a"
+    },
+    ".python-version": {
+      "matches_template": true,
+      "result_hash": "sha256:02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398",
+      "source": "data/templates/python/.python-version",
+      "template_hash": "sha256:02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398"
+    },
+    ".ruff.toml": {
+      "matches_template": true,
+      "result_hash": "sha256:4c7c7a26d861c7d7d9d437ce876731de38148ba9395d94c4bbbc244d89b0b439",
+      "source": "data/templates/python/.ruff.toml",
+      "template_hash": "sha256:4c7c7a26d861c7d7d9d437ce876731de38148ba9395d94c4bbbc244d89b0b439"
+    },
+    "bunfig.toml": {
+      "matches_template": true,
+      "result_hash": "sha256:212f847167feb9356f8d38f2526b8b3e07ca9b613bfcbf18ec718d04706a1e41",
+      "source": "data/templates/_shared/bunfig.toml",
+      "template_hash": "sha256:212f847167feb9356f8d38f2526b8b3e07ca9b613bfcbf18ec718d04706a1e41"
+    },
+    "eslint.config.js": {
+      "matches_template": true,
+      "result_hash": "sha256:c7435a9bce9db7ca4e2799acddcd361ddbc6814d18331ee287b6099bd1772f43",
+      "source": "data/templates/python/eslint.config.js",
+      "template_hash": "sha256:c7435a9bce9db7ca4e2799acddcd361ddbc6814d18331ee287b6099bd1772f43"
+    },
+    "package.json": {
+      "matches_template": true,
+      "result_hash": "sha256:973ec6478f8a3133a252f98d1f0e128cef0add2eb3b787bc9d35c72c29556f9b",
+      "source": "data/templates/python/package.json",
+      "template_hash": "sha256:973ec6478f8a3133a252f98d1f0e128cef0add2eb3b787bc9d35c72c29556f9b"
+    },
+    "pyproject.toml": {
+      "matches_template": false,
+      "result_hash": "sha256:458de9e9a259c4c0c0b28feaa6bf29cf776eaf2097a2ec3256487a5eaf560e90",
+      "source": "data/templates/python/pyproject.toml",
+      "template_hash": "sha256:ea11bf413fb2d7b6dde9d158f0ffc4b3c1579d72fe9913b8bae128cfe7fdf9a2"
+    },
+    "pyrightconfig.json": {
+      "matches_template": true,
+      "result_hash": "sha256:7642a3a58c49c42d216df045cf97e9bfd9e76ab310da8fc0384537eb842df755",
+      "source": "data/templates/python/pyrightconfig.json",
+      "template_hash": "sha256:7642a3a58c49c42d216df045cf97e9bfd9e76ab310da8fc0384537eb842df755"
+    },
+    "pytest.ini": {
+      "matches_template": true,
+      "result_hash": "sha256:681c8b248b744efaa8ddfa4f2a9c0b03f6a64135176f37476de2f74dcf211dd5",
+      "source": "data/templates/python/pytest.ini",
+      "template_hash": "sha256:681c8b248b744efaa8ddfa4f2a9c0b03f6a64135176f37476de2f74dcf211dd5"
+    },
+    "ty.toml": {
+      "matches_template": true,
+      "result_hash": "sha256:197fae57076fa28587d95e5375cfe9023b56139390c1aad6b68c83b5e68bdd89",
+      "source": "data/templates/python/ty.toml",
+      "template_hash": "sha256:197fae57076fa28587d95e5375cfe9023b56139390c1aad6b68c83b5e68bdd89"
+    }
+  },
+  "profile": "python",
+  "render_context": {
+    "go_module": "",
+    "normalized_project_name": "project-reverse-device-tplinkpg2400p",
+    "project_name": "project-reverse-device-tplinkpg2400p"
+  },
+  "schema": 1,
+  "template_commit": "ef799b779c58712e9390559bde220e97574481b7",
+  "tool_version": "4.3.0"
+}

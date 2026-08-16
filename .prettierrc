@@ -1,0 +1,19 @@
+{
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "endOfLine": "lf",
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "htmlWhitespaceSensitivity": "css",
+    "bracketSameLine": false,
+    "proseWrap": "never",
+    "overrides": [
+        { "files": ["*.md", "*.markdown"], "options": { "tabWidth": 4 } },
+        { "files": ["*.yml", "*.yaml"], "options": { "tabWidth": 4 } },
+        { "files": ["*.json"], "options": { "tabWidth": 4 } }
+    ]
+}
